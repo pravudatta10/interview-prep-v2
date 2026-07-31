@@ -1,0 +1,85 @@
+/**
+ * Structural layout: app shell, header, content area, bottom nav.
+ * No component-specific visuals here — see components.css.
+ */
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  line-height: var(--line-height);
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+.app-header-inner {
+  height: var(--header-height);
+  padding: 0 var(--space-4);
+}
+
+.app-content {
+  flex: 1 1 auto;
+  width: 100%;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-4) calc(var(--bottom-nav-height) + var(--space-5));
+}
+
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  height: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
+  display: flex;
+  background: var(--color-surface-raised);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Reading Mode — distraction-free topic reader (see topicView.js) */
+#app.reading-mode .app-header {
+  height: auto;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0;
+}
+#app.reading-mode .app-content {
+  padding-bottom: var(--space-5);
+}
+.bottom-nav.hidden { display: none; }
+
+.search-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.search-overlay.hidden { display: none; }

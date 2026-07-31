@@ -1,0 +1,11 @@
+[
+  { "title": "OOP Principles in Java", "type": "Topics", "path": "/learn/java/oops" },
+  { "title": "Collections Framework", "type": "Topics", "path": "/learn/java/collections" },
+  { "title": "Spring Boot Auto-Configuration", "type": "Topics", "path": "/learn/spring-boot/auto-configuration" },
+  { "title": "Print the first N Fibonacci numbers", "type": "Coding Questions", "path": "/coding/java-basics/loops/print-fibonacci" },
+  { "title": "Reverse the digits of an integer", "type": "Coding Questions", "path": "/coding/java-basics/loops/reverse-a-number" },
+  { "title": "Find the duplicate element in an array", "type": "Coding Questions", "path": "/coding/java-basics/arrays/find-duplicate" },
+  { "title": "Java Collections Cheat Sheet", "type": "Notes", "path": "/notes/java-collections-cheatsheet" },
+  { "title": "Spring Boot Quick Reference", "type": "Notes", "path": "/notes/spring-boot-quick-reference" },
+  { "title": "SQL Joins Explained", "type": "Notes", "path": "/notes/sql-joins-explained" }
+]

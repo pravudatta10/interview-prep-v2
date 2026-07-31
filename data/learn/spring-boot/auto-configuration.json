@@ -1,0 +1,9 @@
+{
+  "title": "Spring Boot Auto-Configuration",
+  "blocks": [
+    { "type": "text", "content": "Auto-configuration scans the classpath and applies sensible default beans based on what dependencies are present." },
+    { "type": "code", "language": "java", "code": "@SpringBootApplication\npublic class App {\n    public static void main(String[] args) {\n        SpringApplication.run(App.class, args);\n    }\n}" },
+    { "type": "tip", "content": "Use @ConditionalOnMissingBean in custom auto-configuration to let user-defined beans take priority." },
+    { "type": "question", "content": "How would you exclude a specific auto-configuration class from being applied?" }
+  ]
+}

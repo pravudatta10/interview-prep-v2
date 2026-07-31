@@ -1,0 +1,19 @@
+/**
+ * Mobile-first breakpoints. Base styles throughout the app already target
+ * small screens; this file only adds adjustments for larger viewports.
+ */
+@media (min-width: 480px) {
+  .category-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 768px) {
+  .app-header { padding: 0 var(--space-6); }
+  .app-content { padding-left: var(--space-6); padding-right: var(--space-6); }
+  .category-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Large touch targets and comfortable spacing stay constant across sizes
+   per the mobile-first / one-handed-use requirement. */
+@media (max-width: 340px) {
+  :root { --font-size-md: 0.95rem; }
+}

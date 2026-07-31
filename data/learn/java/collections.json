@@ -1,0 +1,9 @@
+{
+  "title": "Collections Framework",
+  "blocks": [
+    { "type": "text", "content": "The Collections Framework provides ready-made data structures — List, Set, Map — with a shared set of interfaces." },
+    { "type": "table", "headers": ["Interface", "Common Implementation", "Ordered?"], "rows": [["List", "ArrayList", "Yes"], ["Set", "HashSet", "No"], ["Map", "HashMap", "No"]] },
+    { "type": "warning", "content": "HashMap is not thread-safe. Use ConcurrentHashMap when multiple threads write to the same map." },
+    { "type": "question", "content": "When would you choose a LinkedList over an ArrayList?" }
+  ]
+}

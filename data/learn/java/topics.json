@@ -1,0 +1,4 @@
+[
+  { "id": "oops", "file": "oops", "title": "OOP Principles in Java", "readTimeMinutes": 3 },
+  { "id": "collections", "file": "collections", "title": "Collections Framework", "readTimeMinutes": 3 }
+]

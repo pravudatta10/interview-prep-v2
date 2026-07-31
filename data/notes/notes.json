@@ -1,0 +1,26 @@
+[
+  {
+    "id": "Core Java Cheat Sheet",
+    "title": "Core Java Cheat Sheets",
+    "category": "Java",
+    "pages": 8,
+    "sizeLabel": "1.0 MB",
+    "url": "/assets/pdfs/Core-Java-Int-Prep.pdf"
+  },
+  {
+    "id": "spring-boot-quick-reference",
+    "title": "Spring Boot Quick Reference",
+    "category": "Spring",
+    "pages": 10,
+    "sizeLabel": "1.2 MB",
+    "url": "/assets/pdfs/spring-boot-quick-reference.pdf"
+  },
+  {
+    "id": "sql-joins-explained",
+    "title": "SQL Joins Explained",
+    "category": "SQL",
+    "pages": 4,
+    "sizeLabel": "0.4 MB",
+    "url": "/assets/pdfs/sql-joins-explained.pdf"
+  }
+]
