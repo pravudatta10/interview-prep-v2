@@ -12,15 +12,12 @@
 <link rel="stylesheet" href="./src/styles/mobile.css" />
 </head>
 <body>
-  <!-- App Shell: the ONLY static markup in the app. Everything else is rendered by JS. -->
-  <div id="app">
-    <header id="app-header" class="app-header"></header>
-    <main id="app-content" class="app-content" role="main" aria-live="polite"></main>
-    <nav id="bottom-nav" class="bottom-nav" role="navigation" aria-label="Primary"></nav>
-  </div>
-
-  <div id="search-overlay" class="search-overlay hidden" role="dialog" aria-modal="true" aria-label="Search"></div>
-
-  <script type="module" src="./src/app/app.js"></script>
+  <script>
+    const currentPath = window.location.pathname + window.location.search + window.location.hash;
+    const segments = currentPath.split('/').filter(Boolean);
+    const repoSegment = segments[0] && !segments[0].includes('.') ? segments[0] : '';
+    const route = repoSegment ? currentPath.replace(new RegExp(`^/${repoSegment}`), '') || '/' : currentPath;
+    window.location.replace(`./index.html?route=${encodeURIComponent(route)}`);
+  </script>
 </body>
 </html>

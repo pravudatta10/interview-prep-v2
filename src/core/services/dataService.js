@@ -7,15 +7,21 @@
  */
 const memoryCache = new Map();
 
-async function fetchJson(path) {
-  if (memoryCache.has(path)) return memoryCache.get(path);
+function toAppUrl(path) {
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return new URL(`../../${cleanPath}`, import.meta.url).toString();
+}
 
-  const response = await fetch(path, { cache: 'force-cache' });
+async function fetchJson(path) {
+  const appUrl = toAppUrl(path);
+  if (memoryCache.has(appUrl)) return memoryCache.get(appUrl);
+
+  const response = await fetch(appUrl, { cache: 'force-cache' });
   if (!response.ok) {
     throw new Error(`Failed to load data: ${path} (${response.status})`);
   }
   const json = await response.json();
-  memoryCache.set(path, json);
+  memoryCache.set(appUrl, json);
   return json;
 }
 

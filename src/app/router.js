@@ -7,6 +7,31 @@
 const routes = [];
 let notFoundHandler = () => {};
 
+function getAppBasePath() {
+  try {
+    const baseUrl = new URL('../..', import.meta.url);
+    return baseUrl.pathname.replace(/\/$/, '');
+  } catch {
+    return '';
+  }
+}
+
+function stripBasePath(pathname) {
+  const basePath = getAppBasePath();
+  if (basePath && basePath !== '/' && pathname.startsWith(basePath)) {
+    const remainder = pathname.slice(basePath.length) || '/';
+    return remainder.startsWith('/') ? remainder : `/${remainder}`;
+  }
+  return pathname;
+}
+
+function withBasePath(pathname) {
+  const basePath = getAppBasePath();
+  const normalizedPath = pathname.startsWith('/') ? pathname : `/${pathname}`;
+  if (basePath && basePath !== '/') return `${basePath}${normalizedPath}`;
+  return normalizedPath;
+}
+
 function compile(pattern) {
   const paramNames = [];
   const regexStr = pattern
@@ -33,13 +58,14 @@ export const router = {
   },
 
   navigate(path, { replace = false } = {}) {
-    if (replace) history.replaceState({}, '', path);
-    else history.pushState({}, '', path);
+    const targetPath = withBasePath(path);
+    if (replace) history.replaceState({}, '', targetPath);
+    else history.pushState({}, '', targetPath);
     router.resolve();
   },
 
   resolve() {
-    const path = window.location.pathname || '/';
+    const path = stripBasePath(window.location.pathname || '/');
     for (const route of routes) {
       const match = path.match(route.regex);
       if (match) {
@@ -54,6 +80,11 @@ export const router = {
 
   start() {
     window.addEventListener('popstate', () => router.resolve());
+    const routeParam = new URLSearchParams(window.location.search).get('route');
+    if (routeParam) {
+      const normalizedRoute = routeParam.startsWith('/') ? routeParam : `/${routeParam}`;
+      history.replaceState({}, '', withBasePath(normalizedRoute));
+    }
     router.resolve();
   },
 };

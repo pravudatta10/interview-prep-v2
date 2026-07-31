@@ -9,6 +9,11 @@ const PDFJS_WORKER = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.
 
 let pdfjsLoadPromise = null;
 
+function toAppUrl(path) {
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return new URL(`../../${cleanPath}`, import.meta.url).toString();
+}
+
 function loadPdfJs() {
   if (window.pdfjsLib) return Promise.resolve(window.pdfjsLib);
   if (pdfjsLoadPromise) return pdfjsLoadPromise;
@@ -30,7 +35,7 @@ export const pdfService = {
   /** Loads and opens a PDF document. Returns a pdf.js PDFDocumentProxy. */
   async openDocument(url) {
     const pdfjsLib = await loadPdfJs();
-    const loadingTask = pdfjsLib.getDocument(url);
+    const loadingTask = pdfjsLib.getDocument(toAppUrl(url));
     return loadingTask.promise;
   },
 
