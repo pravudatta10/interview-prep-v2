@@ -1,11 +1,11 @@
 [
   {
-    "id": "Core Java Cheat Sheet",
-    "title": "Core Java Cheat Sheets",
+    "id": "java-collections-cheatsheet",
+    "title": "Java Collections Cheat Sheet",
     "category": "Java",
-    "pages": 8,
-    "sizeLabel": "1.0 MB",
-    "url": "/assets/pdfs/Core-Java-Int-Prep.pdf"
+    "pages": 6,
+    "sizeLabel": "0.8 MB",
+    "file": "java-collections-cheatsheet.pdf"
   },
   {
     "id": "spring-boot-quick-reference",
@@ -13,7 +13,7 @@
     "category": "Spring",
     "pages": 10,
     "sizeLabel": "1.2 MB",
-    "url": "/assets/pdfs/spring-boot-quick-reference.pdf"
+    "file": "spring-boot-quick-reference.pdf"
   },
   {
     "id": "sql-joins-explained",
@@ -21,6 +21,6 @@
     "category": "SQL",
     "pages": 4,
     "sizeLabel": "0.4 MB",
-    "url": "/assets/pdfs/sql-joins-explained.pdf"
+    "file": "sql-joins-explained.pdf"
   }
 ]

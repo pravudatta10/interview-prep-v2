@@ -1,9 +1,15 @@
 /**
  * Learn feature — distraction-free reader for a single topic.
- * Renders only the block types present in the topic's JSON file (never a
- * forced template), applies progressive disclosure to secondary blocks,
- * and reports title/read-time/progress upward so app.js can drive the
- * minimal reading-mode header (see ARCHITECTURE.md → Rendering Flow).
+ *
+ * Renders the fixed interview-revision schema (see /CONTENT_MODEL.md):
+ * summary → code → example → mistakes (collapsed) → follow-ups (collapsed).
+ * Any field the topic omits is simply not rendered — there is no generic
+ * block dispatch here on purpose, so a topic can't quietly grow into a
+ * documentation page.
+ *
+ * Reports title/read-time/progress upward so app.js can drive the minimal
+ * reading-mode header (see ARCHITECTURE.md → Rendering Flow) — that part
+ * of the pipeline is unchanged from the mobile UX sprint.
  */
 import { h, escapeHtml } from '../../core/utils/dom.js';
 import { dataService } from '../../core/services/dataService.js';
@@ -11,17 +17,7 @@ import { storageService } from '../../core/services/storageService.js';
 import { CodeBlock } from '../../shared/components/CodeBlock.js';
 import { LoadingSkeleton } from '../../shared/components/LoadingSkeleton.js';
 
-/** Block types shown immediately — the "explanation first" blocks. */
-const ALWAYS_VISIBLE = new Set(['text', 'code', 'table', 'image']);
-
-/** Secondary blocks stay collapsed behind a reveal button until tapped. */
-const REVEAL_LABEL = {
-  tip: '💡 Reveal Tip',
-  warning: '⚠️ Reveal Common Mistake',
-  question: '🎯 Reveal Interview Question',
-};
-
-function revealButton(label, contentNode) {
+function revealSection(label, contentNode) {
   const btn = h('button', {
     class: 'reveal-btn',
     'aria-expanded': 'false',
@@ -35,22 +31,22 @@ function revealButton(label, contentNode) {
   return h('div', { class: 'block-card reveal-card' }, [btn, contentNode]);
 }
 
-const BLOCK_RENDERERS = {
-  text: (block) => h('div', { class: 'block-card' }, h('p', { class: 'block-text' }, block.content)),
-  code: (block) => h('div', { class: 'block-card block-card-code' }, CodeBlock({ code: block.code, language: block.language })),
-  tip: (block) => revealButton(REVEAL_LABEL.tip, h('p', { class: 'block-tip hidden mt-0' }, block.content)),
-  warning: (block) => revealButton(REVEAL_LABEL.warning, h('p', { class: 'block-warning hidden mt-0' }, block.content)),
-  question: (block) => revealButton(REVEAL_LABEL.question, h('div', { class: 'block-question hidden' }, block.content)),
-  table: (block) => {
-    const thead = h('thead', {}, h('tr', {}, block.headers.map((head) => h('th', {}, head))));
-    const tbody = h('tbody', {}, block.rows.map((row) => h('tr', {}, row.map((cell) => h('td', {}, cell)))));
-    return h('div', { class: 'block-card' }, h('table', { class: 'block-table' }, [thead, tbody]));
-  },
-  image: (block) => h('div', { class: 'block-card' }, h('img', { class: 'block-image', src: block.src, alt: block.alt || '' })),
-};
+function renderMistakes(mistakes) {
+  const list = h('ul', { class: 'mistake-list hidden mt-0' },
+    mistakes.map((m) => h('li', {}, m))
+  );
+  return revealSection(`⚠️ Reveal Common Mistakes (${mistakes.length})`, list);
+}
 
-// Only one topic can be actively read at a time; track its scroll listener
-// so navigating away always cleans up the previous one before adding a new one.
+function renderFollowUps(followUps) {
+  const list = h('ul', { class: 'followup-list hidden mt-0' },
+    followUps.map((q) => h('li', {}, q))
+  );
+  return revealSection(`🎯 Reveal Follow-up Questions (${followUps.length})`, list);
+}
+
+/** Only one topic can be actively read at a time; track its scroll listener
+ *  so navigating away always cleans up the previous one before adding a new one. */
 let activeScrollCleanup = null;
 
 function attachProgressTracking(article, topicId, meta, onProgress) {
@@ -87,9 +83,20 @@ export async function renderTopicView(container, categorySlug, topicFile, { onMe
       dataService.getLearnTopics(categorySlug),
     ]);
 
-    const blocks = (topic.blocks || [])
-      .filter((block) => BLOCK_RENDERERS[block.type])
-      .map((block) => BLOCK_RENDERERS[block.type](block));
+    const blocks = [];
+    blocks.push(h('div', { class: 'block-card' }, h('p', { class: 'block-text' }, topic.summary)));
+
+    if (topic.code) {
+      blocks.push(h('div', { class: 'block-card block-card-code' }, CodeBlock({ code: topic.code.snippet, language: topic.code.language })));
+    }
+    if (topic.example) {
+      blocks.push(h('div', { class: 'block-card example-card' }, [
+        h('div', { class: 'label' }, 'Example'),
+        h('p', { class: 'mt-0 mb-0' }, topic.example),
+      ]));
+    }
+    if (topic.mistakes?.length) blocks.push(renderMistakes(topic.mistakes));
+    if (topic.followUps?.length) blocks.push(renderFollowUps(topic.followUps));
 
     const index = topicList.findIndex((t) => t.file === topicFile);
     const prevTopic = index > 0 ? topicList[index - 1] : null;

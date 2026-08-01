@@ -51,22 +51,31 @@ files inside another feature's folder.
 ```
 
 ### Learn topic content — `data/learn/<category>/<file>.json`
+
+This is an **interview revision answer**, not a documentation page. See
+`/CONTENT_MODEL.md` for the full reasoning; the short version:
+
 ```json
 {
+  "id": "oops",
   "title": "OOP Principles in Java",
-  "blocks": [
-    { "type": "text", "content": "..." },
-    { "type": "code", "language": "java", "code": "..." },
-    { "type": "tip", "content": "..." },
-    { "type": "warning", "content": "..." },
-    { "type": "table", "headers": ["A","B"], "rows": [["1","2"]] },
-    { "type": "image", "src": "...", "alt": "..." },
-    { "type": "question", "content": "..." }
-  ]
+  "summary": "1–3 sentences — what you'd actually say if asked in an interview.",
+  "code": { "language": "java", "snippet": "// short, only if it clarifies the summary" },
+  "example": "One short real-world scenario, optional.",
+  "mistakes": ["A common mistake or misconception, one per line."],
+  "followUps": ["A likely interviewer follow-up question, one per line."]
 }
 ```
-Only include the block types that add value — never pad a topic with empty
-sections.
+
+- `id`, `title`, and `summary` are required. Everything else is omitted
+  entirely from the JSON when the topic doesn't need it — don't add an
+  empty `"mistakes": []` just to have the field present.
+- `summary` should be revisable in under 15 seconds. If it's taking a
+  paragraph, it's becoming documentation — cut it down or move the extra
+  detail into `example`.
+- Don't add new top-level fields without checking the "will an engineer
+  actually read this the night before an interview?" test in
+  `CONTENT_MODEL.md` first.
 
 ### Coding questions — `data/coding/<slug>/<file>.json`
 ```json
@@ -85,13 +94,17 @@ sections.
 
 ### Notes metadata — `data/notes/notes.json`
 ```json
-[{ "id": "java-collections-cheatsheet", "title": "...", "category": "Java", "pages": 6, "sizeLabel": "0.8 MB", "url": "/assets/pdfs/....pdf" }]
+[{ "id": "java-collections-cheatsheet", "title": "...", "category": "Java", "pages": 6, "sizeLabel": "0.8 MB", "file": "java-collections-cheatsheet.pdf" }]
 ```
+`file` is just the filename — the app resolves it to a full, deployment-correct
+URL via `CONFIG.assets.pdfs()` (see `/CONFIG_GUIDE.md`). Never put an absolute
+path or full URL in this field; it won't survive a move to a different host or
+base path.
 
 ## How to Add a New Topic
 
 1. Add an entry to `data/learn/<category>/topics.json` with a unique `file`.
-2. Create `data/learn/<category>/<file>.json` with a `title` and `blocks`.
+2. Create `data/learn/<category>/<file>.json` with `id`, `title`, and `summary` (plus any of `code`/`example`/`mistakes`/`followUps` that apply).
 3. No code changes needed — the route is generic.
 
 ## How to Add Coding Questions
@@ -102,8 +115,8 @@ sections.
 
 ## How to Add Notes
 
-1. Add an entry to `data/notes/notes.json`.
-2. Place the PDF under a static assets path referenced by `url`.
+1. Add an entry to `data/notes/notes.json` with a `file` filename.
+2. Place the matching PDF at `assets/pdfs/<file>` (the path `CONFIG.assets.pdfs()` resolves to — see `/CONFIG_GUIDE.md`).
 
 ## How to Add a New Learn Category
 

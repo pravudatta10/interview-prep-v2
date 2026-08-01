@@ -72,7 +72,8 @@ scale.
 
 | Module | Responsibility |
 |---|---|
-| `router.js` | URL ↔ route matching and navigation only |
+| `config.js` | Centralizing every deployment-specific setting (base path, asset URLs, PDF.js version, router base, cache version) — nothing else; see `/CONFIG_GUIDE.md` |
+| `router.js` | URL ↔ route matching and navigation only (base-path-aware via `config.js`) |
 | `dataService` | Fetching + memory-caching JSON content only |
 | `storageService` | Reading/writing small preference/progress keys in `localStorage` only |
 | `searchService` | In-memory search over the pre-built index only |
@@ -100,10 +101,11 @@ independent, read-mostly views.
 ## Dependency Relationships
 
 ```
-app.js → router.js, shared/components/*, core/services/*
-features/* → shared/components/*, core/services/dataService
-shared/components/* → core/utils/dom.js, core/services/* (PdfViewer only)
-core/services/* → core/utils (none required), browser APIs only
+config.js → browser APIs only (no dependencies on the rest of the app)
+app.js → router.js, shared/components/*, core/services/*, config.js
+features/* → shared/components/*, core/services/dataService, config.js (notes only)
+shared/components/* → core/utils/dom.js, core/services/* (PdfViewer only), config.js (PdfViewer only)
+core/services/* → config.js, core/utils (none required), browser APIs only
 ```
 
 Dependencies point inward — feature and app code depend on core/shared, never the

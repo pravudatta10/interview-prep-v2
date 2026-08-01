@@ -1,8 +1,10 @@
 /**
  * storageService
  * Single responsibility: read/write small user-preference and progress data.
- * Backed by localStorage only — this app never abuses localStorage for
- * content caching (see cacheService for that).
+ * Backed by localStorage only — this app never stores fetched JSON,
+ * interview content, or search-index data here (see dataService, which
+ * caches that in memory for the session only). See /LOCALSTORAGE_AUDIT.md
+ * for the full audit of every key below.
  */
 const PREFIX = 'ip:';
 
@@ -16,6 +18,7 @@ const KEYS = {
   LAST_READING: 'lastReading',
   RECENT_QUESTIONS: 'recentQuestions',
   RECENT_SEARCHES: 'recentSearches',
+  RECENT_NOTES: 'recentNotes',
 };
 
 function read(key, fallback) {
@@ -78,6 +81,14 @@ export const storageService = {
     if (days <= 0) return 'Practiced today';
     if (days === 1) return 'Practiced yesterday';
     return `Practiced ${days}d ago`;
+  },
+
+  /** "Recent Notes" — most recently opened PDF notes, for the Home dashboard. */
+  getRecentNotes: () => read(KEYS.RECENT_NOTES, []),
+  addRecentNote: (note) => {
+    const list = read(KEYS.RECENT_NOTES, []).filter((n) => n.id !== note.id);
+    list.unshift(note);
+    write(KEYS.RECENT_NOTES, list.slice(0, 6));
   },
 
   getRecentSearches: () => read(KEYS.RECENT_SEARCHES, []),

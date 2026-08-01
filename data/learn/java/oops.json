@@ -1,11 +1,18 @@
 {
+  "id": "oops",
   "title": "OOP Principles in Java",
-  "blocks": [
-    { "type": "text", "content": "Java is built around four core object-oriented ideas: encapsulation, inheritance, polymorphism, and abstraction." },
-    { "type": "text", "content": "Encapsulation means bundling data and the methods that operate on it inside a class, and hiding internal state behind private fields." },
-    { "type": "code", "language": "java", "code": "public class Account {\n    private double balance;\n\n    public void deposit(double amount) {\n        this.balance += amount;\n    }\n}" },
-    { "type": "tip", "content": "Favor composition over inheritance when a class needs to reuse behavior from multiple sources." },
-    { "type": "table", "headers": ["Concept", "Keyword"], "rows": [["Inheritance", "extends"], ["Interface", "implements"], ["Abstraction", "abstract"]] },
-    { "type": "question", "content": "How does Java achieve runtime polymorphism, and what role does method overriding play?" }
+  "summary": "Java OOP rests on four ideas: encapsulation hides state behind methods, inheritance reuses behavior via 'extends', polymorphism lets one call resolve to different implementations at runtime, and abstraction exposes only what a caller needs through interfaces or abstract classes.",
+  "code": {
+    "language": "java",
+    "snippet": "public class Account {\n    private double balance;\n\n    public void deposit(double amount) {\n        this.balance += amount;\n    }\n}"
+  },
+  "example": "Prefer composition over inheritance when a class needs to reuse behavior from more than one source — e.g. a PaymentService that both logs and validates shouldn't extend two base classes, it should hold a Logger and a Validator.",
+  "mistakes": [
+    "Confusing overloading (compile-time, same class) with overriding (runtime, subclass) — interviewers ask this constantly.",
+    "Making every field 'protected' instead of 'private' — that isn't encapsulation, it just moves the leak up one level."
+  ],
+  "followUps": [
+    "How does Java achieve runtime polymorphism, and what role does the vtable / dynamic dispatch play?",
+    "When would you reach for an interface instead of an abstract class?"
   ]
 }

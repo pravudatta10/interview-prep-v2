@@ -19,6 +19,7 @@ import { BottomNav } from '../shared/components/BottomNav.js';
 import { SearchBar } from '../shared/components/SearchBar.js';
 import { EmptyState } from '../shared/components/EmptyState.js';
 import { LoadingSkeleton } from '../shared/components/LoadingSkeleton.js';
+import { ErrorState } from '../shared/components/ErrorState.js';
 
 const appEl = document.getElementById('app');
 const headerEl = document.getElementById('app-header');
@@ -27,40 +28,6 @@ const navEl = document.getElementById('bottom-nav');
 const searchOverlayEl = document.getElementById('search-overlay');
 
 themeService.init();
-
-const isDevelopmentEnvironment = () =>
-  window.location.hostname === 'localhost' ||
-  window.location.hostname === '127.0.0.1' ||
-  window.location.hostname === '0.0.0.0' ||
-  window.location.protocol === 'file:';
-
-function renderRouteLoading() {
-  contentEl.replaceChildren(LoadingSkeleton(4));
-}
-
-function renderRouteError(retryHandler) {
-  contentEl.replaceChildren(h('div', { class: 'empty-state' }, [
-    h('div', { class: 'card-title' }, 'We couldn’t load this page'),
-    h('div', { class: 'text-muted' }, 'The route could not be rendered. Please try again or return home.'),
-    h('div', { class: 'flex gap-3 mt-4' }, [
-      h('button', { class: 'chip', onClick: () => { renderRouteLoading(); retryHandler(); } }, 'Retry'),
-      h('button', { class: 'chip', onClick: () => router.navigate('/') }, 'Back to Home'),
-    ]),
-  ]));
-}
-
-async function runRoute(handler) {
-  renderRouteLoading();
-  try {
-    await handler();
-  } catch (error) {
-    if (isDevelopmentEnvironment()) console.error(error);
-    renderRouteError(() => {
-      renderRouteLoading();
-      router.resolve();
-    });
-  }
-}
 
 /* ---------- Standard shell (all screens except the topic reader) ---------- */
 
@@ -72,6 +39,11 @@ function paintShell(activeTab, title) {
     activeTab,
     onNavigate: (path) => { storageService.setCurrentTab(activeTab); router.navigate(path); },
   }));
+  // Placeholder content for the gap between now and the route's lazy
+  // import/data fetch resolving — without this, a fresh page load (e.g.
+  // straight after a refresh) has nothing in #app-content until that
+  // promise settles, which is indistinguishable from the blank-screen bug.
+  contentEl.replaceChildren(LoadingSkeleton());
   playContentTransition();
 }
 
@@ -111,6 +83,7 @@ function enterReadingModeShell(onBack) {
   }, progressFill);
   const topRow = h('div', { class: 'app-header-inner flex items-center gap-3 w-full' }, [backBtn, titleEl, readTimeEl]);
   mount(headerEl, h('div', {}, [topRow, bar]));
+  contentEl.replaceChildren(LoadingSkeleton());
   playContentTransition();
   return {
     setMeta: (title, readTimeMinutes) => {
@@ -214,115 +187,129 @@ router.register('/', () => router.navigate('/learn', { replace: true }));
 
 router.register('/learn', async () => {
   paintShell('learn', 'Learn');
-  await runRoute(async () => {
-    const { renderLearnHome } = await import('../features/learn/learnHome.js');
-    renderLearnHome(contentEl, {
-      onOpenCategory: (slug) => router.navigate(`/learn/${slug}`),
-      onOpenTopic: (entry) => router.navigate(`/learn/${entry.categorySlug}/${entry.topicFile}`),
-    });
-    focusContentHeading();
+  const { renderLearnHome } = await import('../features/learn/learnHome.js');
+  renderLearnHome(contentEl, {
+    onOpenCategory: (slug) => router.navigate(`/learn/${slug}`),
+    onOpenTopic: (entry) => router.navigate(`/learn/${entry.categorySlug}/${entry.topicFile}`),
+    onOpenNote: (entry) => router.navigate(`/notes/${entry.id}`),
+    onOpenCoding: () => router.navigate('/coding'),
+    onOpenNotes: () => router.navigate('/notes'),
+    onSearch: openSearch,
   });
+  focusContentHeading();
 });
 
 router.register('/learn/:category', async ({ category }) => {
   const { LEARN_CATEGORIES } = await import('../features/learn/learnHome.js');
   const cat = LEARN_CATEGORIES.find((c) => c.slug === category);
   paintShell('learn', cat?.name || 'Learn');
-  await runRoute(async () => {
-    const { renderCategoryView } = await import('../features/learn/categoryView.js');
-    await renderCategoryView(contentEl, category, {
-      onOpenTopic: (topic) => router.navigate(`/learn/${category}/${topic.file}`),
-    });
-    focusContentHeading();
+  const { renderCategoryView } = await import('../features/learn/categoryView.js');
+  await renderCategoryView(contentEl, category, {
+    onOpenTopic: (topic) => router.navigate(`/learn/${category}/${topic.file}`),
   });
+  focusContentHeading();
 });
 
 router.register('/learn/:category/:topicFile', async ({ category, topicFile }) => {
   const backTarget = `/learn/${category}`;
   const reading = enterReadingModeShell(() => router.navigate(backTarget));
-  await runRoute(async () => {
-    const { renderTopicView } = await import('../features/learn/topicView.js');
-    await renderTopicView(contentEl, category, topicFile, {
-      onMeta: ({ title, readTimeMinutes }) => reading.setMeta(title, readTimeMinutes),
-      onProgress: (percent) => reading.setProgress(percent),
-      onNavigateTopic: (nextFile) => router.navigate(`/learn/${category}/${nextFile}`),
-    });
-    focusContentHeading();
+  const { renderTopicView } = await import('../features/learn/topicView.js');
+  await renderTopicView(contentEl, category, topicFile, {
+    onMeta: ({ title, readTimeMinutes }) => reading.setMeta(title, readTimeMinutes),
+    onProgress: (percent) => reading.setProgress(percent),
+    onNavigateTopic: (nextFile) => router.navigate(`/learn/${category}/${nextFile}`),
   });
+  focusContentHeading();
 });
 
 router.register('/coding', async () => {
   paintShell('coding', 'Coding');
-  await runRoute(async () => {
-    const { renderCodingHome } = await import('../features/coding/codingHome.js');
-    renderCodingHome(contentEl, {
-      onOpenTopic: (topic) => router.navigate(`/coding/${topic.slug}/${topic.file}`),
-    });
-    focusContentHeading();
+  const { renderCodingHome } = await import('../features/coding/codingHome.js');
+  renderCodingHome(contentEl, {
+    onOpenTopic: (topic) => router.navigate(`/coding/${topic.slug}/${topic.file}`),
   });
+  focusContentHeading();
 });
 
 router.register('/coding/:slug/:file', async ({ slug, file }) => {
   paintShell('coding', 'Coding');
-  await runRoute(async () => {
-    const { renderCodingTopicList } = await import('../features/coding/topicList.js');
-    await renderCodingTopicList(contentEl, slug, file, {
-      onOpenQuestion: (q) => router.navigate(`/coding/${slug}/${file}/${q.id}`),
-    });
-    focusContentHeading();
+  const { renderCodingTopicList } = await import('../features/coding/topicList.js');
+  await renderCodingTopicList(contentEl, slug, file, {
+    onOpenQuestion: (q) => router.navigate(`/coding/${slug}/${file}/${q.id}`),
   });
+  focusContentHeading();
 });
 
 router.register('/coding/:slug/:file/:questionId', async ({ slug, file, questionId }) => {
   paintShell('coding', 'Question');
-  await runRoute(async () => {
-    const { dataService } = await import('../core/services/dataService.js');
-    const { renderQuestionView } = await import('../features/coding/questionView.js');
-    const questions = await dataService.getCodingTopic(slug, file);
-    const question = questions.find((q) => q.id === questionId);
-    if (question) {
-      storageService.addRecentQuestion({ id: question.id, title: question.title, topicSlug: slug, topicFile: file });
-      renderQuestionView(contentEl, question);
-      focusContentHeading();
-    }
-  });
+  const { dataService } = await import('../core/services/dataService.js');
+  const { renderQuestionView } = await import('../features/coding/questionView.js');
+  const questions = await dataService.getCodingTopic(slug, file);
+  const question = questions.find((q) => q.id === questionId);
+  if (question) {
+    storageService.addRecentQuestion({ id: question.id, title: question.title, topicSlug: slug, topicFile: file });
+    renderQuestionView(contentEl, question);
+    focusContentHeading();
+  }
 });
 
 router.register('/notes', async () => {
   paintShell('notes', 'Notes');
-  await runRoute(async () => {
-    const { renderNotesHome } = await import('../features/notes/notesHome.js');
-    await renderNotesHome(contentEl, { onOpenNote: (note) => router.navigate(`/notes/${note.id}`) });
-    focusContentHeading();
-  });
+  const { renderNotesHome } = await import('../features/notes/notesHome.js');
+  await renderNotesHome(contentEl, { onOpenNote: (note) => router.navigate(`/notes/${note.id}`) });
+  focusContentHeading();
 });
 
 router.register('/notes/:noteId', async ({ noteId }) => {
   paintShell('notes', 'Notes');
-  await runRoute(async () => {
-    const { dataService } = await import('../core/services/dataService.js');
-    const { renderPdfViewerPage } = await import('../features/notes/pdfViewerPage.js');
-    const notes = await dataService.getNotesMetadata();
-    const note = notes.find((n) => n.id === noteId);
-    if (note) {
-      headerEl.querySelector('.header-title').textContent = note.title;
-      renderPdfViewerPage(contentEl, note);
-    }
-  });
+  const { dataService } = await import('../core/services/dataService.js');
+  const { renderPdfViewerPage } = await import('../features/notes/pdfViewerPage.js');
+  const notes = await dataService.getNotesMetadata();
+  const note = notes.find((n) => n.id === noteId);
+  if (note) {
+    storageService.addRecentNote({ id: note.id, title: note.title, category: note.category });
+    headerEl.querySelector('.header-title').textContent = note.title;
+    renderPdfViewerPage(contentEl, note);
+  }
 });
 
 router.register('/settings', async () => {
   paintShell('settings', 'Settings');
-  await runRoute(async () => {
-    const { renderSettingsPage } = await import('../features/settings/settingsPage.js');
-    renderSettingsPage(contentEl);
-    focusContentHeading();
-  });
+  const { renderSettingsPage } = await import('../features/settings/settingsPage.js');
+  renderSettingsPage(contentEl);
+  focusContentHeading();
 });
 
 router.setNotFound(() => {
   paintShell('learn', 'Not Found');
   contentEl.replaceChildren(EmptyState({ icon: '🚧', title: 'Page not found' }));
+});
+
+/* ---------- Error boundary ---------- */
+/* A route's lazy import or data fetch can fail for reasons that have
+ * nothing to do with the URL being wrong (a flaky connection, a bad
+ * deploy, a JSON typo) — this renders a real in-app error screen with a
+ * way forward instead of leaving whatever was already in #app-content
+ * (or nothing, on a fresh load) on screen. */
+router.setError((err, { retry }) => {
+  console.error('Route failed to load:', err);
+  navEl.classList.remove('hidden');
+  contentEl.replaceChildren(ErrorState({
+    onRetry: retry,
+    onHome: () => router.navigate('/learn'),
+  }));
+});
+
+// Last-resort net for failures outside the router's own promise chain
+// (e.g. a synchronous throw while painting the shell itself) — still
+// never leave the screen blank.
+window.addEventListener('error', (event) => {
+  console.error('Unhandled error:', event.error);
+  contentEl.replaceChildren(ErrorState({ onRetry: () => router.resolve(), onHome: () => router.navigate('/learn') }));
+});
+window.addEventListener('unhandledrejection', (event) => {
+  console.error('Unhandled rejection:', event.reason);
+  contentEl.replaceChildren(ErrorState({ onRetry: () => router.resolve(), onHome: () => router.navigate('/learn') }));
 });
 
 router.start();

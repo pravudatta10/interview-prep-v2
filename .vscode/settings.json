@@ -1,0 +1,10 @@
+{
+  // Makes the VS Code Live Server extension (the server behind
+  // 127.0.0.1:5500 in the bug report) serve index.html for any path it
+  // can't find on disk, instead of a raw "Cannot GET /learn" 404 — that
+  // 404 is what actually produces the blank screen on refresh locally.
+  // See README.md "Deep Links / Refresh" for the equivalent fix on real
+  // hosts, and 404.html for hosts where a setting like this isn't
+  // available at all.
+  "liveServer.settings.file": "index.html"
+}

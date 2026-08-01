@@ -2,22 +2,36 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
-<meta name="theme-color" content="#0f172a" />
 <title>Interview Prep</title>
-<link rel="stylesheet" href="./src/styles/variables.css" />
-<link rel="stylesheet" href="./src/styles/layout.css" />
-<link rel="stylesheet" href="./src/styles/components.css" />
-<link rel="stylesheet" href="./src/styles/utilities.css" />
-<link rel="stylesheet" href="./src/styles/mobile.css" />
 </head>
 <body>
-  <script>
-    const currentPath = window.location.pathname + window.location.search + window.location.hash;
-    const segments = currentPath.split('/').filter(Boolean);
-    const repoSegment = segments[0] && !segments[0].includes('.') ? segments[0] : '';
-    const route = repoSegment ? currentPath.replace(new RegExp(`^/${repoSegment}`), '') || '/' : currentPath;
-    window.location.replace(`./index.html?route=${encodeURIComponent(route)}`);
-  </script>
+<script>
+  /*
+   * Why this file exists
+   * ---------------------
+   * This app is a client-side-routed SPA: "/learn", "/coding/java-basics/loops",
+   * etc. only ever exist as real, requestable URLs in the browser's address
+   * bar — there's no matching file or directory for them on disk. Normal
+   * in-app navigation never touches the network for these (history.pushState
+   * only), but a refresh, a typed URL, or a bookmark makes the browser issue
+   * a real HTTP request for that exact path.
+   *
+   * A plain static file server (or a host with no configured rewrite rule)
+   * has nothing to serve for that request and returns a 404. On hosts that
+   * support a custom 404 page — GitHub Pages included — that 404 response
+   * is THIS file's content. Instead of leaving the visitor on a dead error
+   * page, stash the path they actually wanted and hand off to the real app
+   * shell, which restores it (see the matching script in index.html) before
+   * the router boots.
+   *
+   * This does not require any server configuration — it works purely
+   * because the server already serves a 404 page. Where possible, prefer a
+   * proper rewrite rule instead (see README.md "Deep Links / Refresh" for
+   * the Netlify/Vercel/Apache/nginx options shipped alongside this file) —
+   * this page is the fallback for hosts where that isn't available.
+   */
+  sessionStorage.setItem('ip:redirectPath', location.pathname + location.search + location.hash);
+  location.replace('./index.html');
+</script>
 </body>
 </html>

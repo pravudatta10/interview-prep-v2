@@ -3,33 +3,36 @@
  * Single responsibility: match the current URL to a route definition and
  * hand rendering off to that route's handler. Uses the History API only —
  * no full page reloads, browser back/forward works natively.
+ *
+ * Route patterns registered by app.js stay base-path-agnostic (e.g.
+ * '/learn') — the router itself prepends/strips CONFIG.router.base so the
+ * exact same route table works unmodified whether the app is served from
+ * "/" locally or "/repo-name/" on GitHub Pages.
  */
+import { CONFIG } from '../config.js';
+
 const routes = [];
 let notFoundHandler = () => {};
+let errorHandler = (err) => { throw err; };
 
-function getAppBasePath() {
-  try {
-    const baseUrl = new URL('../..', import.meta.url);
-    return baseUrl.pathname.replace(/\/$/, '');
-  } catch {
-    return '';
-  }
+/** CONFIG.router.base with any trailing slash removed, e.g. '' or '/repo-name'. */
+function normalizedBase() {
+  return CONFIG.router.base.replace(/\/$/, '');
 }
 
-function stripBasePath(pathname) {
-  const basePath = getAppBasePath();
-  if (basePath && basePath !== '/' && pathname.startsWith(basePath)) {
-    const remainder = pathname.slice(basePath.length) || '/';
-    return remainder.startsWith('/') ? remainder : `/${remainder}`;
+/** Turns a route-relative path ('/learn') into a real browser path. */
+function withBase(path) {
+  return normalizedBase() + path;
+}
+
+/** Turns the browser's actual pathname back into a route-relative path. */
+function stripBase(pathname) {
+  const base = normalizedBase();
+  if (base && pathname.startsWith(base)) {
+    const rest = pathname.slice(base.length);
+    return rest === '' ? '/' : rest;
   }
   return pathname;
-}
-
-function withBasePath(pathname) {
-  const basePath = getAppBasePath();
-  const normalizedPath = pathname.startsWith('/') ? pathname : `/${pathname}`;
-  if (basePath && basePath !== '/') return `${basePath}${normalizedPath}`;
-  return normalizedPath;
 }
 
 function compile(pattern) {
@@ -57,21 +60,31 @@ export const router = {
     notFoundHandler = handler;
   },
 
+  /** handler(error, { path, retry }) — called when a route's handler throws
+   *  or its returned promise rejects (e.g. a lazy import or fetch fails),
+   *  so a failed route renders an in-app error screen instead of leaving
+   *  the previous screen's content (or nothing, on first load) on screen. */
+  setError(handler) {
+    errorHandler = handler;
+  },
+
   navigate(path, { replace = false } = {}) {
-    const targetPath = withBasePath(path);
-    if (replace) history.replaceState({}, '', targetPath);
-    else history.pushState({}, '', targetPath);
+    const fullPath = withBase(path);
+    if (replace) history.replaceState({}, '', fullPath);
+    else history.pushState({}, '', fullPath);
     router.resolve();
   },
 
   resolve() {
-    const path = stripBasePath(window.location.pathname || '/');
+    const path = stripBase(window.location.pathname || '/') || '/';
     for (const route of routes) {
       const match = path.match(route.regex);
       if (match) {
         const params = {};
         route.paramNames.forEach((name, i) => { params[name] = decodeURIComponent(match[i + 1]); });
-        route.handler(params);
+        Promise.resolve()
+          .then(() => route.handler(params))
+          .catch((err) => errorHandler(err, { path, retry: () => router.resolve() }));
         return;
       }
     }
@@ -80,11 +93,6 @@ export const router = {
 
   start() {
     window.addEventListener('popstate', () => router.resolve());
-    const routeParam = new URLSearchParams(window.location.search).get('route');
-    if (routeParam) {
-      const normalizedRoute = routeParam.startsWith('/') ? routeParam : `/${routeParam}`;
-      history.replaceState({}, '', withBasePath(normalizedRoute));
-    }
     router.resolve();
   },
 };

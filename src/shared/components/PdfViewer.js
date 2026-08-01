@@ -3,6 +3,10 @@
  * Embedded, mobile-optimized PDF reader built on pdfService (PDF.js).
  * No download/print controls are exposed — navigation and zoom only.
  * Remembers the last viewed page via storageService.
+ *
+ * Never leaves a blank screen on failure — always a friendly message with
+ * a working Retry button. Detailed errors are always logged to the
+ * console for diagnosis (see /PDF_VIEWER_FIX.md).
  */
 import { h } from '../../core/utils/dom.js';
 import { pdfService } from '../../core/services/pdfService.js';
@@ -44,20 +48,32 @@ export function PdfViewer({ noteId, url }) {
   zoomInBtn.addEventListener('click', () => { scale = Math.min(scale + 0.2, 3); renderCurrentPage(); });
   zoomOutBtn.addEventListener('click', () => { scale = Math.max(scale - 0.2, 0.6); renderCurrentPage(); });
 
-  (async () => {
+  function showError() {
+    const retryBtn = h('button', { class: 'retry-btn', onClick: load }, 'Retry');
+    canvasWrap.replaceChildren(
+      EmptyState({
+        icon: '📄',
+        title: 'Unable to load this PDF. Please try again.',
+        subtitle: 'Check your connection, then retry.',
+      }),
+      retryBtn
+    );
+  }
+
+  async function load() {
+    canvasWrap.replaceChildren(pagePlaceholder());
     try {
       pdfDoc = await pdfService.openDocument(url);
-      currentPage = Math.min(currentPage, pdfDoc.numPages);
+      currentPage = Math.min(currentPage || 1, pdfDoc.numPages);
       canvasWrap.replaceChildren(canvas);
       await renderCurrentPage();
     } catch (err) {
-      canvasWrap.replaceChildren(EmptyState({
-        icon: '📄',
-        title: "Couldn't load this PDF",
-        subtitle: 'Check your connection and try again.',
-      }));
+      console.error('[PdfViewer] load failed for', url, err);
+      showError();
     }
-  })();
+  }
+
+  load();
 
   return container;
 }

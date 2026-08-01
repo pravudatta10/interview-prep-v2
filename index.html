@@ -5,11 +5,50 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
 <meta name="theme-color" content="#0f172a" />
 <title>Interview Prep</title>
-<link rel="stylesheet" href="./src/styles/variables.css" />
-<link rel="stylesheet" href="./src/styles/layout.css" />
-<link rel="stylesheet" href="./src/styles/components.css" />
-<link rel="stylesheet" href="./src/styles/utilities.css" />
-<link rel="stylesheet" href="./src/styles/mobile.css" />
+
+<!--
+  Anchors every relative URL below (and every relative fetch/import the
+  app makes) to the project root, regardless of what the address bar
+  shows. Without this, "src/app/app.js" resolves fine from "/" but 404s
+  the instant the current path has any extra segments (e.g. "/learn") —
+  which is exactly what happens on refresh, a direct URL, or a bookmark.
+  This is the root cause of the blank-screen-after-refresh bug: the
+  request for the HTML document itself was already failing (see 404.html
+  and README.md "Deep Links / Refresh"), and even once that's fixed,
+  these relative paths would still 404 without this tag.
+  Deploying to a GitHub Pages *project* subpage
+  (username.github.io/repo-name/)? Change this to "/repo-name/" — same
+  manual-override pattern as BASE_PATH in src/config.js, see
+  CONFIG_GUIDE.md.
+-->
+<base href="/" />
+
+<script>
+  // Restores a deep link stashed by 404.html (see that file) BEFORE the
+  // router boots, so a refresh, a direct URL, or a bookmark on a route
+  // like "/learn" lands back on "/learn" instead of silently falling
+  // back to the home screen. Runs synchronously, ahead of the module
+  // script below, so router.start() always sees the corrected URL.
+  (function restoreDeepLink() {
+    var redirect = sessionStorage.getItem('ip:redirectPath');
+    if (redirect) {
+      sessionStorage.removeItem('ip:redirectPath');
+      history.replaceState(null, '', redirect);
+    }
+  })();
+</script>
+
+<link rel="icon" href="assets/icons/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png" />
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+
+<link rel="stylesheet" href="src/styles/variables.css" />
+<link rel="stylesheet" href="src/styles/layout.css" />
+<link rel="stylesheet" href="src/styles/components.css" />
+<link rel="stylesheet" href="src/styles/utilities.css" />
+<link rel="stylesheet" href="src/styles/mobile.css" />
 </head>
 <body>
   <!-- App Shell: the ONLY static markup in the app. Everything else is rendered by JS. -->
@@ -21,6 +60,6 @@
 
   <div id="search-overlay" class="search-overlay hidden" role="dialog" aria-modal="true" aria-label="Search"></div>
 
-  <script type="module" src="./src/app/app.js"></script>
+  <script type="module" src="src/app/app.js"></script>
 </body>
 </html>

@@ -1,9 +1,16 @@
 {
+  "id": "auto-configuration",
   "title": "Spring Boot Auto-Configuration",
-  "blocks": [
-    { "type": "text", "content": "Auto-configuration scans the classpath and applies sensible default beans based on what dependencies are present." },
-    { "type": "code", "language": "java", "code": "@SpringBootApplication\npublic class App {\n    public static void main(String[] args) {\n        SpringApplication.run(App.class, args);\n    }\n}" },
-    { "type": "tip", "content": "Use @ConditionalOnMissingBean in custom auto-configuration to let user-defined beans take priority." },
-    { "type": "question", "content": "How would you exclude a specific auto-configuration class from being applied?" }
+  "summary": "Auto-configuration scans the classpath at startup and registers sensible default beans based on what's present — add spring-boot-starter-data-jpa and it configures a DataSource and EntityManagerFactory for you, unless you've already defined your own.",
+  "code": {
+    "language": "java",
+    "snippet": "@SpringBootApplication\npublic class App {\n    public static void main(String[] args) {\n        SpringApplication.run(App.class, args);\n    }\n}"
+  },
+  "mistakes": [
+    "Saying 'Spring Boot has no configuration' — it has plenty, it's just applied conditionally (@ConditionalOnClass, @ConditionalOnMissingBean) instead of manually."
+  ],
+  "followUps": [
+    "How would you exclude a specific auto-configuration class from being applied?",
+    "How does @ConditionalOnMissingBean let your own beans take priority over the defaults?"
   ]
 }

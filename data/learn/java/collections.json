@@ -1,9 +1,14 @@
 {
+  "id": "collections",
   "title": "Collections Framework",
-  "blocks": [
-    { "type": "text", "content": "The Collections Framework provides ready-made data structures — List, Set, Map — with a shared set of interfaces." },
-    { "type": "table", "headers": ["Interface", "Common Implementation", "Ordered?"], "rows": [["List", "ArrayList", "Yes"], ["Set", "HashSet", "No"], ["Map", "HashMap", "No"]] },
-    { "type": "warning", "content": "HashMap is not thread-safe. Use ConcurrentHashMap when multiple threads write to the same map." },
-    { "type": "question", "content": "When would you choose a LinkedList over an ArrayList?" }
+  "summary": "The Collections Framework gives you List (ordered, duplicates allowed — ArrayList/LinkedList), Set (no duplicates — HashSet/TreeSet), and Map (key-value — HashMap/TreeMap), all built on shared interfaces so you can swap implementations without changing calling code.",
+  "example": "Reach for LinkedList over ArrayList only when you're doing frequent insert/remove at the head or middle — for anything else, ArrayList's better cache locality wins in practice.",
+  "mistakes": [
+    "Using HashMap from multiple threads without synchronization — it can silently corrupt state, not just throw. Use ConcurrentHashMap instead.",
+    "Assuming HashSet/HashMap preserve insertion order — they don't; use LinkedHashSet/LinkedHashMap if order matters."
+  ],
+  "followUps": [
+    "Why is ConcurrentHashMap faster than a synchronized HashMap under contention?",
+    "What's the time complexity of get() on a HashMap in the worst case, and when does that worst case happen?"
   ]
 }
