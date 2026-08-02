@@ -121,6 +121,11 @@
   text-decoration: none;
 }
 
+/* Home dashboard — consistent gap between sections regardless of which
+   ones are present (Quick Start, Continue Revision, Recently Viewed,
+   Recent Notes, Interview Categories aren't always all shown together). */
+.home-sections { display: flex; flex-direction: column; gap: var(--space-5); }
+
 /* Welcome hero (Home dashboard, first-time users only) */
 .home-hero {
   text-align: center;
@@ -255,6 +260,7 @@
 }
 .search-bar input {
   flex: 1;
+  min-height: var(--touch-target-min);
   border: none;
   background: transparent;
   font-size: var(--font-size-md);
@@ -313,7 +319,24 @@
 
 /* PDF viewer */
 .pdf-viewer { display: flex; flex-direction: column; height: calc(100vh - var(--header-height)); }
-.pdf-canvas-wrap { flex: 1; overflow: auto; background: var(--color-surface); display: flex; justify-content: center; }
+.pdf-canvas-wrap {
+  flex: 1;
+  overflow: auto;
+  background: var(--color-surface);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Top-aligned, not centered: this holds a scrollable multi-page stack,
+     and centering a flex column that overflows its container can hide
+     the start of the overflow content behind the container edge in some
+     browsers. The one-off error/loading state (a single child) still
+     reads fine top-aligned with the padding below. */
+  justify-content: flex-start;
+  padding: var(--space-4) 0;
+}
+.pdf-page { margin-bottom: var(--space-4); box-shadow: var(--shadow-md); }
+.pdf-page:last-child { margin-bottom: 0; }
+.pdf-page-canvas { display: block; max-width: 100%; height: auto; }
 .pdf-controls {
   display: flex;
   align-items: center;
@@ -478,8 +501,8 @@
   gap: var(--space-1);
 }
 .code-action-btn {
-  min-width: 36px;
-  min-height: 32px;
+  min-width: var(--touch-target-min);
+  min-height: var(--touch-target-min);
   border: none;
   border-radius: var(--radius-sm);
   background: rgba(255,255,255,0.08);
@@ -514,7 +537,7 @@
 /* Search chips (recent + suggested searches) */
 .chip-row { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 .chip {
-  min-height: 36px;
+  min-height: var(--touch-target-min);
   padding: 0 var(--space-3);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
@@ -555,6 +578,8 @@
 .segmented button {
   border: none;
   background: transparent;
+  min-width: var(--touch-target-min);
+  min-height: var(--touch-target-min);
   padding: var(--space-2) var(--space-3);
   font-size: var(--font-size-sm);
   cursor: pointer;

@@ -123,5 +123,5 @@ export function renderLearnHome(container, { onOpenCategory, onOpenTopic, onOpen
     ),
   ]));
 
-  container.replaceChildren(h('div', {}, sections));
+  container.replaceChildren(h('div', { class: 'home-sections' }, sections));
 }

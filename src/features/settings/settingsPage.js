@@ -4,6 +4,7 @@
  */
 import { h } from '../../core/utils/dom.js';
 import { themeService } from '../../core/services/themeService.js';
+import { CONFIG } from '../../config.js';
 
 function segmented(options, activeValue, onSelect) {
   return h('div', { class: 'segmented' }, options.map((opt) =>
@@ -38,7 +39,7 @@ export function renderSettingsPage(container) {
     ]);
 
     const aboutRow = h('div', { class: 'settings-row', style: 'border-bottom:none;' }, [
-      h('div', {}, [h('div', { class: 'label' }, 'Interview Prep'), h('div', { class: 'desc' }, 'Version 2.0.0')]),
+      h('div', {}, [h('div', { class: 'label' }, 'Interview Prep'), h('div', { class: 'desc' }, `Version ${CONFIG.app.version}`)]),
     ]);
 
     container.replaceChildren(h('div', {}, [themeRow, fontRow, aboutRow]));

@@ -31,10 +31,10 @@ themeService.init();
 
 /* ---------- Standard shell (all screens except the topic reader) ---------- */
 
-function paintShell(activeTab, title) {
+function paintShell(activeTab, title, onBack) {
   appEl.classList.remove('reading-mode');
   navEl.classList.remove('hidden');
-  mount(headerEl, Header({ title, onSearchClick: openSearch }));
+  mount(headerEl, Header({ title, onSearchClick: openSearch, onBack }));
   mount(navEl, BottomNav({
     activeTab,
     onNavigate: (path) => { storageService.setCurrentTab(activeTab); router.navigate(path); },
@@ -202,7 +202,7 @@ router.register('/learn', async () => {
 router.register('/learn/:category', async ({ category }) => {
   const { LEARN_CATEGORIES } = await import('../features/learn/learnHome.js');
   const cat = LEARN_CATEGORIES.find((c) => c.slug === category);
-  paintShell('learn', cat?.name || 'Learn');
+  paintShell('learn', cat?.name || 'Learn', () => router.navigate('/learn'));
   const { renderCategoryView } = await import('../features/learn/categoryView.js');
   await renderCategoryView(contentEl, category, {
     onOpenTopic: (topic) => router.navigate(`/learn/${category}/${topic.file}`),
@@ -232,7 +232,7 @@ router.register('/coding', async () => {
 });
 
 router.register('/coding/:slug/:file', async ({ slug, file }) => {
-  paintShell('coding', 'Coding');
+  paintShell('coding', 'Coding', () => router.navigate('/coding'));
   const { renderCodingTopicList } = await import('../features/coding/topicList.js');
   await renderCodingTopicList(contentEl, slug, file, {
     onOpenQuestion: (q) => router.navigate(`/coding/${slug}/${file}/${q.id}`),
@@ -241,13 +241,14 @@ router.register('/coding/:slug/:file', async ({ slug, file }) => {
 });
 
 router.register('/coding/:slug/:file/:questionId', async ({ slug, file, questionId }) => {
-  paintShell('coding', 'Question');
+  paintShell('coding', 'Question', () => router.navigate(`/coding/${slug}/${file}`));
   const { dataService } = await import('../core/services/dataService.js');
   const { renderQuestionView } = await import('../features/coding/questionView.js');
   const questions = await dataService.getCodingTopic(slug, file);
   const question = questions.find((q) => q.id === questionId);
   if (question) {
     storageService.addRecentQuestion({ id: question.id, title: question.title, topicSlug: slug, topicFile: file });
+    headerEl.querySelector('.header-title').textContent = question.title;
     renderQuestionView(contentEl, question);
     focusContentHeading();
   }
@@ -261,7 +262,7 @@ router.register('/notes', async () => {
 });
 
 router.register('/notes/:noteId', async ({ noteId }) => {
-  paintShell('notes', 'Notes');
+  paintShell('notes', 'Notes', () => router.navigate('/notes'));
   const { dataService } = await import('../core/services/dataService.js');
   const { renderPdfViewerPage } = await import('../features/notes/pdfViewerPage.js');
   const notes = await dataService.getNotesMetadata();
