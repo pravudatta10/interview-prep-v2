@@ -1,5 +1,0 @@
-# Netlify: serve index.html for any path that isn't a real file, so a
-# refresh or direct link on a client-side route (e.g. /learn) resolves
-# server-side instead of round-tripping through 404.html.
-# See README.md "Deep Links / Refresh".
-/*  /index.html  200
