@@ -9,7 +9,7 @@ import { storageService } from '../../core/services/storageService.js';
 export const CODING_TOPICS = [
   { slug: 'java-basics', file: 'loops', name: 'Loops', group: 'Java Basics', questionCount: 2 },
   { slug: 'java-basics', file: 'arrays', name: 'Arrays', group: 'Java Basics', questionCount: 1 },
-  { slug: 'java-basics', file: 'strings', name: 'Strings', group: 'Java Basics', questionCount: 0 },
+  { slug: 'java-basics', file: 'strings', name: 'Strings', group: 'Java Basics', questionCount: 5 },
   { slug: 'java-basics', file: 'collections', name: 'Collections', group: 'Java Basics', questionCount: 0 },
   { slug: 'java8', file: 'streams', name: 'Streams', group: 'Java 8', questionCount: 0 },
   { slug: 'java-basics', file: 'exceptions', name: 'Exception Handling', group: 'Java Basics', questionCount: 0 },

@@ -400,6 +400,58 @@
 .block-card-code { padding: 0; border: none; background: transparent; }
 .block-text { margin: 0; font-size: var(--font-size-md); }
 
+/* Multi-question topic files (Learn) and multi-panel question pages
+   (Coding) both use the shared Accordion component — see
+   src/shared/components/Accordion.js. */
+.block-card-group {
+  margin-bottom: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+.block-card-group:first-of-type { padding-top: 0; border-top: none; }
+.entry-heading {
+  font-size: var(--font-size-lg);
+  line-height: 1.35;
+  margin: 0 0 var(--space-3);
+}
+
+/* Multi-question accordion: the question itself is the toggle, the
+   answer (summary/code/example/mistakes/followUps) is hidden until
+   clicked. Only one question is open at a time (see renderEntrySections
+   in topicView.js), so opening one auto-closes whichever was open. */
+.entry-question-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: 100%;
+  text-align: left;
+  min-height: var(--touch-target-min);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-raised);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  line-height: 1.35;
+  cursor: pointer;
+}
+.entry-question-btn::after {
+  content: '+';
+  flex-shrink: 0;
+  font-size: var(--font-size-xl);
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+.entry-question-btn.is-open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.entry-question-btn.is-open::after { content: '−'; }
+.entry-answer { padding-top: var(--space-4); }
+
 .reveal-card { padding: 0; overflow: hidden; }
 .reveal-btn {
   display: block;

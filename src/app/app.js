@@ -245,11 +245,16 @@ router.register('/coding/:slug/:file/:questionId', async ({ slug, file, question
   const { dataService } = await import('../core/services/dataService.js');
   const { renderQuestionView } = await import('../features/coding/questionView.js');
   const questions = await dataService.getCodingTopic(slug, file);
-  const question = questions.find((q) => q.id === questionId);
+  const index = questions.findIndex((q) => q.id === questionId);
+  const question = questions[index];
   if (question) {
     storageService.addRecentQuestion({ id: question.id, title: question.title, topicSlug: slug, topicFile: file });
     headerEl.querySelector('.header-title').textContent = question.title;
-    renderQuestionView(contentEl, question);
+    renderQuestionView(contentEl, question, {
+      prevQuestion: index > 0 ? questions[index - 1] : null,
+      nextQuestion: index >= 0 && index < questions.length - 1 ? questions[index + 1] : null,
+      onNavigateQuestion: (nextId) => router.navigate(`/coding/${slug}/${file}/${nextId}`),
+    });
     focusContentHeading();
   }
 });

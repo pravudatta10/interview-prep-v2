@@ -1,0 +1,52 @@
+[
+  {
+    "id": "check-palindrome",
+    "title": "Check if a string is a palindrome",
+    "difficulty": "Easy",
+    "example": "Input: \"madam\"\nOutput: true",
+    "hint": "Walk two pointers inward from both ends and compare characters as you go.",
+    "solution": "boolean isPalindrome(String s) {\n    int left = 0, right = s.length() - 1;\n    while (left < right) {\n        if (s.charAt(left) != s.charAt(right)) return false;\n        left++;\n        right--;\n    }\n    return true;\n}",
+    "complexity": "Time: O(n), Space: O(1)",
+    "interviewFollowUp": "How would you adapt this to ignore case and non-alphanumeric characters, like \"A man, a plan, a canal: Panama\"?"
+  },
+  {
+    "id": "check-anagram",
+    "title": "Check if two strings are anagrams of each other",
+    "difficulty": "Easy",
+    "example": "Input: \"listen\", \"silent\"\nOutput: true",
+    "hint": "Two strings are anagrams if every character appears the same number of times in both — count with an array or map instead of sorting if you want O(n).",
+    "solution": "boolean isAnagram(String a, String b) {\n    if (a.length() != b.length()) return false;\n    int[] counts = new int[26];\n    for (int i = 0; i < a.length(); i++) {\n        counts[a.charAt(i) - 'a']++;\n        counts[b.charAt(i) - 'a']--;\n    }\n    for (int c : counts) {\n        if (c != 0) return false;\n    }\n    return true;\n}",
+    "complexity": "Time: O(n), Space: O(1) — fixed 26-slot array",
+    "interviewFollowUp": "How would this change if the input could contain Unicode characters instead of just lowercase a-z?"
+  },
+  {
+    "id": "first-non-repeating-char",
+    "title": "Find the first non-repeating character in a string",
+    "difficulty": "Easy",
+    "example": "Input: \"swiss\"\nOutput: 'w'",
+    "hint": "Count every character's frequency first, then scan the string again in order and return the first one with count 1.",
+    "solution": "Character firstNonRepeating(String s) {\n    Map<Character, Integer> counts = new LinkedHashMap<>();\n    for (char c : s.toCharArray()) {\n        counts.merge(c, 1, Integer::sum);\n    }\n    for (char c : s.toCharArray()) {\n        if (counts.get(c) == 1) return c;\n    }\n    return null;\n}",
+    "complexity": "Time: O(n), Space: O(n)",
+    "interviewFollowUp": "Could you solve this in a single pass instead of two, and is it worth the added complexity?"
+  },
+  {
+    "id": "longest-substring-without-repeating",
+    "title": "Find the longest substring without repeating characters",
+    "difficulty": "Medium",
+    "example": "Input: \"abcabcbb\"\nOutput: 3 (\"abc\")",
+    "hint": "Sliding window: expand the right edge, and when you hit a repeat, jump the left edge past its last occurrence.",
+    "solution": "int longestSubstring(String s) {\n    Map<Character, Integer> lastSeen = new HashMap<>();\n    int maxLen = 0, left = 0;\n    for (int right = 0; right < s.length(); right++) {\n        char c = s.charAt(right);\n        if (lastSeen.containsKey(c) && lastSeen.get(c) >= left) {\n            left = lastSeen.get(c) + 1;\n        }\n        lastSeen.put(c, right);\n        maxLen = Math.max(maxLen, right - left + 1);\n    }\n    return maxLen;\n}",
+    "complexity": "Time: O(n), Space: O(min(n, charset size))",
+    "interviewFollowUp": "How would you return the actual substring, not just its length?"
+  },
+  {
+    "id": "string-compression",
+    "title": "Implement basic string compression",
+    "difficulty": "Medium",
+    "example": "Input: \"aaabbc\"\nOutput: \"a3b2c1\"",
+    "hint": "Walk the string once, counting consecutive repeats of the current character, and flush a run whenever the character changes.",
+    "solution": "String compress(String s) {\n    StringBuilder sb = new StringBuilder();\n    int count = 1;\n    for (int i = 1; i <= s.length(); i++) {\n        if (i < s.length() && s.charAt(i) == s.charAt(i - 1)) {\n            count++;\n        } else {\n            sb.append(s.charAt(i - 1)).append(count);\n            count = 1;\n        }\n    }\n    return sb.toString();\n}",
+    "complexity": "Time: O(n), Space: O(n) for the output",
+    "interviewFollowUp": "What should happen if the compressed string ends up longer than the original — should the function return the original instead?"
+  }
+]

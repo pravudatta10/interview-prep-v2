@@ -1,0 +1,67 @@
+[
+  {
+    "question": "Checked vs unchecked exceptions — what's the difference, and where does Error fit?",
+    "summary": "Checked exceptions extend Exception (but not RuntimeException) and must be declared or caught at compile time — they represent recoverable conditions outside your control, like a missing file. Unchecked exceptions extend RuntimeException and signal programming bugs, like a null dereference, so the compiler doesn't force handling. Error and its subclasses (OutOfMemoryError, StackOverflowError) sit alongside Exception under Throwable and represent conditions an application usually shouldn't try to catch.",
+    "code": {
+      "language": "java",
+      "snippet": "// Checked — must be declared or caught\npublic void readConfig() throws IOException {\n    Files.readString(Path.of(\"config.yml\"));\n}\n\n// Unchecked — compiler doesn't require handling\npublic int divide(int a, int b) {\n    return a / b; // ArithmeticException if b == 0\n}"
+    },
+    "example": "A checked FileNotFoundException forces the caller to decide: catch it and show a friendly error, or declare 'throws' and push the decision up. An unchecked NullPointerException usually means a bug to fix, not a condition to handle gracefully.",
+    "mistakes": [
+      "Treating Error subclasses (like OutOfMemoryError) as something to catch and recover from — they generally indicate the JVM itself is in trouble.",
+      "Assuming 'checked' means 'more serious' — checked vs unchecked is about compile-time enforcement, not severity."
+    ],
+    "followUps": [
+      "Name a few commonly used checked exceptions and explain why they were designed as checked.",
+      "Why did Java 8's functional interfaces (Function, Supplier) push people toward unchecked exceptions in lambdas?"
+    ]
+  },
+  {
+    "question": "What's the difference between throw and throws, and when do you write a custom exception?",
+    "summary": "'throw' is a statement that actually raises an exception instance at a specific point in code. 'throws' is a method-signature declaration that tells callers this method might propagate a checked exception, without raising anything itself. You reach for a custom exception when the built-in exception types don't capture domain-specific meaning your callers need to branch on — e.g. distinguishing InsufficientFundsException from a generic IllegalStateException.",
+    "code": {
+      "language": "java",
+      "snippet": "public class InsufficientFundsException extends RuntimeException {\n    public InsufficientFundsException(String message) {\n        super(message);\n    }\n}\n\npublic void withdraw(double amount) {\n    if (amount > balance) {\n        throw new InsufficientFundsException(\"Balance too low for withdrawal\");\n    }\n    balance -= amount;\n}"
+    },
+    "example": "A payments service might define PaymentDeclinedException so a controller-advice handler can map it to HTTP 402, instead of guessing intent from a generic RuntimeException message.",
+    "mistakes": [
+      "Writing 'public void save() throws Exception' — declaring the broad Exception type instead of the specific one defeats the purpose of checked exceptions entirely."
+    ],
+    "followUps": [
+      "When overriding a method that throws a checked exception, is the subclass required to declare the same exception?",
+      "Should a custom exception extend RuntimeException or a checked Exception — what's the tradeoff for your team?"
+    ]
+  },
+  {
+    "question": "What is try-with-resources, and how does it relate to AutoCloseable?",
+    "summary": "try-with-resources automatically closes any resource that implements AutoCloseable when the try block exits, in reverse declaration order — even if an exception is thrown. It replaces manual try/finally cleanup and avoids the classic bug where an exception in the try block masks the resource actually being closed.",
+    "code": {
+      "language": "java",
+      "snippet": "try (BufferedReader reader = new BufferedReader(new FileReader(\"data.txt\"))) {\n    return reader.readLine();\n} catch (IOException e) {\n    log.error(\"Failed to read file\", e);\n    throw e;\n}\n// reader.close() is called automatically, even on exception"
+    },
+    "example": "Before Java 7, closing a reader safely required a try/finally with a null-check on the resource. try-with-resources collapses that boilerplate into the resource declaration itself.",
+    "mistakes": [
+      "Forgetting that if both the try block AND close() throw, the close() exception is 'suppressed' and attached to the original — not thrown separately. Code that only catches the original exception type can silently miss this."
+    ],
+    "followUps": [
+      "What's the difference between exception chaining (the 'cause') and suppressed exceptions in try-with-resources?",
+      "Can you have multiple catch blocks, and how does Java 7+ multi-catch (catch (IOException | SQLException e)) change that?"
+    ]
+  },
+  {
+    "question": "What are the best practices for exception handling in a layered Spring Boot application?",
+    "summary": "Keep exception handling centralized rather than scattered: let lower layers (repository, service) throw specific, meaningful exceptions and let a single @ControllerAdvice translate them into consistent HTTP error responses. Avoid catching exceptions just to log and rethrow — that adds noise without adding value.",
+    "code": {
+      "language": "java",
+      "snippet": "@RestControllerAdvice\npublic class ApiExceptionHandler {\n\n    @ExceptionHandler(InsufficientFundsException.class)\n    public ResponseEntity<ErrorResponse> handleInsufficientFunds(InsufficientFundsException ex) {\n        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)\n                .body(new ErrorResponse(\"INSUFFICIENT_FUNDS\", ex.getMessage()));\n    }\n}"
+    },
+    "example": "A service layer throws domain exceptions (OrderNotFoundException, InsufficientFundsException); the controller layer never touches try/catch at all — @ControllerAdvice is the single place that maps exception type to HTTP status and error body.",
+    "mistakes": [
+      "Catching an exception in every controller method individually — this duplicates mapping logic and drifts out of sync as new exception types are added."
+    ],
+    "followUps": [
+      "When calling another microservice via a Feign client, how do you handle and translate downstream exceptions?",
+      "Describe a real NullPointerException or ClassCastException you've faced in production — how did you diagnose and resolve it?"
+    ]
+  }
+]

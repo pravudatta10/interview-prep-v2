@@ -1,0 +1,32 @@
+[
+  {
+    "question": "What is encapsulation and why does it matter?",
+    "summary": "Encapsulation hides an object's internal state behind methods, so callers can't reach in and set fields directly.",
+    "code": {
+      "language": "java",
+      "snippet": "public class Account {\n    private double balance;\n\n    public void deposit(double amount) {\n        this.balance += amount;\n    }\n}"
+    },
+    "example": "Marking 'balance' private and only exposing deposit()/withdraw() means the class can enforce 'balance can never go negative' in one place.",
+    "mistakes": [
+      "Making every field 'protected' instead of 'private' — that isn't encapsulation, it just moves the leak up one level."
+    ],
+    "followUps": [
+      "How would you enforce an invariant like 'balance >= 0' across multiple methods?"
+    ]
+  },
+  {
+    "question": "How does Java achieve runtime polymorphism?",
+    "summary": "Polymorphism lets one method call resolve to different implementations at runtime, based on the object's actual class rather than its declared type.",
+    "code": {
+      "language": "java",
+      "snippet": "Shape s = new Circle();\ns.draw(); // calls Circle.draw() at runtime"
+    },
+    "example": "A List<Shape> containing Circle and Square objects can call shape.draw() on each without knowing which subclass it holds.",
+    "mistakes": [
+      "Confusing overloading (compile-time, same class) with overriding (runtime, subclass) — interviewers ask this constantly."
+    ],
+    "followUps": [
+      "What role does the vtable / dynamic dispatch play in this?"
+    ]
+  }
+]
