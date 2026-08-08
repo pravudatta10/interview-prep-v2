@@ -12,16 +12,16 @@ import { h } from '../../core/utils/dom.js';
 import { storageService } from '../../core/services/storageService.js';
 
 export const LEARN_CATEGORIES = [
-  { slug: 'java', name: 'Java', icon: '☕' },
-  { slug: 'spring-boot', name: 'Spring Boot', icon: '🌱' },
-  { slug: 'microservices', name: 'Microservices', icon: '🧩' },
-  { slug: 'sql', name: 'SQL', icon: '🗄️' },
-  { slug: 'kafka', name: 'Kafka', icon: '📨' },
-  { slug: 'system-design', name: 'System Design', icon: '🏗️' },
-  { slug: 'aws', name: 'AWS', icon: '☁️' },
-  { slug: 'ai', name: 'AI', icon: '🤖' },
-  { slug: 'docker', name: 'Docker', icon: '🐳' },
-  { slug: 'kubernetes', name: 'Kubernetes', icon: '⛴️' },
+  { slug: 'java', name: 'Java', icon: '☕', available: true },
+  { slug: 'spring-boot', name: 'Spring Boot', icon: '🌱', available: true },
+  { slug: 'microservices', name: 'Microservices', icon: '🧩', available: true },
+  { slug: 'sql', name: 'SQL', icon: '🗄️', available: false },
+  { slug: 'kafka', name: 'Kafka', icon: '📨', available: false },
+  { slug: 'system-design', name: 'System Design', icon: '🏗️', available: false },
+  { slug: 'aws', name: 'AWS', icon: '☁️', available: false },
+  { slug: 'ai', name: 'AI', icon: '🤖', available: false },
+  { slug: 'docker', name: 'Docker', icon: '🐳', available: false },
+  { slug: 'kubernetes', name: 'Kubernetes', icon: '⛴️', available: false },
 ];
 
 const QUICK_START_ACTIONS = [
@@ -115,9 +115,19 @@ export function renderLearnHome(container, { onOpenCategory, onOpenTopic, onOpen
     h('div', { class: 'section-header' }, h('h2', {}, 'Interview Categories')),
     h('div', { class: 'category-grid' },
       LEARN_CATEGORIES.map((cat) =>
-        h('button', { class: 'category-tile', onClick: () => onOpenCategory(cat.slug) }, [
+        h('button', {
+          class: `category-tile${cat.available ? '' : ' is-disabled'}`,
+          disabled: !cat.available,
+          'aria-disabled': cat.available ? undefined : 'true',
+          // Categories with no content yet would 404 straight into the
+          // generic error screen if tapped — keep them visible (so the
+          // roadmap is clear) but inert, with a "Coming soon" label,
+          // instead of a dead end.
+          onClick: cat.available ? () => onOpenCategory(cat.slug) : null,
+        }, [
           h('span', { class: 'icon', 'aria-hidden': 'true' }, cat.icon),
           h('span', { class: 'name' }, cat.name),
+          cat.available ? null : h('span', { class: 'category-tile-badge' }, 'Coming soon'),
         ])
       )
     ),

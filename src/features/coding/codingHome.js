@@ -21,10 +21,19 @@ export const CODING_TOPICS = [
 
 function topicCard(topic, onOpenTopic) {
   const lastPracticed = storageService.getLastPracticedLabel(topic.slug, topic.file);
-  const countLabel = topic.questionCount > 0
-    ? `${topic.questionCount} question${topic.questionCount > 1 ? 's' : ''}`
-    : 'Coming soon';
-  return h('button', { class: 'card coding-topic-card', onClick: () => onOpenTopic(topic) }, [
+  const isComingSoon = topic.questionCount === 0;
+  const countLabel = isComingSoon
+    ? 'Coming soon'
+    : `${topic.questionCount} question${topic.questionCount > 1 ? 's' : ''}`;
+  return h('button', {
+    class: `card coding-topic-card${isComingSoon ? ' is-disabled' : ''}`,
+    disabled: isComingSoon,
+    'aria-disabled': isComingSoon ? 'true' : undefined,
+    // "Coming soon" cards have no backing data file yet, so navigating
+    // would 404 and land the user on the generic error screen — instead
+    // of that dead end, the card is simply inert until content exists.
+    onClick: isComingSoon ? null : () => onOpenTopic(topic),
+  }, [
     h('h3', { class: 'card-title mb-0' }, topic.name),
     h('div', { class: 'card-meta' }, [
       h('span', { class: 'badge badge-neutral' }, countLabel),

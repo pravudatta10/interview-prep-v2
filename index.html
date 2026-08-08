@@ -17,13 +17,28 @@
   request for the HTML document itself was already failing (see 404.html
   and README.md "Deep Links / Refresh"), and even once that's fixed,
   these relative paths would still 404 without this tag.
-  Deploying to a GitHub Pages *project* subpage
-  (username.github.io/repo-name/)? Change this to "/repo-name/" — same
-  manual-override pattern as BASE_PATH in src/config.js, see
-  CONFIG_GUIDE.md.
+
+  The right value differs by host: local dev serves from "/", a GitHub
+  Pages *project* site serves from "/repo-name/". Rather than hand-toggle
+  this every time you switch between them, this script detects and
+  inserts the <base> tag itself, BEFORE the favicon/stylesheet <link>
+  tags and the module <script> below — inline scripts block HTML parsing
+  until they finish, so everything parsed after this one still resolves
+  against whatever href gets set here. On github.io, the first path
+  segment IS the repo name (that's just how project sites are served),
+  so this needs no repo name hard-coded and survives a rename. Any other
+  host (localhost, a custom domain, a GitHub Pages *user* site) serves
+  from root.
 -->
-  <!-- <base href="/" /> -->
-  <base href="/interview-prep-v2/" />
+  <script>
+    (function insertBaseTag() {
+      var isGithubPages = location.hostname.endsWith('github.io');
+      var firstSegment = location.pathname.split('/').filter(Boolean)[0];
+      var base = document.createElement('base');
+      base.href = isGithubPages && firstSegment ? '/' + firstSegment + '/' : '/';
+      document.head.appendChild(base);
+    })();
+  </script>
 
   <script>
     // Restores a deep link stashed by 404.html (see that file) BEFORE the

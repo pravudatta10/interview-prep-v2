@@ -190,6 +190,14 @@
 .category-tile .icon { font-size: 1.5rem; }
 .category-tile .name { font-weight: 600; }
 .category-tile .count { font-size: var(--font-size-xs); color: var(--color-text-muted); }
+.category-tile.is-disabled { opacity: 0.55; cursor: not-allowed; }
+.category-tile-badge {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border-radius: var(--radius-pill);
+  padding: 2px var(--space-2);
+}
 
 /* Content blocks (Learn topic reader) */
 .block { margin-bottom: var(--space-5); }
@@ -249,7 +257,13 @@
   min-height: var(--touch-target-min);
   border: none;
   background: transparent;
-  font-size: var(--font-size-md);
+  /* Hardcoded, not var(--font-size-md): iOS Safari auto-zooms the page
+     when a focused input's font-size is under 16px. --font-size-md drops
+     to 15.2px below 340px (see mobile.css), which would trigger that
+     zoom on the smallest phones (e.g. iPhone SE) every time search is
+     opened. Keeping this input fixed at 16px avoids it regardless of
+     that breakpoint. */
+  font-size: 16px;
   color: var(--color-text);
   outline: none;
   font-family: inherit;
@@ -304,7 +318,17 @@
 }
 
 /* PDF viewer */
-.pdf-viewer { display: flex; flex-direction: column; height: calc(100vh - var(--header-height)); }
+.pdf-viewer {
+  display: flex;
+  flex-direction: column;
+  /* 100vh on mobile is measured against the browser chrome collapsed —
+     taller than what's actually visible when the address bar is showing.
+     100dvh tracks the real visible viewport; keep the vh line first as a
+     fallback for browsers without dvh support (same pattern as #app in
+     layout.css). */
+  height: calc(100vh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
+}
 .pdf-canvas-wrap {
   flex: 1;
   overflow: auto;
@@ -423,6 +447,7 @@
   font-weight: 600;
   line-height: 1.35;
   cursor: pointer;
+  transition: transform var(--transition-fast);
 }
 .entry-question-btn::after {
   content: '+';
@@ -436,6 +461,7 @@
   border-bottom-right-radius: 0;
 }
 .entry-question-btn.is-open::after { content: '−'; }
+.entry-question-btn:active { transform: scale(0.98); }
 .entry-answer { padding-top: var(--space-4); }
 
 .reveal-card { padding: 0; overflow: hidden; }
@@ -454,6 +480,7 @@
   cursor: pointer;
 }
 .reveal-btn.is-open { border-bottom: 1px solid var(--color-border); }
+.reveal-btn:active { opacity: 0.7; }
 .reveal-card .block-tip,
 .reveal-card .block-warning,
 .reveal-card .block-question {
@@ -504,7 +531,9 @@
   cursor: pointer;
   font-family: inherit;
   text-align: left;
+  transition: transform var(--transition-fast);
 }
+.topic-nav-btn:active { transform: scale(0.97); }
 .topic-nav-next { text-align: right; align-items: flex-end; }
 .topic-nav-label { font-size: var(--font-size-xs); color: var(--color-text-muted); }
 .topic-nav-title { font-size: var(--font-size-sm); font-weight: 600; }
@@ -530,6 +559,11 @@
 
 /* Coding topic cards */
 .coding-topic-card { padding: var(--space-3) var(--space-4); }
+.coding-topic-card.is-disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.coding-topic-card.is-disabled:active { transform: none; }
 
 /* Code block actions — a normal-flow toolbar row above the code, not an
    absolutely-positioned overlay, so the buttons never sit on top of (and

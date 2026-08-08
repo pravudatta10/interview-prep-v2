@@ -202,7 +202,7 @@ router.register('/learn', async () => {
 router.register('/learn/:category', async ({ category }) => {
   const { LEARN_CATEGORIES } = await import('../features/learn/learnHome.js');
   const cat = LEARN_CATEGORIES.find((c) => c.slug === category);
-  paintShell('learn', cat?.name || 'Learn', () => router.navigate('/learn'));
+  paintShell('learn', cat?.name || 'Learn', () => router.navigate('/learn', { replace: true }));
   const { renderCategoryView } = await import('../features/learn/categoryView.js');
   await renderCategoryView(contentEl, category, {
     onOpenTopic: (topic) => router.navigate(`/learn/${category}/${topic.file}`),
@@ -212,7 +212,7 @@ router.register('/learn/:category', async ({ category }) => {
 
 router.register('/learn/:category/:topicFile', async ({ category, topicFile }) => {
   const backTarget = `/learn/${category}`;
-  const reading = enterReadingModeShell(() => router.navigate(backTarget));
+  const reading = enterReadingModeShell(() => router.navigate(backTarget, { replace: true }));
   const { renderTopicView } = await import('../features/learn/topicView.js');
   await renderTopicView(contentEl, category, topicFile, {
     onMeta: ({ title, readTimeMinutes }) => reading.setMeta(title, readTimeMinutes),
@@ -232,7 +232,7 @@ router.register('/coding', async () => {
 });
 
 router.register('/coding/:slug/:file', async ({ slug, file }) => {
-  paintShell('coding', 'Coding', () => router.navigate('/coding'));
+  paintShell('coding', 'Coding', () => router.navigate('/coding', { replace: true }));
   const { renderCodingTopicList } = await import('../features/coding/topicList.js');
   await renderCodingTopicList(contentEl, slug, file, {
     onOpenQuestion: (q) => router.navigate(`/coding/${slug}/${file}/${q.id}`),
@@ -241,22 +241,27 @@ router.register('/coding/:slug/:file', async ({ slug, file }) => {
 });
 
 router.register('/coding/:slug/:file/:questionId', async ({ slug, file, questionId }) => {
-  paintShell('coding', 'Question', () => router.navigate(`/coding/${slug}/${file}`));
+  paintShell('coding', 'Question', () => router.navigate(`/coding/${slug}/${file}`, { replace: true }));
   const { dataService } = await import('../core/services/dataService.js');
   const { renderQuestionView } = await import('../features/coding/questionView.js');
   const questions = await dataService.getCodingTopic(slug, file);
   const index = questions.findIndex((q) => q.id === questionId);
   const question = questions[index];
-  if (question) {
-    storageService.addRecentQuestion({ id: question.id, title: question.title, topicSlug: slug, topicFile: file });
-    headerEl.querySelector('.header-title').textContent = question.title;
-    renderQuestionView(contentEl, question, {
-      prevQuestion: index > 0 ? questions[index - 1] : null,
-      nextQuestion: index >= 0 && index < questions.length - 1 ? questions[index + 1] : null,
-      onNavigateQuestion: (nextId) => router.navigate(`/coding/${slug}/${file}/${nextId}`),
-    });
-    focusContentHeading();
+  if (!question) {
+    // Bad/stale questionId (e.g. an old link to a question that's since
+    // been removed) — bounce back to the topic list instead of leaving
+    // the loading skeleton on screen forever.
+    router.navigate(`/coding/${slug}/${file}`, { replace: true });
+    return;
   }
+  storageService.addRecentQuestion({ id: question.id, title: question.title, topicSlug: slug, topicFile: file });
+  headerEl.querySelector('.header-title').textContent = question.title;
+  renderQuestionView(contentEl, question, {
+    prevQuestion: index > 0 ? questions[index - 1] : null,
+    nextQuestion: index >= 0 && index < questions.length - 1 ? questions[index + 1] : null,
+    onNavigateQuestion: (nextId) => router.navigate(`/coding/${slug}/${file}/${nextId}`),
+  });
+  focusContentHeading();
 });
 
 router.register('/notes', async () => {
@@ -267,16 +272,20 @@ router.register('/notes', async () => {
 });
 
 router.register('/notes/:noteId', async ({ noteId }) => {
-  paintShell('notes', 'Notes', () => router.navigate('/notes'));
+  paintShell('notes', 'Notes', () => router.navigate('/notes', { replace: true }));
   const { dataService } = await import('../core/services/dataService.js');
   const { renderPdfViewerPage } = await import('../features/notes/pdfViewerPage.js');
   const notes = await dataService.getNotesMetadata();
   const note = notes.find((n) => n.id === noteId);
-  if (note) {
-    storageService.addRecentNote({ id: note.id, title: note.title, category: note.category });
-    headerEl.querySelector('.header-title').textContent = note.title;
-    renderPdfViewerPage(contentEl, note);
+  if (!note) {
+    // Bad/stale noteId — bounce back to the notes list instead of leaving
+    // the loading skeleton on screen forever.
+    router.navigate('/notes', { replace: true });
+    return;
   }
+  storageService.addRecentNote({ id: note.id, title: note.title, category: note.category });
+  headerEl.querySelector('.header-title').textContent = note.title;
+  renderPdfViewerPage(contentEl, note);
 });
 
 router.register('/settings', async () => {
@@ -287,8 +296,11 @@ router.register('/settings', async () => {
 });
 
 router.setNotFound(() => {
-  paintShell('learn', 'Not Found');
-  contentEl.replaceChildren(EmptyState({ icon: '🚧', title: 'Page not found' }));
+  // Any link that doesn't match a known route (a stale bookmark, a typo,
+  // a deep link to a page that's since been removed) redirects straight
+  // to Learn — replace, not push, so it doesn't leave the broken URL
+  // sitting in history for back to return to.
+  router.navigate('/learn', { replace: true });
 });
 
 /* ---------- Error boundary ---------- */

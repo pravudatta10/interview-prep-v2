@@ -69,6 +69,13 @@ export const router = {
   },
 
   navigate(path, { replace = false } = {}) {
+    // { replace: true } is required for any "back" / "up one level" UI
+    // control (header back arrow, reading-mode back arrow, etc). Pushing
+    // there instead would add a *new* history entry for the parent page
+    // rather than collapsing back to it — so the device's native
+    // back button/gesture would then step through those extra pushed
+    // entries (revisiting pages you already left) instead of climbing
+    // straight back out toward Home.
     const fullPath = withBase(path);
     if (replace) history.replaceState({}, '', fullPath);
     else history.pushState({}, '', fullPath);
