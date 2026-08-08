@@ -6,5 +6,6 @@
   // See README.md "Deep Links / Refresh" for the equivalent fix on real
   // hosts, and 404.html for hosts where a setting like this isn't
   // available at all.
-  "liveServer.settings.file": "index.html"
+  "liveServer.settings.file": "index.html",
+  "liveServer.settings.port": 5501
 }

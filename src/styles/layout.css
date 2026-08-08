@@ -45,7 +45,7 @@ body {
   width: 100%;
   max-width: var(--max-content-width);
   margin: 0 auto;
-  padding: var(--space-4) var(--space-4) calc(var(--bottom-nav-height) + var(--space-5));
+  padding: var(--space-4) var(--space-4) calc(var(--bottom-nav-height) + var(--space-5) + env(safe-area-inset-bottom));
 }
 
 .bottom-nav {
