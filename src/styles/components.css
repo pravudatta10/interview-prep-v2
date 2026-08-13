@@ -201,7 +201,6 @@
 
 /* Content blocks (Learn topic reader) */
 .block { margin-bottom: var(--space-5); }
-.block-text { font-size: var(--font-size-md); }
 .block-tip, .block-warning {
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-md);
@@ -408,7 +407,13 @@
   margin-bottom: var(--space-4);
 }
 .block-card-code { padding: 0; border: none; background: transparent; }
-.block-text { margin: 0; font-size: var(--font-size-md); }
+/* white-space: pre-line preserves \n line breaks from JSON content
+   (summary/hint/complexity/example/etc.) while still wrapping normally —
+   without this, a literal "\n" in a JSON string renders as a plain space,
+   since createTextNode() keeps the newline character but default
+   white-space collapses it visually. Only <pre> (code blocks) respected
+   line breaks before this; every plain-text field now does too. */
+.block-text { margin: 0; font-size: var(--font-size-md); white-space: pre-line; }
 
 /* Multi-question topic files (Learn) and multi-panel question pages
    (Coding) both use the shared Accordion component — see
@@ -498,6 +503,7 @@
 .reveal-card .followup-list li {
   margin-bottom: var(--space-2);
   font-size: var(--font-size-sm);
+  white-space: pre-line;
 }
 .reveal-card .mistake-list li:last-child,
 .reveal-card .followup-list li:last-child { margin-bottom: 0; }

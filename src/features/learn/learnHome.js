@@ -13,8 +13,8 @@ import { storageService } from '../../core/services/storageService.js';
 
 export const LEARN_CATEGORIES = [
   { slug: 'java', name: 'Java', icon: '☕', available: true },
-  { slug: 'spring-boot', name: 'Spring Boot', icon: '🌱', available: true },
-  { slug: 'microservices', name: 'Microservices', icon: '🧩', available: true },
+  { slug: 'spring-boot', name: 'Spring Boot', icon: '🌱', available: false },
+  { slug: 'microservices', name: 'Microservices', icon: '🧩', available: false },
   { slug: 'sql', name: 'SQL', icon: '🗄️', available: false },
   { slug: 'kafka', name: 'Kafka', icon: '📨', available: false },
   { slug: 'system-design', name: 'System Design', icon: '🏗️', available: false },

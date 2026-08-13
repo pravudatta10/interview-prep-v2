@@ -1,4 +1,5 @@
 [
+  { "title": "Java Fundamentals", "type": "Topics", "path": "/learn/java/fundamentals" },
   { "title": "OOP Principles in Java", "type": "Topics", "path": "/learn/java/oops" },
   { "title": "Collections Framework", "type": "Topics", "path": "/learn/java/collections" },
   { "title": "Exception Handling", "type": "Topics", "path": "/learn/java/exceptions" },

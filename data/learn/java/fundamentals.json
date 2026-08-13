@@ -1,0 +1,65 @@
+[
+    {
+        "question": "What happens internally when you run java ClassName — walk through class loading to main() execution?",
+        "summary": "When we run `java ClassName`, the JVM starts and begins the class loading process. First, the required class is loaded using the class loader subsystem.\n\nThen the JVM links the class, which includes verification, preparation, and resolution. After that, the class is initialized, meaning static fields and static blocks are executed.\n\nOnce initialization is complete, the JVM looks for the entry point: `public static void main(String[] args)`.\n\nThe `main()` method is invoked on the main thread. As the program executes, the JVM executes bytecode. Initially, methods may be interpreted, and frequently executed code can be compiled into native machine code by the JIT compiler for better performance.\n\nDuring execution, objects are generally allocated on the heap, each thread has its own stack, and the garbage collector reclaims unreachable objects.\n\nWhen the `main()` method and all non-daemon threads finish, the JVM shuts down.",
+        "code": {
+            "language": "text",
+            "snippet": "java ClassName\n      |\n      v\nJVM Starts\n      |\n      v\nClass Loading\n      |\n      v\nLinking\n|- Verification\n|- Preparation\n`- Resolution\n      |\n      v\nInitialization\n(static fields and static blocks)\n      |\n      v\npublic static void main(String[] args)\n      |\n      v\nMain Thread Starts\n      |\n      v\nBytecode Execution\n|- Interpreter\n`- JIT Compiler for hot code\n      |\n      v\nJVM Shutdown"
+        },
+        "example": "For example, if a class contains a static block, it executes before main(). If a method is called repeatedly, the JVM may identify it as hot code and JIT-compile it into optimized native machine code for better performance.",
+        "mistakes": [
+            "Saying the JVM directly executes Java source code. Java source code is first compiled into bytecode.",
+            "Saying static blocks execute after main(). Static initialization happens before main() is invoked.",
+            "Assuming every method is immediately JIT-compiled. The JVM profiles execution and compiles frequently executed code when beneficial."
+        ],
+        "followUps": [
+            "What are the phases of class linking?",
+            "What is the difference between class loading and class initialization?",
+            "What is the difference between the interpreter and JIT compiler?",
+            "Where are objects and local variables stored in JVM memory?"
+        ]
+    },
+    {
+        "question": "What is the difference between JDK, JRE, and JVM, and how has this changed from Java 8 to modern Java?",
+        "summary": "The easiest way to understand them is to start with the JVM. The JVM is the component that actually executes Java bytecode. It is responsible for things like class loading, memory management, garbage collection, thread execution, and JIT compilation.\n\nThe JDK is what we use to develop Java applications. It provides tools such as `javac` for compilation, along with the Java runtime needed to run the application.\n\nIn Java 8 and earlier, the JRE was commonly distributed separately. The JRE provided the environment required to run Java applications, including the JVM and Java libraries. So, traditionally, we used to explain it as JDK containing JRE, and JRE containing JVM.\n\nStarting from Java 9, Java introduced the module system through Project Jigsaw. The traditional standalone JRE distribution model changed, and modern Java uses a modular runtime. With tools like `jlink`, we can even create a custom runtime image containing only the modules required by an application.\n\nSo for modern Java, such as Java 17, the practical flow is that we use the JDK to compile the source code using `javac`, and when we run the application using the `java` command, the Java launcher starts the JVM, which loads and executes the bytecode.\n\nSo, in simple terms, JDK is mainly for development, JVM is responsible for executing the bytecode, and the traditional JRE concept is useful for understanding older Java versions but is packaged differently in modern Java.",
+        "code": {
+            "language": "text",
+            "snippet": "Java 8 and earlier\n\nJDK\n|\n|- Development Tools\n|  |- javac\n|  |- javadoc\n|  `- jar\n|\n`- JRE\n   |\n   |- JVM\n   `- Java Class Libraries\n\n\nJava 9+ / Modern Java\n\nJDK\n|\n|- Development Tools\n|  |- javac\n|  |- java\n|  |- jlink\n|  `- other tools\n|\n|- JVM\n|\n`- Modular Java Runtime\n   |- java.base\n   |- java.sql\n   |- java.logging\n   `- other modules\n\n\nModern Execution Flow\n\n.java\n  |\n  | javac\n  v\n.class bytecode\n  |\n  | java ClassName\n  v\nJava Launcher\n  |\n  v\nJVM\n  |\n  v\nApplication Execution"
+        },
+        "example": "In Java 8, it was common to install a JDK on a development machine and a separate JRE on a machine that only needed to run Java applications. In modern Java, we typically use a JDK distribution to develop and run applications, or we can create a smaller custom runtime with only the required Java modules using `jlink`.",
+        "mistakes": [
+            "Always explaining modern Java only as JDK contains JRE and JRE contains JVM without mentioning the Java 9 module system and the change in standalone JRE distribution.",
+            "Saying JRE and JVM are the same thing. The JVM executes bytecode, while the runtime environment also includes Java libraries and other runtime components.",
+            "Saying Java 9 removed the JVM or Java runtime. Java 9 introduced modularization and changed how Java runtime components can be packaged."
+        ],
+        "followUps": [
+            "What is Project Jigsaw?",
+            "What is the Java Platform Module System or JPMS?",
+            "What is jlink and when would you use it?",
+            "What is the difference between javac and the java command?",
+            "How does the JVM provide platform independence?"
+        ]
+    },
+    {
+        "question": "How does the javac compilation pipeline differ from JIT compilation at runtime?",
+        "summary": "The main difference is that `javac` compiles Java source code before the application runs, while the JIT compiler compiles and optimizes code during runtime.\n\nWhen we compile a Java application, `javac` takes the `.java` source file and converts it into platform-independent bytecode stored in a `.class` file. During this process, it performs compile-time checks such as parsing and type checking.\n\nLater, when we run the application, the JVM loads that bytecode and starts executing it. Initially, the JVM can interpret the bytecode. At the same time, the JVM monitors how the application is running. If a method or code path is executed frequently, it can be identified as hot code.\n\nThe JIT compiler can then compile that frequently executed bytecode into native machine code. This improves performance because the JVM does not need to repeatedly interpret the same instructions.\n\nThe important advantage of JIT compilation is that it has access to actual runtime information. It can observe how the application behaves and apply optimizations based on that information. That is why long-running Java applications, such as backend services, can improve in performance after the JVM has warmed up.",
+        "code": {
+            "language": "text",
+            "snippet": "Compile Time\n\nMyClass.java\n      |\n      | javac\n      v\nMyClass.class\n(Java Bytecode)\n\n\nRuntime\n\nMyClass.class\n      |\n      v\nJVM\n      |\n      |- Interpreter executes bytecode\n      |\n      |- JVM profiles execution\n      |\n      `- Frequently executed code becomes hot\n                    |\n                    v\n               JIT Compiler\n                    |\n                    v\n          Optimized Native Machine Code\n                    |\n                    v\n             Faster Execution"
+        },
+        "example": "Suppose a method in a Spring Boot service is called millions of times while processing requests. The source code was already compiled into bytecode by javac before deployment. During runtime, if that method becomes hot, the JVM can JIT-compile it into optimized native machine code. This is one reason Java applications can have a warm-up period before reaching steady-state performance.",
+        "mistakes": [
+            "Saying javac produces native machine code. javac normally converts Java source code into JVM bytecode.",
+            "Saying JIT compilation happens before the application starts. JIT compilation happens dynamically while the JVM is running.",
+            "Assuming all bytecode is immediately JIT-compiled. The JVM uses runtime profiling to decide which code is worth compiling and optimizing.",
+            "Ignoring JVM warm-up when benchmarking Java applications. Initial performance may be different from steady-state performance."
+        ],
+        "followUps": [
+            "What is hot code or a hot method?",
+            "What is the difference between an interpreter and a JIT compiler?",
+            "Why do Java applications have a warm-up period?",
+            "What is deoptimization in the JVM?",
+            "How does JIT use runtime profiling for optimization?"
+        ]
+    }
+]
