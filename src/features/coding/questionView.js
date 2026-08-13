@@ -14,7 +14,7 @@
  * move through every question in the current topic without going back
  * to the list.
  */
-import { h } from '../../core/utils/dom.js';
+import { h, formatInlineMarkdown } from '../../core/utils/dom.js';
 import { Badge } from '../../shared/components/Badge.js';
 import { CodeBlock } from '../../shared/components/CodeBlock.js';
 
@@ -44,7 +44,7 @@ export function renderQuestionView(container, question, { prevQuestion, nextQues
   }
 
   if (question.hint) {
-    sections.push(revealPanel('💡 Show Hint', h('p', { class: 'text-muted mt-0 mb-0' }, question.hint)));
+    sections.push(revealPanel('💡 Show Hint', h('p', { class: 'text-muted mt-0 mb-0', html: formatInlineMarkdown(question.hint) })));
   }
 
   if (question.solution) {
@@ -52,11 +52,11 @@ export function renderQuestionView(container, question, { prevQuestion, nextQues
   }
 
   if (question.complexity) {
-    sections.push(revealPanel('⏱ Show Complexity', h('p', { class: 'mt-0 mb-0' }, question.complexity)));
+    sections.push(revealPanel('⏱ Show Complexity', h('p', { class: 'mt-0 mb-0', html: formatInlineMarkdown(question.complexity) })));
   }
 
   if (question.interviewFollowUp) {
-    sections.push(revealPanel('🎯 Show Interview Follow-up', h('p', { class: 'mt-0 mb-0' }, question.interviewFollowUp)));
+    sections.push(revealPanel('🎯 Show Interview Follow-up', h('p', { class: 'mt-0 mb-0', html: formatInlineMarkdown(question.interviewFollowUp) })));
   }
 
   const footerButtons = [];

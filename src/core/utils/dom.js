@@ -36,3 +36,16 @@ export function escapeHtml(str = '') {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
 }
+
+/**
+ * Renders the small subset of inline markdown used in our content JSON
+ * (`code` spans and **bold**) into safe HTML.
+ * Always escapes first, then applies formatting to the escaped string —
+ * so raw &, <, > inside a `code` span or **bold** span are still safe,
+ * and nothing in the source text can inject real markup.
+ */
+export function formatInlineMarkdown(str = '') {
+  return escapeHtml(str)
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+}

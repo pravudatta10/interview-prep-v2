@@ -15,6 +15,14 @@ export function CodeBlock({ code, language = '' }) {
   const codeEl = h('code', { html: escapeHtml(code), class: `language-${language}` });
   const pre = h('pre', {}, codeEl);
 
+  // Syntax-color the snippet if highlight.js (loaded globally in index.html)
+  // is available and recognizes the language. `language: 'text'` (used for
+  // plain diagrams/ASCII trees) is skipped on purpose — there's nothing to
+  // tokenize and forcing it through hljs would just misfire on it.
+  if (window.hljs && language && language !== 'text') {
+    window.hljs.highlightElement(codeEl);
+  }
+
   const copyBtn = h('button', {
     class: 'code-action-btn',
     'aria-label': 'Copy code',

@@ -21,7 +21,7 @@
  * reading-mode header (see ARCHITECTURE.md → Rendering Flow) — that part
  * of the pipeline is unchanged from the mobile UX sprint.
  */
-import { h, escapeHtml } from '../../core/utils/dom.js';
+import { h, escapeHtml, formatInlineMarkdown } from '../../core/utils/dom.js';
 import { dataService } from '../../core/services/dataService.js';
 import { storageService } from '../../core/services/storageService.js';
 import { CodeBlock } from '../../shared/components/CodeBlock.js';
@@ -44,14 +44,14 @@ function revealSection(label, contentNode) {
 
 function renderMistakes(mistakes) {
   const list = h('ul', { class: 'mistake-list hidden mt-0' },
-    mistakes.map((m) => h('li', {}, m))
+    mistakes.map((m) => h('li', { html: formatInlineMarkdown(m) }))
   );
   return revealSection(`⚠️ Reveal Common Mistakes (${mistakes.length})`, list);
 }
 
 function renderFollowUps(followUps) {
   const list = h('ul', { class: 'followup-list hidden mt-0' },
-    followUps.map((q) => h('li', {}, q))
+    followUps.map((q) => h('li', { html: formatInlineMarkdown(q) }))
   );
   return revealSection(`🎯 Reveal Follow-up Questions (${followUps.length})`, list);
 }
@@ -64,7 +64,7 @@ function renderFollowUps(followUps) {
 function renderEntryBlocks(entry) {
   const blocks = [];
   if (entry.summary) {
-    blocks.push(h('div', { class: 'block-card' }, h('p', { class: 'block-text' }, entry.summary)));
+    blocks.push(h('div', { class: 'block-card' }, h('p', { class: 'block-text', html: formatInlineMarkdown(entry.summary) })));
   }
   if (entry.code) {
     blocks.push(h('div', { class: 'block-card block-card-code' }, CodeBlock({ code: entry.code.snippet, language: entry.code.language })));
@@ -72,7 +72,7 @@ function renderEntryBlocks(entry) {
   if (entry.example) {
     blocks.push(h('div', { class: 'block-card example-card' }, [
       h('div', { class: 'label' }, 'Example'),
-      h('p', { class: 'mt-0 mb-0' }, entry.example),
+      h('p', { class: 'mt-0 mb-0', html: formatInlineMarkdown(entry.example) }),
     ]));
   }
   if (entry.mistakes?.length) blocks.push(renderMistakes(entry.mistakes));

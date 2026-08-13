@@ -61,5 +61,65 @@
             "What is deoptimization in the JVM?",
             "How does JIT use runtime profiling for optimization?"
         ]
+    },
+    {
+        "question": "Why is Java called platform-independent? What role does bytecode play?",
+        "summary": "Java is called platform-independent because Java source code is not compiled directly into machine code for a specific operating system.\n\nWhen we compile a Java program using javac, the compiler converts the .java source file into bytecode, which is stored in a .class file.\n\nThis bytecode is platform-independent. The same .class file can run on Windows, Linux, or macOS, provided that a compatible JVM is available on that platform.\n\nThe JVM acts as the platform-specific layer. Each operating system has its own JVM implementation, and the JVM executes or converts the common Java bytecode into instructions that the underlying machine can understand.\n\nSo, Java follows the idea of Write Once, Run Anywhere. The application bytecode is portable, while the JVM itself is platform-dependent.",
+        "code": {
+            "language": "text",
+            "snippet": "Java Source Code\n    (.java)\n       |\n       | javac\n       v\nBytecode\n    (.class)\n       |\n       | JVM\n       v\nPlatform-specific execution"
+        },
+        "example": "A Java application compiled on Windows can run on Linux without recompiling the source code, as long as a compatible JVM is installed.",
+        "mistakes": [
+            "Java itself is not completely platform-independent. The Java application bytecode is platform-independent, but the JVM implementation is platform-specific.",
+            "Bytecode is not the same as native machine code. The JVM interprets or JIT-compiles bytecode for execution."
+        ],
+        "followUps": [
+            "How does the JVM execute bytecode?",
+            "What is the difference between interpretation and JIT compilation?",
+            "What is the difference between JVM, JDK, and JRE?",
+            "What happens internally when we run a Java program?"
+        ]
+    },
+    {
+        "question": "What is the difference between JAR and WAR files?",
+        "summary": "Both JAR and WAR are archive formats based on the ZIP format, but they are generally used for different purposes.\n\nA JAR, or Java Archive, is mainly used to package Java applications, libraries, classes, resources, and dependencies. In modern Spring Boot applications, services are commonly packaged as executable JAR files.\n\nA WAR, or Web Application Archive, is traditionally used to package web applications for deployment to an external servlet container or application server, such as Tomcat.\n\nAn executable Spring Boot JAR can include an embedded web server and can usually be started directly using java -jar. A WAR file is commonly deployed to an external application server.\n\nFor modern Spring Boot microservices, executable JARs are generally preferred because deployment is simpler and the application is more self-contained. WAR packaging is still useful when an organization requires deployment into an existing external Tomcat or application server.",
+        "code": {
+            "language": "text",
+            "snippet": "JAR Deployment:\n\napplication.jar\n       |\n       v\nEmbedded Tomcat / Jetty\n       |\n       v\njava -jar application.jar\n\n\nWAR Deployment:\n\napplication.war\n       |\n       v\nExternal Tomcat / Application Server\n       |\n       v\nApplication Deployment"
+        },
+        "example": "A Spring Boot microservice can be packaged as application.jar and started using the command java -jar application.jar. A traditional enterprise web application may be packaged as a WAR and deployed to an external Tomcat server.",
+        "mistakes": [
+            "JAR files are not only used for libraries. They can also package complete executable applications.",
+            "WAR is not mandatory for Spring Boot web applications. Modern Spring Boot applications are commonly deployed as executable JAR files."
+        ],
+        "followUps": [
+            "How does Spring Boot create an executable JAR?",
+            "Can the same Spring Boot application be packaged as both JAR and WAR?",
+            "What is an embedded server?",
+            "What is the difference between Tomcat and an application server?"
+        ]
+    },
+    {
+        "question": "What new language features were introduced across Java 7, 8, 11, 17, and 21?",
+        "summary": "Java has evolved significantly across these releases, with each version introducing improvements in language syntax, developer productivity, concurrency, and application design.\n\nJava 7 mainly reduced boilerplate and improved exception and resource handling. Important features include the diamond operator, try-with-resources, multi-catch exceptions, String support in switch statements, binary literals, and numeric literals with underscores.\n\nJava 8 was one of the most significant releases. It introduced lambda expressions, functional interfaces, the Stream API, method references, default and static methods in interfaces, Optional, and the new Date-Time API. These features introduced a more functional programming style into Java.\n\nJava 11 added useful developer productivity improvements. Important additions include var support in lambda parameters, the standardized HttpClient, new String methods such as isBlank and strip, and the ability to run a single Java source file directly. Java 11 is also an important LTS release.\n\nJava 17 introduced modern language features such as records, sealed classes, pattern matching for instanceof, and text blocks. These features help reduce boilerplate and improve domain modeling. Java 17 is also an LTS release.\n\nJava 21 introduced important modern features including virtual threads, record patterns, pattern matching for switch, and sequenced collections. Virtual threads are particularly useful for highly concurrent applications that perform blocking I/O, although they do not make CPU-bound workloads faster.\n\nFor an interview, I would focus on the major features and their practical impact instead of trying to memorize every change introduced in each release.",
+        "code": {
+            "language": "text",
+            "snippet": "Java 7\n- Diamond operator\n- Try-with-resources\n- Multi-catch\n- String switch\n\nJava 8\n- Lambda expressions\n- Functional interfaces\n- Stream API\n- Method references\n- Optional\n- Date-Time API\n\nJava 11\n- var in lambda parameters\n- Standard HttpClient\n- New String APIs\n- Single-file source execution\n\nJava 17\n- Records\n- Sealed classes\n- Pattern matching for instanceof\n- Text blocks\n\nJava 21\n- Virtual threads\n- Record patterns\n- Pattern matching for switch\n- Sequenced collections"
+        },
+        "example": "In modern backend applications, Java 8 Streams are commonly used for collection processing, records are useful for immutable data carriers such as DTOs, sealed classes help model restricted domain hierarchies, and virtual threads can improve scalability for applications with a large number of blocking I/O operations.",
+        "mistakes": [
+            "Do not assume every feature mentioned in a release was necessarily finalized in that same version. Some Java features were introduced as preview or incubator features before becoming permanent.",
+            "Virtual threads are useful mainly for improving scalability with many concurrent blocking operations. They do not automatically improve CPU-bound processing.",
+            "Records are not simply replacements for all Java classes. They are most suitable for transparent data carriers."
+        ],
+        "followUps": [
+            "What are the benefits and limitations of virtual threads?",
+            "What is the difference between a record and a normal Java class?",
+            "How do sealed classes improve domain modeling?",
+            "What is pattern matching in Java?",
+            "What is the difference between Java 17 and Java 21?",
+            "Which Java version would you recommend for a new enterprise application and why?"
+        ]
     }
 ]

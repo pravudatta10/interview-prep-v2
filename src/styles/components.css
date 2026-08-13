@@ -241,6 +241,38 @@
 }
 .code-block pre { margin: 0; white-space: pre; overflow-x: auto; }
 
+/* highlight.js token colors. Hand-picked (not a stock hljs theme) so they
+   sit on top of --color-code-bg without a theme stylesheet fighting our
+   own background/padding. --color-code-bg is dark in both light and dark
+   app themes, so these are fixed values rather than theme variables. */
+.code-block .hljs { background: none; color: inherit; }
+.code-block .hljs-keyword,
+.code-block .hljs-selector-tag,
+.code-block .hljs-literal,
+.code-block .hljs-doctag { color: #c792ea; }
+.code-block .hljs-string,
+.code-block .hljs-regexp,
+.code-block .hljs-addition,
+.code-block .hljs-meta-string { color: #a5e075; }
+.code-block .hljs-comment,
+.code-block .hljs-quote { color: #7c8a9a; font-style: italic; }
+.code-block .hljs-number,
+.code-block .hljs-built_in,
+.code-block .hljs-builtin-name,
+.code-block .hljs-variable,
+.code-block .hljs-template-variable,
+.code-block .hljs-class .hljs-title { color: #f78c6c; }
+.code-block .hljs-type,
+.code-block .hljs-title.function_,
+.code-block .hljs-title.class_ { color: #82aaff; }
+.code-block .hljs-attr,
+.code-block .hljs-params,
+.code-block .hljs-attribute { color: #ffcb6b; }
+.code-block .hljs-symbol,
+.code-block .hljs-bullet,
+.code-block .hljs-link,
+.code-block .hljs-meta { color: #89ddff; }
+
 /* Search bar */
 .search-bar {
   display: flex;

@@ -61,6 +61,17 @@
   <link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png" />
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
 
+  <!--
+  highlight.js: core build + the Java grammar only (the only real
+  language used in data/**/*.json besides the plain "text" diagrams,
+  which CodeBlock.js intentionally skips). Loaded here as plain globals
+  (window.hljs) rather than as a module import, since the rest of this
+  app has no bundler/import-map — CodeBlock.js checks for window.hljs
+  before using it, so this stays optional if the CDN is unreachable.
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js" defer></script>
+
   <link rel="stylesheet" href="src/styles/variables.css" />
   <link rel="stylesheet" href="src/styles/layout.css" />
   <link rel="stylesheet" href="src/styles/components.css" />
