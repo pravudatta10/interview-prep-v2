@@ -6,7 +6,7 @@
  * on demand through dynamic import() and dataService.
  *
  * Also owns the two shell-level UX behaviors that span every screen:
- * reading mode (hides chrome for the Learn topic reader) and the search
+ * reading mode (hides chrome for Learn question practice) and the search
  * overlay (recent/suggested searches, grouped + highlighted results).
  */
 import { router } from './router.js';
@@ -29,7 +29,7 @@ const searchOverlayEl = document.getElementById('search-overlay');
 
 themeService.init();
 
-/* ---------- Standard shell (all screens except the topic reader) ---------- */
+/* ---------- Standard shell (all screens except Learn question practice) ---------- */
 
 function paintShell(activeTab, title, onBack) {
   appEl.classList.remove('reading-mode');
@@ -63,7 +63,7 @@ function focusContentHeading() {
   heading.focus({ preventScroll: true });
 }
 
-/* ---------- Reading mode (Learn topic reader only) ---------- */
+/* ---------- Reading mode (Learn question practice only) ---------- */
 
 function enterReadingModeShell(onBack) {
   appEl.classList.add('reading-mode');
@@ -71,7 +71,6 @@ function enterReadingModeShell(onBack) {
   const progressFill = h('div', { class: 'reading-progress-fill' });
   const backBtn = h('button', { class: 'header-icon-btn', 'aria-label': 'Back', onClick: onBack }, '←');
   const titleEl = h('span', { class: 'header-title reading-title' }, 'Loading…');
-  const readTimeEl = h('span', { class: 'reading-readtime' }, '');
   const bar = h('div', {
     class: 'reading-progress-bar',
     role: 'progressbar',
@@ -79,16 +78,15 @@ function enterReadingModeShell(onBack) {
     'aria-valuemax': '100',
     'aria-valuenow': '0',
     'aria-live': 'polite',
-    'aria-label': 'Reading progress',
+    'aria-label': 'Question progress',
   }, progressFill);
-  const topRow = h('div', { class: 'app-header-inner flex items-center gap-3 w-full' }, [backBtn, titleEl, readTimeEl]);
+  const topRow = h('div', { class: 'app-header-inner flex items-center gap-3 w-full' }, [backBtn, titleEl]);
   mount(headerEl, h('div', {}, [topRow, bar]));
   contentEl.replaceChildren(LoadingSkeleton());
   playContentTransition();
   return {
-    setMeta: (title, readTimeMinutes) => {
+    setMeta: (title) => {
       titleEl.textContent = title;
-      readTimeEl.textContent = readTimeMinutes ? `${readTimeMinutes} min` : '';
     },
     setProgress: (percent) => {
       progressFill.style.width = `${percent}%`;
@@ -215,7 +213,7 @@ router.register('/learn/:category/:topicFile', async ({ category, topicFile }) =
   const reading = enterReadingModeShell(() => router.navigate(backTarget, { replace: true }));
   const { renderTopicView } = await import('../features/learn/topicView.js');
   await renderTopicView(contentEl, category, topicFile, {
-    onMeta: ({ title, readTimeMinutes }) => reading.setMeta(title, readTimeMinutes),
+    onMeta: ({ title }) => reading.setMeta(title),
     onProgress: (percent) => reading.setProgress(percent),
     onNavigateTopic: (nextFile) => router.navigate(`/learn/${category}/${nextFile}`),
   });

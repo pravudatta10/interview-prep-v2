@@ -1,3 +1,7 @@
 [
-  { "id": "auto-configuration", "file": "auto-configuration", "title": "Spring Boot Auto-Configuration", "readTimeMinutes": 2 }
+  {
+    "id": "auto-configuration",
+    "file": "auto-configuration",
+    "title": "Spring Boot Auto-Configuration"
+  }
 ]

@@ -1,125 +1,188 @@
 [
-    {
-        "question": "What happens internally when you run java ClassName — walk through class loading to main() execution?",
-        "summary": "When we run `java ClassName`, the JVM starts and begins the class loading process. First, the required class is loaded using the class loader subsystem.\n\nThen the JVM links the class, which includes verification, preparation, and resolution. After that, the class is initialized, meaning static fields and static blocks are executed.\n\nOnce initialization is complete, the JVM looks for the entry point: `public static void main(String[] args)`.\n\nThe `main()` method is invoked on the main thread. As the program executes, the JVM executes bytecode. Initially, methods may be interpreted, and frequently executed code can be compiled into native machine code by the JIT compiler for better performance.\n\nDuring execution, objects are generally allocated on the heap, each thread has its own stack, and the garbage collector reclaims unreachable objects.\n\nWhen the `main()` method and all non-daemon threads finish, the JVM shuts down.",
-        "code": {
-            "language": "text",
-            "snippet": "java ClassName\n      |\n      v\nJVM Starts\n      |\n      v\nClass Loading\n      |\n      v\nLinking\n|- Verification\n|- Preparation\n`- Resolution\n      |\n      v\nInitialization\n(static fields and static blocks)\n      |\n      v\npublic static void main(String[] args)\n      |\n      v\nMain Thread Starts\n      |\n      v\nBytecode Execution\n|- Interpreter\n`- JIT Compiler for hot code\n      |\n      v\nJVM Shutdown"
-        },
-        "example": "For example, if a class contains a static block, it executes before main(). If a method is called repeatedly, the JVM may identify it as hot code and JIT-compile it into optimized native machine code for better performance.",
-        "mistakes": [
-            "Saying the JVM directly executes Java source code. Java source code is first compiled into bytecode.",
-            "Saying static blocks execute after main(). Static initialization happens before main() is invoked.",
-            "Assuming every method is immediately JIT-compiled. The JVM profiles execution and compiles frequently executed code when beneficial."
-        ],
-        "followUps": [
-            "What are the phases of class linking?",
-            "What is the difference between class loading and class initialization?",
-            "What is the difference between the interpreter and JIT compiler?",
-            "Where are objects and local variables stored in JVM memory?"
-        ]
-    },
-    {
-        "question": "What is the difference between JDK, JRE, and JVM, and how has this changed from Java 8 to modern Java?",
-        "summary": "The easiest way to understand them is to start with the JVM. The JVM is the component that actually executes Java bytecode. It is responsible for things like class loading, memory management, garbage collection, thread execution, and JIT compilation.\n\nThe JDK is what we use to develop Java applications. It provides tools such as `javac` for compilation, along with the Java runtime needed to run the application.\n\nIn Java 8 and earlier, the JRE was commonly distributed separately. The JRE provided the environment required to run Java applications, including the JVM and Java libraries. So, traditionally, we used to explain it as JDK containing JRE, and JRE containing JVM.\n\nStarting from Java 9, Java introduced the module system through Project Jigsaw. The traditional standalone JRE distribution model changed, and modern Java uses a modular runtime. With tools like `jlink`, we can even create a custom runtime image containing only the modules required by an application.\n\nSo for modern Java, such as Java 17, the practical flow is that we use the JDK to compile the source code using `javac`, and when we run the application using the `java` command, the Java launcher starts the JVM, which loads and executes the bytecode.\n\nSo, in simple terms, JDK is mainly for development, JVM is responsible for executing the bytecode, and the traditional JRE concept is useful for understanding older Java versions but is packaged differently in modern Java.",
-        "code": {
-            "language": "text",
-            "snippet": "Java 8 and earlier\n\nJDK\n|\n|- Development Tools\n|  |- javac\n|  |- javadoc\n|  `- jar\n|\n`- JRE\n   |\n   |- JVM\n   `- Java Class Libraries\n\n\nJava 9+ / Modern Java\n\nJDK\n|\n|- Development Tools\n|  |- javac\n|  |- java\n|  |- jlink\n|  `- other tools\n|\n|- JVM\n|\n`- Modular Java Runtime\n   |- java.base\n   |- java.sql\n   |- java.logging\n   `- other modules\n\n\nModern Execution Flow\n\n.java\n  |\n  | javac\n  v\n.class bytecode\n  |\n  | java ClassName\n  v\nJava Launcher\n  |\n  v\nJVM\n  |\n  v\nApplication Execution"
-        },
-        "example": "In Java 8, it was common to install a JDK on a development machine and a separate JRE on a machine that only needed to run Java applications. In modern Java, we typically use a JDK distribution to develop and run applications, or we can create a smaller custom runtime with only the required Java modules using `jlink`.",
-        "mistakes": [
-            "Always explaining modern Java only as JDK contains JRE and JRE contains JVM without mentioning the Java 9 module system and the change in standalone JRE distribution.",
-            "Saying JRE and JVM are the same thing. The JVM executes bytecode, while the runtime environment also includes Java libraries and other runtime components.",
-            "Saying Java 9 removed the JVM or Java runtime. Java 9 introduced modularization and changed how Java runtime components can be packaged."
-        ],
-        "followUps": [
-            "What is Project Jigsaw?",
-            "What is the Java Platform Module System or JPMS?",
-            "What is jlink and when would you use it?",
-            "What is the difference between javac and the java command?",
-            "How does the JVM provide platform independence?"
-        ]
-    },
-    {
-        "question": "How does the javac compilation pipeline differ from JIT compilation at runtime?",
-        "summary": "The main difference is that `javac` compiles Java source code before the application runs, while the JIT compiler compiles and optimizes code during runtime.\n\nWhen we compile a Java application, `javac` takes the `.java` source file and converts it into platform-independent bytecode stored in a `.class` file. During this process, it performs compile-time checks such as parsing and type checking.\n\nLater, when we run the application, the JVM loads that bytecode and starts executing it. Initially, the JVM can interpret the bytecode. At the same time, the JVM monitors how the application is running. If a method or code path is executed frequently, it can be identified as hot code.\n\nThe JIT compiler can then compile that frequently executed bytecode into native machine code. This improves performance because the JVM does not need to repeatedly interpret the same instructions.\n\nThe important advantage of JIT compilation is that it has access to actual runtime information. It can observe how the application behaves and apply optimizations based on that information. That is why long-running Java applications, such as backend services, can improve in performance after the JVM has warmed up.",
-        "code": {
-            "language": "text",
-            "snippet": "Compile Time\n\nMyClass.java\n      |\n      | javac\n      v\nMyClass.class\n(Java Bytecode)\n\n\nRuntime\n\nMyClass.class\n      |\n      v\nJVM\n      |\n      |- Interpreter executes bytecode\n      |\n      |- JVM profiles execution\n      |\n      `- Frequently executed code becomes hot\n                    |\n                    v\n               JIT Compiler\n                    |\n                    v\n          Optimized Native Machine Code\n                    |\n                    v\n             Faster Execution"
-        },
-        "example": "Suppose a method in a Spring Boot service is called millions of times while processing requests. The source code was already compiled into bytecode by javac before deployment. During runtime, if that method becomes hot, the JVM can JIT-compile it into optimized native machine code. This is one reason Java applications can have a warm-up period before reaching steady-state performance.",
-        "mistakes": [
-            "Saying javac produces native machine code. javac normally converts Java source code into JVM bytecode.",
-            "Saying JIT compilation happens before the application starts. JIT compilation happens dynamically while the JVM is running.",
-            "Assuming all bytecode is immediately JIT-compiled. The JVM uses runtime profiling to decide which code is worth compiling and optimizing.",
-            "Ignoring JVM warm-up when benchmarking Java applications. Initial performance may be different from steady-state performance."
-        ],
-        "followUps": [
-            "What is hot code or a hot method?",
-            "What is the difference between an interpreter and a JIT compiler?",
-            "Why do Java applications have a warm-up period?",
-            "What is deoptimization in the JVM?",
-            "How does JIT use runtime profiling for optimization?"
-        ]
-    },
-    {
-        "question": "Why is Java called platform-independent? What role does bytecode play?",
-        "summary": "Java is called platform-independent because Java source code is not compiled directly into machine code for a specific operating system.\n\nWhen we compile a Java program using javac, the compiler converts the .java source file into bytecode, which is stored in a .class file.\n\nThis bytecode is platform-independent. The same .class file can run on Windows, Linux, or macOS, provided that a compatible JVM is available on that platform.\n\nThe JVM acts as the platform-specific layer. Each operating system has its own JVM implementation, and the JVM executes or converts the common Java bytecode into instructions that the underlying machine can understand.\n\nSo, Java follows the idea of Write Once, Run Anywhere. The application bytecode is portable, while the JVM itself is platform-dependent.",
-        "code": {
-            "language": "text",
-            "snippet": "Java Source Code\n    (.java)\n       |\n       | javac\n       v\nBytecode\n    (.class)\n       |\n       | JVM\n       v\nPlatform-specific execution"
-        },
-        "example": "A Java application compiled on Windows can run on Linux without recompiling the source code, as long as a compatible JVM is installed.",
-        "mistakes": [
-            "Java itself is not completely platform-independent. The Java application bytecode is platform-independent, but the JVM implementation is platform-specific.",
-            "Bytecode is not the same as native machine code. The JVM interprets or JIT-compiles bytecode for execution."
-        ],
-        "followUps": [
-            "How does the JVM execute bytecode?",
-            "What is the difference between interpretation and JIT compilation?",
-            "What is the difference between JVM, JDK, and JRE?",
-            "What happens internally when we run a Java program?"
-        ]
-    },
-    {
-        "question": "What is the difference between JAR and WAR files?",
-        "summary": "Both JAR and WAR are archive formats based on the ZIP format, but they are generally used for different purposes.\n\nA JAR, or Java Archive, is mainly used to package Java applications, libraries, classes, resources, and dependencies. In modern Spring Boot applications, services are commonly packaged as executable JAR files.\n\nA WAR, or Web Application Archive, is traditionally used to package web applications for deployment to an external servlet container or application server, such as Tomcat.\n\nAn executable Spring Boot JAR can include an embedded web server and can usually be started directly using java -jar. A WAR file is commonly deployed to an external application server.\n\nFor modern Spring Boot microservices, executable JARs are generally preferred because deployment is simpler and the application is more self-contained. WAR packaging is still useful when an organization requires deployment into an existing external Tomcat or application server.",
-        "code": {
-            "language": "text",
-            "snippet": "JAR Deployment:\n\napplication.jar\n       |\n       v\nEmbedded Tomcat / Jetty\n       |\n       v\njava -jar application.jar\n\n\nWAR Deployment:\n\napplication.war\n       |\n       v\nExternal Tomcat / Application Server\n       |\n       v\nApplication Deployment"
-        },
-        "example": "A Spring Boot microservice can be packaged as application.jar and started using the command java -jar application.jar. A traditional enterprise web application may be packaged as a WAR and deployed to an external Tomcat server.",
-        "mistakes": [
-            "JAR files are not only used for libraries. They can also package complete executable applications.",
-            "WAR is not mandatory for Spring Boot web applications. Modern Spring Boot applications are commonly deployed as executable JAR files."
-        ],
-        "followUps": [
-            "How does Spring Boot create an executable JAR?",
-            "Can the same Spring Boot application be packaged as both JAR and WAR?",
-            "What is an embedded server?",
-            "What is the difference between Tomcat and an application server?"
-        ]
-    },
-    {
-        "question": "What new language features were introduced across Java 7, 8, 11, 17, and 21?",
-        "summary": "Java has evolved significantly across these releases, with each version introducing improvements in language syntax, developer productivity, concurrency, and application design.\n\nJava 7 mainly reduced boilerplate and improved exception and resource handling. Important features include the diamond operator, try-with-resources, multi-catch exceptions, String support in switch statements, binary literals, and numeric literals with underscores.\n\nJava 8 was one of the most significant releases. It introduced lambda expressions, functional interfaces, the Stream API, method references, default and static methods in interfaces, Optional, and the new Date-Time API. These features introduced a more functional programming style into Java.\n\nJava 11 added useful developer productivity improvements. Important additions include var support in lambda parameters, the standardized HttpClient, new String methods such as isBlank and strip, and the ability to run a single Java source file directly. Java 11 is also an important LTS release.\n\nJava 17 introduced modern language features such as records, sealed classes, pattern matching for instanceof, and text blocks. These features help reduce boilerplate and improve domain modeling. Java 17 is also an LTS release.\n\nJava 21 introduced important modern features including virtual threads, record patterns, pattern matching for switch, and sequenced collections. Virtual threads are particularly useful for highly concurrent applications that perform blocking I/O, although they do not make CPU-bound workloads faster.\n\nFor an interview, I would focus on the major features and their practical impact instead of trying to memorize every change introduced in each release.",
-        "code": {
-            "language": "text",
-            "snippet": "Java 7\n- Diamond operator\n- Try-with-resources\n- Multi-catch\n- String switch\n\nJava 8\n- Lambda expressions\n- Functional interfaces\n- Stream API\n- Method references\n- Optional\n- Date-Time API\n\nJava 11\n- var in lambda parameters\n- Standard HttpClient\n- New String APIs\n- Single-file source execution\n\nJava 17\n- Records\n- Sealed classes\n- Pattern matching for instanceof\n- Text blocks\n\nJava 21\n- Virtual threads\n- Record patterns\n- Pattern matching for switch\n- Sequenced collections"
-        },
-        "example": "In modern backend applications, Java 8 Streams are commonly used for collection processing, records are useful for immutable data carriers such as DTOs, sealed classes help model restricted domain hierarchies, and virtual threads can improve scalability for applications with a large number of blocking I/O operations.",
-        "mistakes": [
-            "Do not assume every feature mentioned in a release was necessarily finalized in that same version. Some Java features were introduced as preview or incubator features before becoming permanent.",
-            "Virtual threads are useful mainly for improving scalability with many concurrent blocking operations. They do not automatically improve CPU-bound processing.",
-            "Records are not simply replacements for all Java classes. They are most suitable for transparent data carriers."
-        ],
-        "followUps": [
-            "What are the benefits and limitations of virtual threads?",
-            "What is the difference between a record and a normal Java class?",
-            "How do sealed classes improve domain modeling?",
-            "What is pattern matching in Java?",
-            "What is the difference between Java 17 and Java 21?",
-            "Which Java version would you recommend for a new enterprise application and why?"
-        ]
+  {
+    "id": "java-fundamentals-001",
+    "question": "What happens internally when you run java ClassName — walk through class loading to main() execution?",
+    "hint": "Think class loaders, linking, static initialization, and the main thread.",
+    "answer": "When we run `java ClassName`, the JVM starts and begins the class loading process. First, the required class is loaded using the class loader subsystem.\n\nThen the JVM links the class, which includes verification, preparation, and resolution. After that, the class is initialized, meaning static fields and static blocks are executed.\n\nOnce initialization is complete, the JVM looks for the entry point: `public static void main(String[] args)`.\n\nThe `main()` method is invoked on the main thread. As the program executes, the JVM executes bytecode. Initially, methods may be interpreted, and frequently executed code can be compiled into native machine code by the JIT compiler for better performance.\n\nDuring execution, objects are generally allocated on the heap, each thread has its own stack, and the garbage collector reclaims unreachable objects.\n\nWhen the `main()` method and all non-daemon threads finish, the JVM shuts down.",
+    "example": "For example, if a class contains a static block, it executes before main(). If a method is called repeatedly, the JVM may identify it as hot code and JIT-compile it into optimized native machine code for better performance.",
+    "code": {
+      "language": "text",
+      "snippet": "java ClassName\n      |\n      v\nJVM Starts\n      |\n      v\nClass Loading\n      |\n      v\nLinking\n|- Verification\n|- Preparation\n`- Resolution\n      |\n      v\nInitialization\n(static fields and static blocks)\n      |\n      v\npublic static void main(String[] args)\n      |\n      v\nMain Thread Starts\n      |\n      v\nBytecode Execution\n|- Interpreter\n`- JIT Compiler for hot code\n      |\n      v\nJVM Shutdown"
     }
+  },
+  {
+    "id": "java-fundamentals-002",
+    "question": "What are the phases of class linking?",
+    "hint": "Think what the JVM checks and allocates before any static code runs."
+  },
+  {
+    "id": "java-fundamentals-003",
+    "question": "What is the difference between class loading and class initialization?",
+    "hint": "Think reading the class bytes vs. running static initializers, and when each is triggered."
+  },
+  {
+    "id": "java-fundamentals-004",
+    "question": "What is the difference between the interpreter and JIT compiler?",
+    "hint": "Think running bytecode step by step vs. compiling hot code to native."
+  },
+  {
+    "id": "java-fundamentals-005",
+    "question": "Where are objects and local variables stored in JVM memory?",
+    "hint": "Think heap vs. per-thread stacks, and where references live vs. objects."
+  },
+  {
+    "id": "java-fundamentals-006",
+    "question": "What is the difference between JDK, JRE, and JVM, and how has this changed from Java 8 to modern Java?",
+    "hint": "Think what executes bytecode, what compiles code, and what changed in Java 9.",
+    "answer": "The easiest way to understand them is to start with the JVM. The JVM is the component that actually executes Java bytecode. It is responsible for things like class loading, memory management, garbage collection, thread execution, and JIT compilation.\n\nThe JDK is what we use to develop Java applications. It provides tools such as `javac` for compilation, along with the Java runtime needed to run the application.\n\nIn Java 8 and earlier, the JRE was commonly distributed separately. The JRE provided the environment required to run Java applications, including the JVM and Java libraries. So, traditionally, we used to explain it as JDK containing JRE, and JRE containing JVM.\n\nStarting from Java 9, Java introduced the module system through Project Jigsaw. The traditional standalone JRE distribution model changed, and modern Java uses a modular runtime. With tools like `jlink`, we can even create a custom runtime image containing only the modules required by an application.\n\nSo for modern Java, such as Java 17, the practical flow is that we use the JDK to compile the source code using `javac`, and when we run the application using the `java` command, the Java launcher starts the JVM, which loads and executes the bytecode.\n\nSo, in simple terms, JDK is mainly for development, JVM is responsible for executing the bytecode, and the traditional JRE concept is useful for understanding older Java versions but is packaged differently in modern Java.",
+    "example": "In Java 8, it was common to install a JDK on a development machine and a separate JRE on a machine that only needed to run Java applications. In modern Java, we typically use a JDK distribution to develop and run applications, or we can create a smaller custom runtime with only the required Java modules using `jlink`.",
+    "code": {
+      "language": "text",
+      "snippet": "Java 8 and earlier\n\nJDK\n|\n|- Development Tools\n|  |- javac\n|  |- javadoc\n|  `- jar\n|\n`- JRE\n   |\n   |- JVM\n   `- Java Class Libraries\n\n\nJava 9+ / Modern Java\n\nJDK\n|\n|- Development Tools\n|  |- javac\n|  |- java\n|  |- jlink\n|  `- other tools\n|\n|- JVM\n|\n`- Modular Java Runtime\n   |- java.base\n   |- java.sql\n   |- java.logging\n   `- other modules\n\n\nModern Execution Flow\n\n.java\n  |\n  | javac\n  v\n.class bytecode\n  |\n  | java ClassName\n  v\nJava Launcher\n  |\n  v\nJVM\n  |\n  v\nApplication Execution"
+    }
+  },
+  {
+    "id": "java-fundamentals-007",
+    "question": "What is Project Jigsaw?",
+    "hint": "Think Java 9 and breaking up the monolithic JDK."
+  },
+  {
+    "id": "java-fundamentals-008",
+    "question": "What is the Java Platform Module System or JPMS?",
+    "hint": "Think modules, module-info.java, and strong encapsulation."
+  },
+  {
+    "id": "java-fundamentals-009",
+    "question": "What is jlink and when would you use it?",
+    "hint": "Think building a trimmed-down runtime image with only the modules you need."
+  },
+  {
+    "id": "java-fundamentals-010",
+    "question": "What is the difference between javac and the java command?",
+    "hint": "Think compiling source to bytecode vs. launching the JVM to run it."
+  },
+  {
+    "id": "java-fundamentals-011",
+    "question": "How does the javac compilation pipeline differ from JIT compilation at runtime?",
+    "hint": "Think ahead-of-time to bytecode vs. runtime optimization based on live behavior.",
+    "answer": "The main difference is that `javac` compiles Java source code before the application runs, while the JIT compiler compiles and optimizes code during runtime.\n\nWhen we compile a Java application, `javac` takes the `.java` source file and converts it into platform-independent bytecode stored in a `.class` file. During this process, it performs compile-time checks such as parsing and type checking.\n\nLater, when we run the application, the JVM loads that bytecode and starts executing it. Initially, the JVM can interpret the bytecode. At the same time, the JVM monitors how the application is running. If a method or code path is executed frequently, it can be identified as hot code.\n\nThe JIT compiler can then compile that frequently executed bytecode into native machine code. This improves performance because the JVM does not need to repeatedly interpret the same instructions.\n\nThe important advantage of JIT compilation is that it has access to actual runtime information. It can observe how the application behaves and apply optimizations based on that information. That is why long-running Java applications, such as backend services, can improve in performance after the JVM has warmed up.",
+    "example": "Suppose a method in a Spring Boot service is called millions of times while processing requests. The source code was already compiled into bytecode by javac before deployment. During runtime, if that method becomes hot, the JVM can JIT-compile it into optimized native machine code. This is one reason Java applications can have a warm-up period before reaching steady-state performance.",
+    "code": {
+      "language": "text",
+      "snippet": "Compile Time\n\nMyClass.java\n      |\n      | javac\n      v\nMyClass.class\n(Java Bytecode)\n\n\nRuntime\n\nMyClass.class\n      |\n      v\nJVM\n      |\n      |- Interpreter executes bytecode\n      |\n      |- JVM profiles execution\n      |\n      `- Frequently executed code becomes hot\n                    |\n                    v\n               JIT Compiler\n                    |\n                    v\n          Optimized Native Machine Code\n                    |\n                    v\n             Faster Execution"
+    }
+  },
+  {
+    "id": "java-fundamentals-012",
+    "question": "What is hot code or a hot method?",
+    "hint": "Think code that runs so often the JVM decides it is worth optimizing."
+  },
+  {
+    "id": "java-fundamentals-013",
+    "question": "What is the difference between an interpreter and a JIT compiler?",
+    "hint": "Think start-up speed vs. steady-state speed."
+  },
+  {
+    "id": "java-fundamentals-014",
+    "question": "Why do Java applications have a warm-up period?",
+    "hint": "Think profiling, interpreting first, and compilation thresholds."
+  },
+  {
+    "id": "java-fundamentals-015",
+    "question": "What is deoptimization in the JVM?",
+    "hint": "Think optimistic assumptions that turn out wrong at runtime."
+  },
+  {
+    "id": "java-fundamentals-016",
+    "question": "How does JIT use runtime profiling for optimization?",
+    "hint": "Think type feedback, branch frequencies, and inlining decisions."
+  },
+  {
+    "id": "java-fundamentals-017",
+    "question": "Why is Java called platform-independent? What role does bytecode play?",
+    "hint": "Think what the compiler produces and what each OS's JVM does with it.",
+    "answer": "Java is called platform-independent because Java source code is not compiled directly into machine code for a specific operating system.\n\nWhen we compile a Java program using javac, the compiler converts the .java source file into bytecode, which is stored in a .class file.\n\nThis bytecode is platform-independent. The same .class file can run on Windows, Linux, or macOS, provided that a compatible JVM is available on that platform.\n\nThe JVM acts as the platform-specific layer. Each operating system has its own JVM implementation, and the JVM executes or converts the common Java bytecode into instructions that the underlying machine can understand.\n\nSo, Java follows the idea of Write Once, Run Anywhere. The application bytecode is portable, while the JVM itself is platform-dependent.",
+    "example": "A Java application compiled on Windows can run on Linux without recompiling the source code, as long as a compatible JVM is installed.",
+    "code": {
+      "language": "text",
+      "snippet": "Java Source Code\n    (.java)\n       |\n       | javac\n       v\nBytecode\n    (.class)\n       |\n       | JVM\n       v\nPlatform-specific execution"
+    }
+  },
+  {
+    "id": "java-fundamentals-018",
+    "question": "How does the JVM execute bytecode?",
+    "hint": "Think the interpreter, the JIT, and a stack-based instruction set."
+  },
+  {
+    "id": "java-fundamentals-019",
+    "question": "What is the difference between JAR and WAR files?",
+    "hint": "Think what each archive contains and where it gets deployed.",
+    "answer": "Both JAR and WAR are archive formats based on the ZIP format, but they are generally used for different purposes.\n\nA JAR, or Java Archive, is mainly used to package Java applications, libraries, classes, resources, and dependencies. In modern Spring Boot applications, services are commonly packaged as executable JAR files.\n\nA WAR, or Web Application Archive, is traditionally used to package web applications for deployment to an external servlet container or application server, such as Tomcat.\n\nAn executable Spring Boot JAR can include an embedded web server and can usually be started directly using java -jar. A WAR file is commonly deployed to an external application server.\n\nFor modern Spring Boot microservices, executable JARs are generally preferred because deployment is simpler and the application is more self-contained. WAR packaging is still useful when an organization requires deployment into an existing external Tomcat or application server.",
+    "example": "A Spring Boot microservice can be packaged as application.jar and started using the command java -jar application.jar. A traditional enterprise web application may be packaged as a WAR and deployed to an external Tomcat server.",
+    "code": {
+      "language": "text",
+      "snippet": "JAR Deployment:\n\napplication.jar\n       |\n       v\nEmbedded Tomcat / Jetty\n       |\n       v\njava -jar application.jar\n\n\nWAR Deployment:\n\napplication.war\n       |\n       v\nExternal Tomcat / Application Server\n       |\n       v\nApplication Deployment"
+    }
+  },
+  {
+    "id": "java-fundamentals-020",
+    "question": "How does Spring Boot create an executable JAR?",
+    "hint": "Think the Spring Boot build plugin, nested dependencies, and a launcher class."
+  },
+  {
+    "id": "java-fundamentals-021",
+    "question": "Can the same Spring Boot application be packaged as both JAR and WAR?",
+    "hint": "Think the servlet initializer and the packaging setting in your build file."
+  },
+  {
+    "id": "java-fundamentals-022",
+    "question": "What is an embedded server?",
+    "hint": "Think Tomcat or Jetty running inside your app instead of your app inside Tomcat."
+  },
+  {
+    "id": "java-fundamentals-023",
+    "question": "What is the difference between Tomcat and an application server?",
+    "hint": "Think servlet container vs. full Jakarta EE feature set."
+  },
+  {
+    "id": "java-fundamentals-024",
+    "question": "What new language features were introduced across Java 7, 8, 11, 17, and 21?",
+    "hint": "Go release by release. Each one has a headline feature you can anchor on.",
+    "answer": "Java has evolved significantly across these releases, with each version introducing improvements in language syntax, developer productivity, concurrency, and application design.\n\nJava 7 mainly reduced boilerplate and improved exception and resource handling. Important features include the diamond operator, try-with-resources, multi-catch exceptions, String support in switch statements, binary literals, and numeric literals with underscores.\n\nJava 8 was one of the most significant releases. It introduced lambda expressions, functional interfaces, the Stream API, method references, default and static methods in interfaces, Optional, and the new Date-Time API. These features introduced a more functional programming style into Java.\n\nJava 11 added useful developer productivity improvements. Important additions include var support in lambda parameters, the standardized HttpClient, new String methods such as isBlank and strip, and the ability to run a single Java source file directly. Java 11 is also an important LTS release.\n\nJava 17 introduced modern language features such as records, sealed classes, pattern matching for instanceof, and text blocks. These features help reduce boilerplate and improve domain modeling. Java 17 is also an LTS release.\n\nJava 21 introduced important modern features including virtual threads, record patterns, pattern matching for switch, and sequenced collections. Virtual threads are particularly useful for highly concurrent applications that perform blocking I/O, although they do not make CPU-bound workloads faster.\n\nFor an interview, I would focus on the major features and their practical impact instead of trying to memorize every change introduced in each release.",
+    "example": "In modern backend applications, Java 8 Streams are commonly used for collection processing, records are useful for immutable data carriers such as DTOs, sealed classes help model restricted domain hierarchies, and virtual threads can improve scalability for applications with a large number of blocking I/O operations.",
+    "code": {
+      "language": "text",
+      "snippet": "Java 7\n- Diamond operator\n- Try-with-resources\n- Multi-catch\n- String switch\n\nJava 8\n- Lambda expressions\n- Functional interfaces\n- Stream API\n- Method references\n- Optional\n- Date-Time API\n\nJava 11\n- var in lambda parameters\n- Standard HttpClient\n- New String APIs\n- Single-file source execution\n\nJava 17\n- Records\n- Sealed classes\n- Pattern matching for instanceof\n- Text blocks\n\nJava 21\n- Virtual threads\n- Record patterns\n- Pattern matching for switch\n- Sequenced collections"
+    }
+  },
+  {
+    "id": "java-fundamentals-025",
+    "question": "What are the benefits and limitations of virtual threads?",
+    "hint": "Think blocking calls, cheap threads, and where they do not help."
+  },
+  {
+    "id": "java-fundamentals-026",
+    "question": "What is the difference between a record and a normal Java class?",
+    "hint": "Think boilerplate, immutability, and what you can no longer extend or mutate."
+  },
+  {
+    "id": "java-fundamentals-027",
+    "question": "How do sealed classes improve domain modeling?",
+    "hint": "Think restricting which classes can extend a type, and exhaustive switches."
+  },
+  {
+    "id": "java-fundamentals-028",
+    "question": "What is pattern matching in Java?",
+    "hint": "Think instanceof, switch, and deconstructing values without casts."
+  },
+  {
+    "id": "java-fundamentals-029",
+    "question": "What is the difference between Java 17 and Java 21?",
+    "hint": "Think LTS releases and what landed between them."
+  },
+  {
+    "id": "java-fundamentals-030",
+    "question": "Which Java version would you recommend for a new enterprise application and why?",
+    "hint": "Think LTS support, framework compatibility, and library support."
+  }
 ]

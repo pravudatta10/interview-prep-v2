@@ -1,6 +1,22 @@
 [
-  { "id": "fundamentals", "file": "fundamentals", "title": "Java Fundamentals", "readTimeMinutes": 5 },
-  { "id": "oops", "file": "oops", "title": "OOP Principles in Java", "readTimeMinutes": 3 },
-  { "id": "collections", "file": "collections", "title": "Collections Framework", "readTimeMinutes": 3 },
-  { "id": "exceptions", "file": "exceptions", "title": "Exception Handling", "readTimeMinutes": 5 }
+  {
+    "id": "fundamentals",
+    "file": "fundamentals",
+    "title": "Java Fundamentals"
+  },
+  {
+    "id": "oops",
+    "file": "oops",
+    "title": "OOP Principles in Java"
+  },
+  {
+    "id": "collections",
+    "file": "collections",
+    "title": "Collections Framework"
+  },
+  {
+    "id": "exceptions",
+    "file": "exceptions",
+    "title": "Exception Handling"
+  }
 ]

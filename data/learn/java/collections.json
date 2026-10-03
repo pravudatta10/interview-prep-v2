@@ -1,14 +1,19 @@
-{
-  "id": "collections",
-  "title": "Collections Framework",
-  "summary": "The Collections Framework gives you List (ordered, duplicates allowed — ArrayList/LinkedList), Set (no duplicates — HashSet/TreeSet), and Map (key-value — HashMap/TreeMap), all built on shared interfaces so you can swap implementations without changing calling code.",
-  "example": "Reach for LinkedList over ArrayList only when you're doing frequent insert/remove at the head or middle — for anything else, ArrayList's better cache locality wins in practice.",
-  "mistakes": [
-    "Using HashMap from multiple threads without synchronization — it can silently corrupt state, not just throw. Use ConcurrentHashMap instead.",
-    "Assuming HashSet/HashMap preserve insertion order — they don't; use LinkedHashSet/LinkedHashMap if order matters."
-  ],
-  "followUps": [
-    "Why is ConcurrentHashMap faster than a synchronized HashMap under contention?",
-    "What's the time complexity of get() on a HashMap in the worst case, and when does that worst case happen?"
-  ]
-}
+[
+  {
+    "id": "java-collections-001",
+    "question": "Explain the Java Collections Framework — how do List, Set and Map differ, and how do you choose an implementation?",
+    "hint": "Think ordering, duplicates, key-value pairs, and why shared interfaces let you swap implementations.",
+    "answer": "The Collections Framework gives you List (ordered, duplicates allowed — ArrayList/LinkedList), Set (no duplicates — HashSet/TreeSet), and Map (key-value — HashMap/TreeMap), all built on shared interfaces so you can swap implementations without changing calling code.",
+    "example": "Reach for LinkedList over ArrayList only when you're doing frequent insert/remove at the head or middle — for anything else, ArrayList's better cache locality wins in practice."
+  },
+  {
+    "id": "java-collections-002",
+    "question": "Why is ConcurrentHashMap faster than a synchronized HashMap under contention?",
+    "hint": "Think lock granularity: locking the whole map vs. locking finer-grained pieces."
+  },
+  {
+    "id": "java-collections-003",
+    "question": "What's the time complexity of get() on a HashMap in the worst case, and when does that worst case happen?",
+    "hint": "Think hash collisions, bucket structure, and what Java 8 changed for long buckets."
+  }
+]
