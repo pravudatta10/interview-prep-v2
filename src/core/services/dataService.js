@@ -3,7 +3,7 @@
  * Single responsibility: fetch JSON data files on demand and cache the
  * in-memory result for the lifetime of the session. Nothing is preloaded —
  * every category/topic/question file is only fetched when the user
- * navigates to it (see ARCHITECTURE.md → Lazy Loading Strategy).
+ * navigates to it (lazy loading — see README.md → Project structure).
  *
  * All paths are built through CONFIG.assets.data() rather than hard-coded
  * as "/data/..." — the old absolute-root form broke on any static host
@@ -11,7 +11,7 @@
  * project site at "/repo-name/"), since "/data/..." always resolves to
  * the domain root regardless of where index.html actually lives.
  *
- * CACHE STRATEGY (see /LOCALSTORAGE_AUDIT.md for the full writeup):
+ * CACHE STRATEGY (see README.md → Config & caching):
  * requests used to pass `cache: 'force-cache'`, which tells the browser to
  * serve whatever is already in its HTTP cache — even a response from
  * before the last deploy — without ever asking the server if it's stale.
@@ -26,14 +26,19 @@
  * (browser, proxy, CDN) thinks is still fresh.
  */
 import { CONFIG } from '../../config.js';
+import { debug } from '../utils/debug.js';
 
 const memoryCache = new Map();
 
 async function fetchJson(relativePath) {
   const url = `${CONFIG.assets.data(relativePath)}?v=${CONFIG.cache.jsonVersion}`;
-  if (memoryCache.has(url)) return memoryCache.get(url);
+  if (memoryCache.has(url)) {
+    debug.log('data (cached)', relativePath);
+    return memoryCache.get(url);
+  }
 
   const response = await fetch(url, { cache: 'no-cache' });
+  debug.log('data', relativePath, response.status);
   if (!response.ok) {
     throw new Error(`Failed to load data: ${url} (${response.status})`);
   }
@@ -43,6 +48,9 @@ async function fetchJson(relativePath) {
 }
 
 export const dataService = {
+  /** Learn: the category grid (data/learn/categories.json) — add a category by adding an entry there */
+  getLearnCategories: () => fetchJson('learn/categories.json'),
+
   /** Learn: topics for a given category, e.g. dataService.getLearnTopics('java') */
   getLearnTopics: (categorySlug) => fetchJson(`learn/${categorySlug}/topics.json`),
 

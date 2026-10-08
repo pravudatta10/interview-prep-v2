@@ -3,15 +3,14 @@
  * Single responsibility: read/write small user-preference and progress data.
  * Backed by localStorage only — this app never stores fetched JSON,
  * interview content, or search-index data here (see dataService, which
- * caches that in memory for the session only). See /LOCALSTORAGE_AUDIT.md
- * for the full audit of every key below.
+ * caches that in memory for the session only). Every key is listed in KEYS
+ * below; `ipDebug.storage()` (debug mode) shows their current values.
  */
 const PREFIX = 'ip:';
 
 const KEYS = {
   THEME: 'theme',
   FONT_SIZE: 'fontSize',
-  CURRENT_TAB: 'currentTab',
   READING_PROGRESS: 'readingProgress',
   RECENT_TOPICS: 'recentTopics',
   PDF_LAST_PAGE: 'pdfLastPage',
@@ -30,6 +29,12 @@ function read(key, fallback) {
   }
 }
 
+/** Lists are always arrays, even if the stored value was corrupted or hand-edited. */
+function readList(key) {
+  const value = read(key, []);
+  return Array.isArray(value) ? value : [];
+}
+
 function write(key, value) {
   try {
     localStorage.setItem(PREFIX + key, JSON.stringify(value));
@@ -46,15 +51,12 @@ export const storageService = {
   getFontSize: () => read(KEYS.FONT_SIZE, 'md'),
   setFontSize: (value) => write(KEYS.FONT_SIZE, value),
 
-  getCurrentTab: () => read(KEYS.CURRENT_TAB, 'learn'),
-  setCurrentTab: (value) => write(KEYS.CURRENT_TAB, value),
-
   getReadingProgress: (topicId) => read(`${KEYS.READING_PROGRESS}:${topicId}`, 0),
   setReadingProgress: (topicId, blockIndex) => write(`${KEYS.READING_PROGRESS}:${topicId}`, blockIndex),
 
-  getRecentTopics: () => read(KEYS.RECENT_TOPICS, []),
+  getRecentTopics: () => readList(KEYS.RECENT_TOPICS),
   addRecentTopic: (topic) => {
-    const list = read(KEYS.RECENT_TOPICS, []).filter((t) => t.id !== topic.id);
+    const list = readList(KEYS.RECENT_TOPICS).filter((t) => t.id !== topic.id);
     list.unshift(topic);
     write(KEYS.RECENT_TOPICS, list.slice(0, 8));
   },
@@ -63,18 +65,20 @@ export const storageService = {
   setPdfLastPage: (noteId, page) => write(`${KEYS.PDF_LAST_PAGE}:${noteId}`, page),
 
   /** Exact resume point for "Continue Reading": which topic, which block. */
-  getLastReading: () => read(KEYS.LAST_READING, null),
+  getLastReading: () => {
+    const value = read(KEYS.LAST_READING, null);
+    return value && typeof value === 'object' && !Array.isArray(value) ? value : null;
+  },
   setLastReading: (entry) => write(KEYS.LAST_READING, entry),
 
   /** "Frequently Practiced" — most recently opened coding questions. */
-  getRecentQuestions: () => read(KEYS.RECENT_QUESTIONS, []),
   addRecentQuestion: (question) => {
-    const list = read(KEYS.RECENT_QUESTIONS, []).filter((q) => q.id !== question.id);
+    const list = readList(KEYS.RECENT_QUESTIONS).filter((q) => q.id !== question.id);
     list.unshift({ ...question, practicedAt: Date.now() });
     write(KEYS.RECENT_QUESTIONS, list.slice(0, 12));
   },
   getLastPracticedLabel: (topicSlug, topicFile) => {
-    const list = read(KEYS.RECENT_QUESTIONS, []);
+    const list = readList(KEYS.RECENT_QUESTIONS);
     const match = list.find((q) => q.topicSlug === topicSlug && q.topicFile === topicFile);
     if (!match) return null;
     const days = Math.floor((Date.now() - match.practicedAt) / 86400000);
@@ -84,18 +88,18 @@ export const storageService = {
   },
 
   /** "Recent Notes" — most recently opened PDF notes, for the Home dashboard. */
-  getRecentNotes: () => read(KEYS.RECENT_NOTES, []),
+  getRecentNotes: () => readList(KEYS.RECENT_NOTES),
   addRecentNote: (note) => {
-    const list = read(KEYS.RECENT_NOTES, []).filter((n) => n.id !== note.id);
+    const list = readList(KEYS.RECENT_NOTES).filter((n) => n.id !== note.id);
     list.unshift(note);
     write(KEYS.RECENT_NOTES, list.slice(0, 6));
   },
 
-  getRecentSearches: () => read(KEYS.RECENT_SEARCHES, []),
+  getRecentSearches: () => readList(KEYS.RECENT_SEARCHES),
   addRecentSearch: (query) => {
     const trimmed = query.trim();
     if (!trimmed) return;
-    const list = read(KEYS.RECENT_SEARCHES, []).filter((q) => q.toLowerCase() !== trimmed.toLowerCase());
+    const list = readList(KEYS.RECENT_SEARCHES).filter((q) => q.toLowerCase() !== trimmed.toLowerCase());
     list.unshift(trimmed);
     write(KEYS.RECENT_SEARCHES, list.slice(0, 6));
   },

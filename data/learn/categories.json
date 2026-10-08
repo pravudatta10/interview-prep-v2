@@ -1,0 +1,62 @@
+[
+  {
+    "slug": "java",
+    "name": "Java",
+    "icon": "☕",
+    "available": true
+  },
+  {
+    "slug": "spring-boot",
+    "name": "Spring Boot",
+    "icon": "🌱",
+    "available": false
+  },
+  {
+    "slug": "microservices",
+    "name": "Microservices",
+    "icon": "🧩",
+    "available": false
+  },
+  {
+    "slug": "sql",
+    "name": "SQL",
+    "icon": "🗄️",
+    "available": false
+  },
+  {
+    "slug": "kafka",
+    "name": "Kafka",
+    "icon": "📨",
+    "available": false
+  },
+  {
+    "slug": "system-design",
+    "name": "System Design",
+    "icon": "🏗️",
+    "available": false
+  },
+  {
+    "slug": "aws",
+    "name": "AWS",
+    "icon": "☁️",
+    "available": false
+  },
+  {
+    "slug": "ai",
+    "name": "AI",
+    "icon": "🤖",
+    "available": false
+  },
+  {
+    "slug": "docker",
+    "name": "Docker",
+    "icon": "🐳",
+    "available": false
+  },
+  {
+    "slug": "kubernetes",
+    "name": "Kubernetes",
+    "icon": "⛴️",
+    "available": false
+  }
+]

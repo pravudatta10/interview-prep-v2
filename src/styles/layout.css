@@ -9,6 +9,12 @@ html, body {
   margin: 0;
 }
 
+/* Stops iOS Safari from inflating text sizes when the phone is rotated. */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+/* No 300ms tap delay / accidental double-tap zoom on controls. */
+button, a, input, summary { touch-action: manipulation; }
+
 body {
   background: var(--color-bg);
   color: var(--color-text);
@@ -37,7 +43,8 @@ body {
 }
 .app-header-inner {
   height: var(--header-height);
-  padding: 0 var(--space-4);
+  /* max(): keep clear of the notch / rounded corners when a phone is in landscape */
+  padding: 0 max(var(--space-4), env(safe-area-inset-right)) 0 max(var(--space-4), env(safe-area-inset-left));
 }
 
 .app-content {
@@ -45,7 +52,7 @@ body {
   width: 100%;
   max-width: var(--max-content-width);
   margin: 0 auto;
-  padding: var(--space-4) var(--space-4) calc(var(--bottom-nav-height) + var(--space-5) + env(safe-area-inset-bottom));
+  padding: var(--space-4) max(var(--space-4), env(safe-area-inset-right)) calc(var(--bottom-nav-height) + var(--space-5) + env(safe-area-inset-bottom)) max(var(--space-4), env(safe-area-inset-left));
 }
 
 .bottom-nav {
@@ -55,7 +62,7 @@ body {
   bottom: 0;
   z-index: 30;
   height: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom));
-  padding-bottom: env(safe-area-inset-bottom);
+  padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
   display: flex;
   background: var(--color-surface-raised);
   border-top: 1px solid var(--color-border);

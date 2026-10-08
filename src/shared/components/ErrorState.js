@@ -6,17 +6,22 @@
  * screen) instead of leaving them looking at nothing.
  */
 import { h } from '../../core/utils/dom.js';
+import { debug } from '../../core/utils/debug.js';
 
 export function ErrorState({
   title = 'Something went wrong',
   subtitle = "This screen couldn't load.",
   onRetry,
   onHome,
+  detail, // underlying error text; only shown in debug mode (?debug=1)
 }) {
   return h('div', { class: 'empty-state error-state' }, [
     h('div', { class: 'icon', 'aria-hidden': 'true' }, '⚠️'),
     h('div', { class: 'card-title' }, title),
     subtitle ? h('div', { class: 'text-muted' }, subtitle) : null,
+    debug.enabled && detail
+      ? h('details', { class: 'error-detail', open: '' }, [h('summary', {}, 'Error details'), h('pre', {}, detail)])
+      : null,
     h('div', { class: 'error-state-actions' }, [
       onRetry ? h('button', { class: 'btn btn-primary', onClick: onRetry }, 'Retry') : null,
       onHome ? h('button', { class: 'btn btn-secondary', onClick: onHome }, 'Back to Home') : null,

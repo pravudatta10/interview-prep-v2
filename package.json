@@ -1,0 +1,13 @@
+{
+  "name": "interview-prep",
+  "version": "2.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Interview preparation app (static, no build step).",
+  "scripts": {
+    "start": "node scripts/dev-server.mjs",
+    "validate": "node scripts/validate-content.mjs",
+    "test": "node --test"
+  },
+  "engines": { "node": ">=20" }
+}

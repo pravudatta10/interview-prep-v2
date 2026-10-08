@@ -1,8 +1,8 @@
 /**
  * config.js
  * The single source of deployment-specific settings for the whole app.
- * No other file should hard-code a path, URL, or version — see
- * /CONFIG_GUIDE.md for how to change any of these without touching
+ * No other file should hard-code a path, URL, or version. See README.md →
+ * Config & caching for how to change any of these without touching
  * application code.
  *
  * This app deploys to GitHub Pages only, so this file intentionally holds
@@ -54,19 +54,15 @@ export const CONFIG = {
    */
   assets: {
     data: (relativePath) => assetUrl('data', relativePath),
-    images: (relativePath) => assetUrl('assets/images', relativePath),
-    icons: (relativePath) => assetUrl('assets/icons', relativePath),
     pdfs: (relativePath) => assetUrl('assets/pdfs', relativePath),
-    fonts: (relativePath) => assetUrl('assets/fonts', relativePath),
   },
 
   /**
    * PDF.js version 4.x only ships ES-module builds (pdf.min.mjs /
    * pdf.worker.min.mjs) — the legacy pdf.min.js / pdf.worker.min.js UMD
    * files this project originally referenced do not exist for this
-   * version on cdnjs (see /PDF_VIEWER_FIX.md for the full root-cause
-   * writeup). Both URLs are derived from ONE version constant so the
-   * library and worker can never drift apart again.
+   * version on cdnjs. Both URLs are derived from ONE version constant so
+   * the library and worker can never drift apart.
    */
   pdf: {
     version: PDFJS_VERSION,
@@ -77,8 +73,7 @@ export const CONFIG = {
   /**
    * Bump this after any content change (under /data) that needs to bypass
    * a lingering cache immediately rather than waiting for the next normal
-   * revalidation. See /LOCALSTORAGE_AUDIT.md for how this is used in
-   * dataService.js.
+   * revalidation. See README.md → Config & caching (used in dataService.js).
    */
   cache: {
     jsonVersion: 'v1',

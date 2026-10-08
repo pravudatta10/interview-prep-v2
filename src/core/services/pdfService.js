@@ -2,7 +2,7 @@
  * pdfService
  * Single responsibility: lazily load PDF.js and render pages.
  *
- * ROOT CAUSE OF THE "PDF viewer not loading" BUG (see /PDF_VIEWER_FIX.md):
+ * ROOT CAUSE OF THE "PDF viewer not loading" BUG:
  * this file used to inject <script src=".../pdf.min.js"> and
  * ".../pdf.worker.min.js" — the classic UMD build. PDF.js v4.x (the
  * version pinned in config.js) no longer publishes those files; v4 ships

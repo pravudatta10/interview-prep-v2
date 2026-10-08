@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#0f172a" />
   <title>Interview Prep</title>
 
@@ -15,7 +15,7 @@
   which is exactly what happens on refresh, a direct URL, or a bookmark.
   This is the root cause of the blank-screen-after-refresh bug: the
   request for the HTML document itself was already failing (see 404.html
-  and README.md "Deep Links / Refresh"), and even once that's fixed,
+  and README.md → Deep links / refresh), and even once that's fixed,
   these relative paths would still 404 without this tag.
 
   The right value differs by host: local dev serves from "/", a GitHub
@@ -62,15 +62,24 @@
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
 
   <!--
-  highlight.js: core build + the Java grammar only (the only real
-  language used in data/**/*.json besides the plain "text" diagrams,
-  which CodeBlock.js intentionally skips). Loaded here as plain globals
-  (window.hljs) rather than as a module import, since the rest of this
-  app has no bundler/import-map — CodeBlock.js checks for window.hljs
-  before using it, so this stays optional if the CDN is unreachable.
+  highlight.js: core build + the grammars the content needs (Java, SQL,
+  JSON, XML/HTML, YAML, Bash, .properties, Dockerfile — ~1–3 KB each).
+  Loaded as plain globals (window.hljs) rather than module imports, since
+  this app has no bundler/import-map. CodeBlock.js checks for window.hljs
+  and for the specific language before highlighting, so a fence in an
+  unlisted language (or an unreachable CDN) just shows plain monospace.
+  To support another language, add its file from
+  .../highlight.js/11.9.0/languages/<name>.min.js here.
   -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/xml.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/properties.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/dockerfile.min.js" defer></script>
 
   <link rel="stylesheet" href="src/styles/variables.css" />
   <link rel="stylesheet" href="src/styles/layout.css" />

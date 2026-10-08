@@ -7,37 +7,17 @@
  *   answer. Example and code render only inside that panel, and only when
  *   they exist. Nothing is rendered as a placeholder.
  * - "Copy Question" copies the question text and nothing else.
+ * - Hint, answer and example render as Markdown (lists, tables, bold,
+ *   ``` code fences…), see shared/components/Markdown.js.
  */
-import { h, formatInlineMarkdown } from '../../core/utils/dom.js';
+import { h } from '../../core/utils/dom.js';
+import { copyText } from '../../core/utils/clipboard.js';
 import { CodeBlock } from '../../shared/components/CodeBlock.js';
+import { Markdown, renderInline } from '../../shared/components/Markdown.js';
 import { hasText, hasAnswer } from './questions.js';
 
 const COPY_LABEL = 'Copy Question';
 const COPY_RESET_MS = 1500;
-
-/** Clipboard API where available (secure contexts); textarea fallback otherwise or if the API rejects. */
-async function copyText(text) {
-  if (navigator.clipboard?.writeText && window.isSecureContext) {
-    try {
-      await navigator.clipboard.writeText(text);
-      return;
-    } catch {
-      // Permission denied (e.g. embedded frame) — try the legacy path below.
-    }
-  }
-  const area = h('textarea', {
-    readonly: '',
-    'aria-hidden': 'true',
-    style: 'position:fixed;top:0;left:0;opacity:0;',
-  });
-  area.value = text;
-  document.body.appendChild(area);
-  area.select();
-  area.setSelectionRange(0, text.length);
-  let ok = false;
-  try { ok = document.execCommand('copy'); } finally { area.remove(); }
-  if (!ok) throw new Error('copy failed');
-}
 
 /** Accepts `"code": "..."` (Java) or `"code": { language, snippet }`. */
 function normalizeCode(code) {
@@ -80,10 +60,10 @@ function section(label, content) {
 
 function AnswerPanel(question, id) {
   const sections = [
-    section('Answer', h('p', { class: 'learn-body', html: formatInlineMarkdown(question.answer) })),
+    section('Answer', Markdown(question.answer)),
   ];
   if (hasText(question.example)) {
-    sections.push(section('Example', h('p', { class: 'learn-body', html: formatInlineMarkdown(question.example) })));
+    sections.push(section('Example', Markdown(question.example)));
   }
   const code = normalizeCode(question.code);
   if (code) sections.push(section('Code', CodeBlock(code)));
@@ -115,7 +95,7 @@ export function LearnQuestionCard(question, { number, total }) {
     h('h2', { class: 'learn-question', tabindex: '-1' }, text),
     h('div', { class: 'learn-hint' }, [
       h('div', { class: 'learn-label' }, '💡 Hint'),
-      h('p', { class: 'learn-hint-text', html: formatInlineMarkdown(question.hint) }),
+      h('p', { class: 'learn-hint-text' }, renderInline(question.hint)),
     ]),
   ];
 

@@ -11,7 +11,8 @@ import { dataService } from '../../core/services/dataService.js';
 import { TopicCard } from '../../shared/components/TopicCard.js';
 import { LoadingSkeleton } from '../../shared/components/LoadingSkeleton.js';
 import { EmptyState } from '../../shared/components/EmptyState.js';
-import { LEARN_CATEGORIES } from './learnHome.js';
+import { ErrorState } from '../../shared/components/ErrorState.js';
+import { debug, describeError } from '../../core/utils/debug.js';
 import { getValidQuestions } from './questions.js';
 
 async function countQuestions(categorySlug, topic) {
@@ -22,9 +23,11 @@ async function countQuestions(categorySlug, topic) {
   }
 }
 
-export async function renderCategoryView(container, categorySlug, { onOpenTopic }) {
+export async function renderCategoryView(container, categorySlug, callbacks) {
+  const { onOpenTopic } = callbacks;
   container.replaceChildren(LoadingSkeleton(5));
-  const category = LEARN_CATEGORIES.find((c) => c.slug === categorySlug);
+  const categories = await dataService.getLearnCategories().catch(() => []);
+  const category = categories.find((c) => c.slug === categorySlug);
 
   try {
     const topics = await dataService.getLearnTopics(categorySlug);
@@ -34,13 +37,22 @@ export async function renderCategoryView(container, categorySlug, { onOpenTopic 
       TopicCard({ ...topic, questionCount: counts[i] }, () => onOpenTopic(topic))
     ));
     container.replaceChildren(list);
-  } catch {
+  } catch (err) {
+    console.warn(`[learn] topics for "${categorySlug}" could not be loaded:`, err);
     container.replaceChildren(
-      EmptyState({
-        icon: category?.icon || '📘',
-        title: `${category?.name || 'This category'} content is coming soon`,
-        subtitle: 'Check back shortly, or explore another category.',
-      })
+      // Users see a friendly "coming soon"; in debug mode (?debug=1) developers see the real error.
+      debug.enabled
+        ? ErrorState({
+          title: 'Topics could not be loaded',
+          subtitle: null,
+          onRetry: () => renderCategoryView(container, categorySlug, callbacks),
+          detail: describeError(err),
+        })
+        : EmptyState({
+          icon: category?.icon || '📘',
+          title: `${category?.name || 'This category'} content is coming soon`,
+          subtitle: 'Check back shortly, or explore another category.',
+        })
     );
   }
 }

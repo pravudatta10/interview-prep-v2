@@ -14,6 +14,9 @@ import { h, mount, escapeHtml } from '../core/utils/dom.js';
 import { themeService } from '../core/services/themeService.js';
 import { storageService } from '../core/services/storageService.js';
 import { searchService } from '../core/services/searchService.js';
+import { dataService } from '../core/services/dataService.js';
+import { debug, describeError, installDebugTools } from '../core/utils/debug.js';
+import { CONFIG } from '../config.js';
 import { Header } from '../shared/components/Header.js';
 import { BottomNav } from '../shared/components/BottomNav.js';
 import { SearchBar } from '../shared/components/SearchBar.js';
@@ -28,6 +31,7 @@ const navEl = document.getElementById('bottom-nav');
 const searchOverlayEl = document.getElementById('search-overlay');
 
 themeService.init();
+installDebugTools({ version: CONFIG.app.version, clearDataCache: dataService.clearCache });
 
 /* ---------- Standard shell (all screens except Learn question practice) ---------- */
 
@@ -37,7 +41,7 @@ function paintShell(activeTab, title, onBack) {
   mount(headerEl, Header({ title, onSearchClick: openSearch, onBack }));
   mount(navEl, BottomNav({
     activeTab,
-    onNavigate: (path) => { storageService.setCurrentTab(activeTab); router.navigate(path); },
+    onNavigate: (path) => router.navigate(path),
   }));
   // Placeholder content for the gap between now and the route's lazy
   // import/data fetch resolving — without this, a fresh page load (e.g.
@@ -186,9 +190,10 @@ router.register('/', () => router.navigate('/learn', { replace: true }));
 router.register('/learn', async () => {
   paintShell('learn', 'Learn');
   const { renderLearnHome } = await import('../features/learn/learnHome.js');
-  renderLearnHome(contentEl, {
+  await renderLearnHome(contentEl, {
     onOpenCategory: (slug) => router.navigate(`/learn/${slug}`),
-    onOpenTopic: (entry) => router.navigate(`/learn/${entry.categorySlug}/${entry.topicFile}`),
+    // "Continue Revision" carries the saved question number so it reopens exactly where you left off.
+    onOpenTopic: (entry) => router.navigate(`/learn/${entry.categorySlug}/${entry.topicFile}${entry.question > 1 ? `?q=${entry.question}` : ''}`),
     onOpenNote: (entry) => router.navigate(`/notes/${entry.id}`),
     onOpenCoding: () => router.navigate('/coding'),
     onOpenNotes: () => router.navigate('/notes'),
@@ -198,8 +203,8 @@ router.register('/learn', async () => {
 });
 
 router.register('/learn/:category', async ({ category }) => {
-  const { LEARN_CATEGORIES } = await import('../features/learn/learnHome.js');
-  const cat = LEARN_CATEGORIES.find((c) => c.slug === category);
+  const categories = await dataService.getLearnCategories().catch(() => []);
+  const cat = categories.find((c) => c.slug === category);
   paintShell('learn', cat?.name || 'Learn', () => router.navigate('/learn', { replace: true }));
   const { renderCategoryView } = await import('../features/learn/categoryView.js');
   await renderCategoryView(contentEl, category, {
@@ -216,6 +221,10 @@ router.register('/learn/:category/:topicFile', async ({ category, topicFile }) =
     onMeta: ({ title }) => reading.setMeta(title),
     onProgress: (percent) => reading.setProgress(percent),
     onNavigateTopic: (nextFile) => router.navigate(`/learn/${category}/${nextFile}`),
+    // The question number lives in the URL (?q=5): a refresh, a shared link or the
+    // device's Back button all return to the same question.
+    initialQuestion: Number.parseInt(new URLSearchParams(window.location.search).get('q'), 10) || null,
+    onPosition: (question, { push }) => router.setQuery({ q: question }, { replace: !push }),
   });
   focusContentHeading();
 });
@@ -313,6 +322,7 @@ router.setError((err, { retry }) => {
   contentEl.replaceChildren(ErrorState({
     onRetry: retry,
     onHome: () => router.navigate('/learn'),
+    detail: describeError(err),
   }));
 });
 
@@ -321,11 +331,12 @@ router.setError((err, { retry }) => {
 // never leave the screen blank.
 window.addEventListener('error', (event) => {
   console.error('Unhandled error:', event.error);
-  contentEl.replaceChildren(ErrorState({ onRetry: () => router.resolve(), onHome: () => router.navigate('/learn') }));
+  contentEl.replaceChildren(ErrorState({ onRetry: () => router.resolve(), onHome: () => router.navigate('/learn'), detail: describeError(event.error) }));
 });
 window.addEventListener('unhandledrejection', (event) => {
   console.error('Unhandled rejection:', event.reason);
-  contentEl.replaceChildren(ErrorState({ onRetry: () => router.resolve(), onHome: () => router.navigate('/learn') }));
+  contentEl.replaceChildren(ErrorState({ onRetry: () => router.resolve(), onHome: () => router.navigate('/learn'), detail: describeError(event.reason) }));
 });
 
+debug.log('app', 'v' + CONFIG.app.version, 'base', CONFIG.router.base);
 router.start();

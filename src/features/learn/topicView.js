@@ -9,8 +9,13 @@
  * the last question, Next continues into the next topic of the category if
  * there is one.
  *
- * Still reports into app.js's reading-mode header (see ARCHITECTURE.md →
- * Rendering Flow): the header's bar now shows position within the topic's
+ * The current question is mirrored into the URL as ?q=<number> (1-based) via
+ * `onPosition`: Previous/Next REPLACE the history entry (so Back leaves the
+ * topic in one step), a jump from the list PUSHES one (so Back returns to
+ * where you jumped from). `initialQuestion` restores a position from the URL;
+ * anything missing or out of range falls back to the first question.
+ *
+ * Still reports into app.js's reading-mode header: the header's bar now shows position within the topic's
  * questions, and the existing "Continue Revision" card on Home keeps working
  * because last-reading / progress are still written to storageService.
  */
@@ -19,7 +24,8 @@ import { dataService } from '../../core/services/dataService.js';
 import { storageService } from '../../core/services/storageService.js';
 import { LoadingSkeleton } from '../../shared/components/LoadingSkeleton.js';
 import { EmptyState } from '../../shared/components/EmptyState.js';
-import { LEARN_CATEGORIES } from './learnHome.js';
+import { ErrorState } from '../../shared/components/ErrorState.js';
+import { describeError } from '../../core/utils/debug.js';
 import { getValidQuestions } from './questions.js';
 import { LearnQuestionCard } from './learnQuestionCard.js';
 
@@ -28,12 +34,14 @@ function remember(write) {
   try { write(); } catch { /* storage unavailable or holding unexpected data */ }
 }
 
-export async function renderTopicView(container, categorySlug, topicFile, { onMeta, onProgress, onNavigateTopic }) {
+export async function renderTopicView(container, categorySlug, topicFile, callbacks) {
+  const { onMeta, onProgress, onNavigateTopic, onPosition, initialQuestion } = callbacks;
   container.replaceChildren(LoadingSkeleton(3));
   try {
-    const [raw, topicList] = await Promise.all([
+    const [raw, topicList, categories] = await Promise.all([
       dataService.getLearnTopicContent(categorySlug, topicFile),
       dataService.getLearnTopics(categorySlug),
+      dataService.getLearnCategories().catch(() => []),
     ]);
 
     const index = topicList.findIndex((t) => t.file === topicFile);
@@ -41,7 +49,7 @@ export async function renderTopicView(container, categorySlug, topicFile, { onMe
     const title = topicMeta?.title || topicFile;
     const topicId = topicMeta?.id || topicFile;
     const nextTopic = index >= 0 && index < topicList.length - 1 ? topicList[index + 1] : null;
-    const categoryName = LEARN_CATEGORIES.find((c) => c.slug === categorySlug)?.name || 'Learn';
+    const categoryName = categories.find((c) => c.slug === categorySlug)?.name || 'Learn';
 
     // The header names the category (the screen "back" returns to); the page itself names the topic.
     onMeta?.({ title: categoryName });
@@ -55,7 +63,7 @@ export async function renderTopicView(container, categorySlug, topicFile, { onMe
     const jumpItems = questions.map((q, i) => h('button', {
       type: 'button',
       class: 'learn-jump-item',
-      onClick: () => show(i, { moved: true }),
+      onClick: () => show(i, { moved: true, history: i === current ? null : 'push' }),
     }, [
       h('span', { class: 'learn-jump-num' }, String(i + 1)),
       h('span', { class: 'learn-jump-text' }, q.question),
@@ -101,12 +109,12 @@ export async function renderTopicView(container, categorySlug, topicFile, { onMe
     const prevBtn = h('button', {
       type: 'button',
       class: 'learn-action learn-nav-btn',
-      onClick: () => show(current - 1, { moved: true }),
+      onClick: () => show(current - 1, { moved: true, history: 'replace' }),
     }, '← Previous');
     const nextBtn = h('button', { type: 'button', class: 'learn-action learn-action-solid learn-nav-btn' });
     const nav = h('nav', { class: 'learn-nav', 'aria-label': 'Question navigation' }, [prevBtn, nextBtn]);
 
-    function show(i, { moved = false } = {}) {
+    function show(i, { moved = false, history = null } = {}) {
       current = i;
       const card = LearnQuestionCard(questions[i], { number: i + 1, total });
       stage.replaceChildren(card);
@@ -122,13 +130,14 @@ export async function renderTopicView(container, categorySlug, topicFile, { onMe
       } else {
         nextBtn.disabled = isLast;
         nextBtn.textContent = 'Next →';
-        nextBtn.onclick = () => show(current + 1, { moved: true });
+        nextBtn.onclick = () => show(current + 1, { moved: true, history: 'replace' });
       }
 
       const percent = Math.round(((i + 1) / total) * 100);
       onProgress?.(percent);
       remember(() => storageService.setReadingProgress(topicId, percent));
-      remember(() => storageService.setLastReading({ categorySlug, topicFile, topicId, title }));
+      remember(() => storageService.setLastReading({ categorySlug, topicFile, topicId, title, question: i + 1 }));
+      if (history) onPosition?.(i + 1, { push: history === 'push' });
 
       if (moved) {
         // Every question starts at the top; focus moves to it for screen readers.
@@ -139,8 +148,15 @@ export async function renderTopicView(container, categorySlug, topicFile, { onMe
 
     container.replaceChildren(heading, jumpPanel, stage, nav);
     remember(() => storageService.addRecentTopic({ id: topicId, title, categorySlug, topicFile }));
-    show(0);
-  } catch {
-    container.replaceChildren(h('p', { class: 'text-muted' }, 'This topic could not be loaded.'));
+    const start = Number.isInteger(initialQuestion) && initialQuestion >= 1 && initialQuestion <= total ? initialQuestion - 1 : 0;
+    show(start);
+  } catch (err) {
+    console.error(`[learn] ${categorySlug}/${topicFile} could not be loaded:`, err);
+    container.replaceChildren(ErrorState({
+      title: 'This topic could not be loaded',
+      subtitle: 'Check your connection and try again.',
+      onRetry: () => renderTopicView(container, categorySlug, topicFile, callbacks),
+      detail: describeError(err),
+    }));
   }
 }

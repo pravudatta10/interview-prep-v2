@@ -10,6 +10,7 @@
  * "/" locally or "/repo-name/" on GitHub Pages.
  */
 import { CONFIG } from '../config.js';
+import { debug } from '../core/utils/debug.js';
 
 const routes = [];
 let notFoundHandler = () => {};
@@ -82,6 +83,23 @@ export const router = {
     router.resolve();
   },
 
+  /**
+   * Updates only the query string of the current URL (e.g. { q: 5 }); a null
+   * value removes that key and other keys such as ?debug are kept. Does not
+   * re-render. `replace: true` rewrites the current history entry, `false`
+   * adds a new one (so the device's Back button returns to the previous URL).
+   */
+  setQuery(params, { replace = true } = {}) {
+    const url = new URL(window.location.href);
+    for (const [key, value] of Object.entries(params)) {
+      if (value === null || value === undefined) url.searchParams.delete(key);
+      else url.searchParams.set(key, String(value));
+    }
+    const next = url.pathname + url.search + url.hash;
+    if (replace) history.replaceState({}, '', next);
+    else history.pushState({}, '', next);
+  },
+
   resolve() {
     const path = stripBase(window.location.pathname || '/') || '/';
     for (const route of routes) {
@@ -89,12 +107,14 @@ export const router = {
       if (match) {
         const params = {};
         route.paramNames.forEach((name, i) => { params[name] = decodeURIComponent(match[i + 1]); });
+        debug.log('route', path, '→', route.pattern, params);
         Promise.resolve()
           .then(() => route.handler(params))
           .catch((err) => errorHandler(err, { path, retry: () => router.resolve() }));
         return;
       }
     }
+    debug.log('route not found', path);
     notFoundHandler();
   },
 

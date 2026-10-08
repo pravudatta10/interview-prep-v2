@@ -12,7 +12,7 @@
  *
  * Never leaves a blank screen on failure — always a friendly message with
  * a working Retry button. Detailed errors are always logged to the
- * console for diagnosis (see /PDF_VIEWER_FIX.md).
+ * console for diagnosis.
  */
 import { h } from '../../core/utils/dom.js';
 import { pdfService } from '../../core/services/pdfService.js';

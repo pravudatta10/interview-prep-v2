@@ -26,8 +26,8 @@
    *
    * This does not require any server configuration — it works purely
    * because the server already serves a 404 page. Where possible, prefer a
-   * proper rewrite rule instead (see README.md "Deep Links / Refresh" for
-   * the Netlify/Vercel/Apache/nginx options shipped alongside this file) —
+   * proper rewrite rule instead (see README.md → Deep links / refresh for
+   * the Netlify/Vercel/Apache/nginx rewrite rules) —
    * this page is the fallback for hosts where that isn't available.
    */
   sessionStorage.setItem('ip:redirectPath', location.pathname + location.search + location.hash);

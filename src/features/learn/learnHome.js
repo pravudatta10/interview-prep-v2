@@ -5,24 +5,12 @@
  * Recent Notes are added on top once the user has history. First-time
  * visitors (no localStorage history at all) get a short welcome banner
  * instead — the category grid is still one tap away either way.
- * Category list is small static navigation metadata, not fetched content,
- * so it lives in this module rather than a JSON file.
+ * The category grid comes from data/learn/categories.json — add a category
+ * there (and a data/learn/<slug>/ folder) without touching this file.
  */
 import { h } from '../../core/utils/dom.js';
 import { storageService } from '../../core/services/storageService.js';
-
-export const LEARN_CATEGORIES = [
-  { slug: 'java', name: 'Java', icon: '☕', available: true },
-  { slug: 'spring-boot', name: 'Spring Boot', icon: '🌱', available: false },
-  { slug: 'microservices', name: 'Microservices', icon: '🧩', available: false },
-  { slug: 'sql', name: 'SQL', icon: '🗄️', available: false },
-  { slug: 'kafka', name: 'Kafka', icon: '📨', available: false },
-  { slug: 'system-design', name: 'System Design', icon: '🏗️', available: false },
-  { slug: 'aws', name: 'AWS', icon: '☁️', available: false },
-  { slug: 'ai', name: 'AI', icon: '🤖', available: false },
-  { slug: 'docker', name: 'Docker', icon: '🐳', available: false },
-  { slug: 'kubernetes', name: 'Kubernetes', icon: '⛴️', available: false },
-];
+import { dataService } from '../../core/services/dataService.js';
 
 const QUICK_START_ACTIONS = [
   { key: 'coding', icon: '💻', label: 'Practice Coding' },
@@ -79,7 +67,8 @@ function recentNotesRail(notes, onOpenNote) {
   ));
 }
 
-export function renderLearnHome(container, { onOpenCategory, onOpenTopic, onOpenNote, onOpenCoding, onOpenNotes, onSearch }) {
+export async function renderLearnHome(container, { onOpenCategory, onOpenTopic, onOpenNote, onOpenCoding, onOpenNotes, onSearch }) {
+  const categories = await dataService.getLearnCategories();
   const sections = [];
 
   const lastReading = storageService.getLastReading();
@@ -114,7 +103,7 @@ export function renderLearnHome(container, { onOpenCategory, onOpenTopic, onOpen
   sections.push(h('div', {}, [
     h('div', { class: 'section-header' }, h('h2', {}, 'Interview Categories')),
     h('div', { class: 'category-grid' },
-      LEARN_CATEGORIES.map((cat) =>
+      categories.map((cat) =>
         h('button', {
           class: `category-tile${cat.available ? '' : ' is-disabled'}`,
           disabled: !cat.available,

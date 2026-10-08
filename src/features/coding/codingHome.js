@@ -6,7 +6,7 @@
 import { h } from '../../core/utils/dom.js';
 import { storageService } from '../../core/services/storageService.js';
 
-export const CODING_TOPICS = [
+const CODING_TOPICS = [
   { slug: 'java-basics', file: 'loops', name: 'Loops', group: 'Java Basics', questionCount: 2 },
   { slug: 'java-basics', file: 'arrays', name: 'Arrays', group: 'Java Basics', questionCount: 1 },
   { slug: 'java-basics', file: 'strings', name: 'Strings', group: 'Java Basics', questionCount: 5 },

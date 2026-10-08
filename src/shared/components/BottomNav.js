@@ -26,5 +26,3 @@ export function BottomNav({ activeTab, onNavigate }) {
   );
   return nav;
 }
-
-export const NAV_TABS = TABS;
