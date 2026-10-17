@@ -10,6 +10,7 @@ const CODING_TOPICS = [
   { slug: 'java-basics', file: 'loops', name: 'Loops', group: 'Java Basics', questionCount: 2 },
   { slug: 'java-basics', file: 'arrays', name: 'Arrays', group: 'Java Basics', questionCount: 1 },
   { slug: 'java-basics', file: 'strings', name: 'Strings', group: 'Java Basics', questionCount: 5 },
+  { slug: 'reactive', file: 'reactive', name: 'Reactive', group: 'Reactive Programming', questionCount: 10 },
   { slug: 'java-basics', file: 'collections', name: 'Collections', group: 'Java Basics', questionCount: 0 },
   { slug: 'java8', file: 'streams', name: 'Streams', group: 'Java 8', questionCount: 0 },
   { slug: 'java-basics', file: 'exceptions', name: 'Exception Handling', group: 'Java Basics', questionCount: 0 },
@@ -17,6 +18,7 @@ const CODING_TOPICS = [
   { slug: 'java-basics', file: 'jvm', name: 'JVM', group: 'Java Basics', questionCount: 0 },
   { slug: 'spring', file: 'spring', name: 'Spring', group: 'Frameworks', questionCount: 0 },
   { slug: 'sql', file: 'sql', name: 'SQL', group: 'Databases', questionCount: 0 },
+  
 ];
 
 function topicCard(topic, onOpenTopic) {

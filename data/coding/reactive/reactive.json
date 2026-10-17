@@ -1,0 +1,103 @@
+
+[
+  {
+    "id": "create-mono-flux",
+    "title": "Create Mono and Flux and subscribe to them",
+    "difficulty": "Easy",
+    "example": "Input: Mono.just(\"Pravudatta\"), Flux.just(1, 2, 3, 4, 5)\nOutput: Pravudatta followed by 1, 2, 3, 4, 5",
+    "hint": "Use Mono for zero or one item and Flux for zero to many items. Subscribe to consume and print the values.",
+    "solution": "void createMonoFlux() {\n    Mono<String> user = Mono.just(\"Pravudatta\");\n    Flux<Integer> numbers = Flux.just(1, 2, 3, 4, 5);\n\n    user.subscribe(System.out::println);\n    numbers.subscribe(System.out::println);\n}",
+    "complexity": "Time: O(n), Space: O(n) for the emitted values",
+    "interviewFollowUp": "Are Mono and Flux eager or lazy, and what happens if you never subscribe?"
+  },
+  {
+    "id": "filter-users-by-age",
+    "title": "Filter users aged 18 or above",
+    "difficulty": "Easy",
+    "example": "Input: Users (Amit, 17), (Ravi, 25), (Neha, 20)\nOutput: Ravi and Neha",
+    "hint": "Convert the list into a Flux, filter using the age predicate, and collect the results into a list.",
+    "solution": "record User(String name, int age) {}\n\nList<User> filterAdults(List<User> users) {\n    return Flux.fromIterable(users)\n        .filter(user -> user.age() >= 18)\n        .collectList()\n        .block();\n}",
+    "complexity": "Time: O(n), Space: O(k) for k matching users",
+    "interviewFollowUp": "What is the difference between filter() and handle() in Project Reactor?"
+  },
+  {
+    "id": "transform-prices-with-gst",
+    "title": "Calculate product prices including 18% GST",
+    "difficulty": "Easy",
+    "example": "Input: Apple = 100.00, Grapes = 120.00\nOutput: Apple = 118.00, Grapes = 141.60",
+    "hint": "Use map() to transform each product into a new product with the same name and an updated BigDecimal price.",
+    "solution": "record Product(String name, BigDecimal price) {}\n\nList<Product> addGst(List<Product> products) {\n    return Flux.fromIterable(products)\n        .map(product -> new Product(\n            product.name(),\n            product.price()\n                .multiply(new BigDecimal(\"1.18\"))\n                .setScale(2, RoundingMode.HALF_UP)\n        ))\n        .collectList()\n        .block();\n}",
+    "complexity": "Time: O(n), Space: O(n) for the returned list",
+    "interviewFollowUp": "Why is map() appropriate here, and why should monetary calculations use BigDecimal rather than double?"
+  },
+  {
+    "id": "flatmap-fetch-user-orders",
+    "title": "Fetch a user and then fetch their orders",
+    "difficulty": "Medium",
+    "example": "Input: User ID = U101\nOutput: [U101-Order1, U101-Order2]",
+    "hint": "Start with Mono<User> and use flatMapMany() when the next operation returns Flux<Order>. The orders can come from an asynchronous service.",
+    "solution": "record User(String id, String name) {}\n\nMono<User> getUser() {\n    return Mono.just(new User(\"U101\", \"Ravi\"));\n}\n\nFlux<String> getOrders(String userId) {\n    return Flux.just(userId + \"-Order1\", userId + \"-Order2\");\n}\n\nList<String> fetchUserOrders() {\n    return getUser()\n        .flatMapMany(user -> getOrders(user.id()))\n        .collectList()\n        .block();\n}",
+    "complexity": "Time: O(n) for n emitted orders, excluding service latency; Space: O(n) when collecting all orders",
+    "interviewFollowUp": "When would you use flatMap(), flatMapMany(), or concatMap()?"
+  },
+  {
+    "id": "remove-duplicate-emails",
+    "title": "Remove duplicate email addresses",
+    "difficulty": "Easy",
+    "example": "Input: [a@test.com, b@test.com, a@test.com, c@test.com]\nOutput: [a@test.com, b@test.com, c@test.com]",
+    "hint": "Use distinct() to remove duplicate elements while preserving first-occurrence order for this sequence.",
+    "solution": "List<String> uniqueEmails(List<String> emails) {\n    return Flux.fromIterable(emails)\n        .distinct()\n        .collectList()\n        .block();\n}",
+    "complexity": "Expected time: O(n), Space: O(u) for u unique elements",
+    "interviewFollowUp": "How does distinct() determine equality for custom objects, and how does it differ from distinctUntilChanged()?"
+  },
+  {
+    "id": "combine-profile-account",
+    "title": "Combine user profile and account details",
+    "difficulty": "Medium",
+    "example": "Input: Profile = Ravi, Account = A101/SAVINGS\nOutput: UserAccountResponse(Ravi, A101, SAVINGS)",
+    "hint": "Use Mono.zip() to combine the independent publishers, then map the tuple into a response DTO.",
+    "solution": "record User(String name) {}\nrecord Account(String id, String type) {}\nrecord UserAccountResponse(String name, String accountId, String accountType) {}\n\nMono<UserAccountResponse> combineProfileAndAccount(\n        Mono<User> userMono,\n        Mono<Account> accountMono) {\n    return Mono.zip(userMono, accountMono)\n        .map(tuple -> new UserAccountResponse(\n            tuple.getT1().name(),\n            tuple.getT2().id(),\n            tuple.getT2().type()\n        ));\n}",
+    "complexity": "Time: O(1) for DTO mapping, excluding upstream work; Space: O(1) for the response",
+    "interviewFollowUp": "What happens if one publisher errors or completes empty before Mono.zip() can produce a result?"
+  },
+  {
+    "id": "sequential-vs-concurrent-calls",
+    "title": "Compose independent service calls sequentially and concurrently",
+    "difficulty": "Medium",
+    "example": "Input: Profile service and Orders service each take about 500 ms\nOutput: Both results combined; concurrent composition can take approximately 500 ms plus overhead instead of approximately 1000 ms",
+    "hint": "Use flatMap() for dependent sequential operations. For independent publishers, Mono.zip() can combine results concurrently when their underlying work supports overlapping execution.",
+    "solution": "Mono<String> getProfile() {\n    return Mono.delay(Duration.ofMillis(500))\n        .thenReturn(\"Profile\");\n}\n\nMono<String> getOrders() {\n    return Mono.delay(Duration.ofMillis(500))\n        .thenReturn(\"Orders\");\n}\n\nMono<String> sequentialCalls() {\n    return getProfile()\n        .flatMap(profile -> getOrders()\n            .map(orders -> profile + \" | \" + orders));\n}\n\nMono<String> concurrentCalls() {\n    return Mono.zip(getProfile(), getOrders())\n        .map(tuple -> tuple.getT1() + \" | \" + tuple.getT2());\n}",
+    "complexity": "Two independent 500 ms delayed operations: approximately 1000 ms sequential versus 500 ms when overlapped, plus overhead",
+    "interviewFollowUp": "Does Mono.zip() automatically make blocking operations concurrent, and how would you safely integrate blocking legacy calls?"
+  },
+  {
+    "id": "fallback-on-error",
+    "title": "Return a fallback when a product service fails",
+    "difficulty": "Easy",
+    "example": "Input: Product API emits an error\nOutput: Default product",
+    "hint": "Use onErrorResume() when recovery requires an alternate publisher, or onErrorReturn() for a fixed fallback value.",
+    "solution": "Mono<String> getProductWithFallback() {\n    return Mono.<String>error(\n            new RuntimeException(\"Product service unavailable\"))\n        .onErrorResume(error -> Mono.just(\"Default product\"));\n}",
+    "complexity": "Time: O(1) for the fixed fallback, excluding upstream work; Space: O(1)",
+    "interviewFollowUp": "What is the difference between onErrorResume(), onErrorReturn(), and doOnError()?"
+  },
+  {
+    "id": "retry-transient-failure",
+    "title": "Retry a failed service request up to two times",
+    "difficulty": "Medium",
+    "example": "Input: Service fails twice and succeeds on the third attempt\nOutput: Request successful; Attempts: 3",
+    "hint": "Use Mono.fromCallable() to simulate the request and Retry.max(2) to allow two retries after the initial attempt.",
+    "solution": "String fetchWithRetry(AtomicInteger attempts) {\n    return Mono.fromCallable(() -> {\n        int attempt = attempts.incrementAndGet();\n        if (attempt < 3) {\n            throw new RuntimeException(\"Temporary failure\");\n        }\n        return \"Request successful\";\n    })\n    .retryWhen(Retry.max(2))\n    .block();\n}",
+    "complexity": "Time: O(a) service attempts plus their latency, where a is at most 3; Space: O(1)",
+    "interviewFollowUp": "How would you add exponential backoff, retry only transient errors, and avoid retrying non-idempotent operations unsafely?"
+  },
+  {
+    "id": "timeout-with-fallback",
+    "title": "Apply a timeout to an unresponsive service",
+    "difficulty": "Easy",
+    "example": "Input: Service emits no response within two seconds\nOutput: Fallback response",
+    "hint": "Use timeout() to produce a timeout error, then onErrorReturn() to emit a fallback value.",
+    "solution": "String fetchWithTimeout() {\n    return Mono.<String>never()\n        .timeout(Duration.ofSeconds(2))\n        .onErrorReturn(\"Fallback response\")\n        .block();\n}",
+    "complexity": "Time: Up to approximately 2 seconds before fallback, plus scheduling overhead; Space: O(1)",
+    "interviewFollowUp": "Does timeout() cancel the upstream subscription, and how is a timeout different from a retry policy?"
+  }
+]
