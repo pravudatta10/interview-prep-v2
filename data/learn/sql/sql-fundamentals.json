@@ -1,0 +1,27 @@
+[
+  {
+    "id": "sql-sql-fundamentals-001",
+    "question": "Difference between WHERE and HAVING, and between ORDER BY and GROUP BY.",
+    "hint": "Think about row filtering vs. group filtering and the order of clauses; and sorting vs. aggregation."
+  },
+  {
+    "id": "sql-sql-fundamentals-002",
+    "question": "What are window functions (RANK, DENSE_RANK, ROW_NUMBER)? Give a real use case for each.",
+    "hint": "Consider how each handles ties and gaps, and scenarios like top N per group, leaderboards, and deduplication."
+  },
+  {
+    "id": "sql-sql-fundamentals-003",
+    "question": "Difference between DELETE, DROP, and TRUNCATE.",
+    "hint": "Compare removing rows, removing the structure, and resetting a table, including logging, rollback and WHERE."
+  },
+  {
+    "id": "sql-sql-fundamentals-004",
+    "question": "Write a query to find the 2nd/Nth highest salary in a table — show at least two approaches (subquery and window function).",
+    "hint": "Think about ranking functions vs. counting distinct larger values, handling ties, and how Nth generalizes with an offset or parameter."
+  },
+  {
+    "id": "sql-sql-fundamentals-005",
+    "question": "How do you find duplicate records in a table, and how do you find missing values (e.g., missing employee salaries) using SQL?",
+    "hint": "Consider grouping with a count filter, self-joins or anti-joins, and how NULL differs from an absent row when hunting gaps."
+  }
+]

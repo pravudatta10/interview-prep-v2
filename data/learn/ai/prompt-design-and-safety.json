@@ -1,0 +1,17 @@
+[
+  {
+    "id": "ai-prompt-design-and-safety-001",
+    "question": "What prompt engineering techniques improve document summarization accuracy?",
+    "hint": "Consider clear instructions, role framing, few-shot examples, output format constraints, and chunking strategies for long inputs."
+  },
+  {
+    "id": "ai-prompt-design-and-safety-002",
+    "question": "What is the context window, and how do you manage it when summarizing very large documents?",
+    "hint": "Think about token limits, chunking, map-reduce or rolling summaries, and what gets lost when you compress."
+  },
+  {
+    "id": "ai-prompt-design-and-safety-003",
+    "question": "How do you prevent prompt injection when an LLM processes untrusted user-uploaded documents?",
+    "hint": "Think about untrusted text being treated as instructions: separation of data from prompts, least privilege, output validation, and filtering."
+  }
+]

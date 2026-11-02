@@ -1,0 +1,26 @@
+[
+  {
+    "id": "sort-list-employee-multiple-fields-comparator",
+    "title": "Sort a List<Employee> by multiple fields using Comparator.comparing().thenComparing()",
+    "difficulty": "Easy",
+    "hint": "Chain Comparator.comparing(Employee::getDept).thenComparing(Employee::getSalary) and use reversed() or Comparator.reverseOrder() for descending fields."
+  },
+  {
+    "id": "convert-list-employee-into-map-department",
+    "title": "Convert a List<Employee> into a Map<Department, List<Employee>> grouped by department",
+    "difficulty": "Medium",
+    "hint": "Use stream().collect(Collectors.groupingBy(Employee::getDepartment)), which returns a Map from department to list of employees."
+  },
+  {
+    "id": "demonstrate-concurrenthashmap-s-atomic-compute-merge",
+    "title": "Demonstrate ConcurrentHashMap's atomic compute()/merge() methods to safely update a shared frequency counter from multiple threads",
+    "difficulty": "Medium",
+    "hint": "Use map.merge(key, 1, Integer::sum) or compute() so the read-modify-write happens atomically; run it from many threads via an ExecutorService."
+  },
+  {
+    "id": "implement-bounded-cache-linkedhashmap-removeeldestentry-overridden",
+    "title": "Implement a bounded cache using LinkedHashMap with removeEldestEntry() overridden (simple LRU)",
+    "difficulty": "Medium",
+    "hint": "Extend LinkedHashMap with accessOrder true in the constructor and override removeEldestEntry to return size() greater than capacity."
+  }
+]

@@ -1,0 +1,7 @@
+[
+  {
+    "id": "sql-normalization-sharding-001",
+    "question": "What is database partitioning vs sharding?",
+    "hint": "Compare splitting data within one database versus across multiple servers, and the new problems each introduces."
+  }
+]

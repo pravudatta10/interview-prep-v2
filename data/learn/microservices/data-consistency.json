@@ -1,0 +1,22 @@
+[
+  {
+    "id": "microservices-data-consistency-001",
+    "question": "How do you ensure data consistency across independently-owned microservice databases?",
+    "hint": "Think about eventual consistency, sagas, outbox pattern, idempotency, and reconciliation instead of cross-database transactions."
+  },
+  {
+    "id": "microservices-data-consistency-002",
+    "question": "Explain CQRS, and when it's worth the added complexity.",
+    "hint": "Consider separating write models from read models, independent scaling, sync via events, and the cost in complexity."
+  },
+  {
+    "id": "microservices-data-consistency-003",
+    "question": "What is Event Sourcing, and how does it differ from traditional CRUD persistence?",
+    "hint": "Compare storing state changes as an append-only log with overwriting current state, and think replay, snapshots, and audit."
+  },
+  {
+    "id": "microservices-data-consistency-004",
+    "question": "What is the Database-per-Service pattern, and what trade-offs does it create for reporting and cross-service joins?",
+    "hint": "Think about data ownership and loose coupling, versus joins, reporting, and solutions like read replicas, event-fed views, or API composition."
+  }
+]

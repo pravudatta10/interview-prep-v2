@@ -1,0 +1,12 @@
+[
+  {
+    "id": "troubleshooting-performance-scalability-001",
+    "question": "Your database is slow because of too many queries. How would you identify and fix the N+1 query problem?",
+    "hint": "Think about query logging or statistics showing repeated lookups, lazy loading in loops, and fetch strategies like joins or batch loading."
+  },
+  {
+    "id": "troubleshooting-performance-scalability-002",
+    "question": "You need to trace a request across multiple layers. How will you do it?",
+    "hint": "Think about correlation IDs in logs, distributed tracing across hops, and propagating context through async boundaries."
+  }
+]

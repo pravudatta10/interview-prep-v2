@@ -1,0 +1,7 @@
+[
+  {
+    "id": "sql-indexes-and-query-plans-001",
+    "question": "Difference between a clustered and a non-clustered index.",
+    "hint": "Think about physical row order vs. a separate lookup structure, and how many of each a table can have."
+  }
+]

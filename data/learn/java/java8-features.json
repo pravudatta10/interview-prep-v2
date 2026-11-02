@@ -1,0 +1,102 @@
+[
+  {
+    "id": "java-java8-features-001",
+    "question": "Difference between map(), filter(), and reduce() in Streams.",
+    "hint": "Think of transforming, selecting, and aggregating elements, and what each returns."
+  },
+  {
+    "id": "java-java8-features-002",
+    "question": "What is the difference between intermediate and terminal operations in Streams?",
+    "hint": "Consider laziness: which operations return a stream and which trigger the pipeline to actually run."
+  },
+  {
+    "id": "java-java8-features-003",
+    "question": "What is the difference between a Stream and a Collection?",
+    "hint": "Compare storage vs. computation, one-time consumption, laziness, and external vs. internal iteration."
+  },
+  {
+    "id": "java-java8-features-004",
+    "question": "What is the difference between map() and flatMap(), and between filter() and map()?",
+    "hint": "Think about one-to-one vs. one-to-many mapping, nested structures getting flattened, and select vs. transform."
+  },
+  {
+    "id": "java-java8-features-005",
+    "question": "What is the difference between reduce() and collect()?",
+    "hint": "Compare folding into a single immutable value with accumulating into a mutable container."
+  },
+  {
+    "id": "java-java8-features-006",
+    "question": "What are sealed classes/interfaces (Java 17) and pattern matching for switch (Java 21)?",
+    "hint": "Think about restricting who can extend a type, exhaustive switch checks, and type patterns replacing casts."
+  },
+  {
+    "id": "java-java8-features-007",
+    "question": "What are method references, and what are their types?",
+    "hint": "Consider shorthand for lambdas that only delegate, and the four forms by what appears before the double colon."
+  },
+  {
+    "id": "java-java8-features-008",
+    "question": "What are the major features introduced in Java 8?",
+    "hint": "Think lambdas, streams, Optional, default methods, and the new date/time API."
+  },
+  {
+    "id": "java-java8-features-009",
+    "question": "What are the major features introduced in Java 17?",
+    "hint": "Think of records, sealed classes, text blocks, switch expressions, and pattern matching for instanceof."
+  },
+  {
+    "id": "java-java8-features-010",
+    "question": "Explain lambda expressions and functional interfaces.",
+    "hint": "Think single-abstract-method interfaces, target typing, effectively final captures, and built-in types like Function and Predicate."
+  },
+  {
+    "id": "java-java8-features-011",
+    "question": "How would you use the Stream API with groupingBy() to group a list of objects by a field, and how would you sort a list by a field using Streams?",
+    "hint": "Consider Collectors, downstream collectors, Comparator.comparing, and chaining thenComparing for multiple keys."
+  },
+  {
+    "id": "java-java8-features-012",
+    "question": "Why are intermediate stream operations (map, filter) considered lazy? When does execution actually happen?",
+    "hint": "Think pipeline construction vs. terminal operations, and how elements flow one at a time through fused stages."
+  },
+  {
+    "id": "java-java8-features-013",
+    "question": "How does a parallel stream execute internally (which thread pool does it use)?",
+    "hint": "Consider the common ForkJoinPool, splitting spliterators, and what happens to blocking tasks sharing that pool."
+  },
+  {
+    "id": "java-java8-features-014",
+    "question": "When does a parallel stream actually improve performance, and when does it make things worse?",
+    "hint": "Think data size, per-element cost, splittable sources, ordering, shared state, and overhead of splitting and merging."
+  },
+  {
+    "id": "java-java8-features-015",
+    "question": "When is a plain loop better than a Stream (time complexity, readability, debugging, null handling, duplicate keys)?",
+    "hint": "Consider performance overhead, stack traces when debugging, checked exceptions, early exit, and toMap collisions."
+  },
+  {
+    "id": "java-java8-features-016",
+    "question": "Explain Optional and how it helps avoid NullPointerException. What are the common anti-patterns when using it (e.g., calling .get() without checking presence)?",
+    "hint": "Think about explicit absence in return types, map and flatMap chaining, and misuse such as get(), isPresent branching, or fields."
+  },
+  {
+    "id": "java-java8-features-017",
+    "question": "What is the difference between orElse(x) and orElseGet(supplier) — which one evaluates its argument eagerly, and why does that matter?",
+    "hint": "Think eager vs. lazy argument evaluation, side effects and cost of constructing the default value."
+  },
+  {
+    "id": "java-java8-features-018",
+    "question": "What are Records (Java 16+), and how do they reduce boilerplate?",
+    "hint": "Consider immutable data carriers, auto-generated members, compact constructors, and limits on inheritance and fields."
+  },
+  {
+    "id": "java-java8-features-019",
+    "question": "What is the difference between LocalDate, LocalDateTime, ZonedDateTime, and Instant — when do you use each?",
+    "hint": "Compare date-only, local date-time, zone-aware, and machine timeline types, and think about time zones and DST."
+  },
+  {
+    "id": "java-java8-features-020",
+    "question": "What changed between Java 17 and Java 21 that affects production code (virtual threads, pattern matching, sequenced collections, record patterns)?",
+    "hint": "Think about what virtual threads change for blocking I/O, plus language features like pattern matching, record patterns, and collection ordering APIs."
+  }
+]

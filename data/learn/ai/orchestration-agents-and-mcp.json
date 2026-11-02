@@ -1,0 +1,17 @@
+[
+  {
+    "id": "ai-orchestration-agents-and-mcp-001",
+    "question": "How does LangChain orchestrate multi-step LLM workflows?",
+    "hint": "Think about chains, prompt templates, memory, tool calls, and how one step's output feeds the next."
+  },
+  {
+    "id": "ai-orchestration-agents-and-mcp-002",
+    "question": "How does Spring AI simplify integrating LLMs into a Spring Boot application compared to raw HTTP calls?",
+    "hint": "Compare hand-built HTTP clients with provider-agnostic abstractions, auto-configuration, prompt templates, and structured output mapping."
+  },
+  {
+    "id": "ai-orchestration-agents-and-mcp-003",
+    "question": "What is an AI agent, and how does tool-calling / function-calling work under the hood?",
+    "hint": "Think about a loop where the model proposes an action, your code executes it, and the result goes back into the conversation."
+  }
+]

@@ -1,0 +1,8 @@
+[
+  {
+    "id": "define-proto-file-simple-service-implement",
+    "title": "Define a .proto file for a simple service and implement a unary RPC method in Java",
+    "difficulty": "Medium",
+    "hint": "Define a service and messages in the .proto, generate stubs, extend the generated ImplBase, and respond with StreamObserver onNext then onCompleted."
+  }
+]

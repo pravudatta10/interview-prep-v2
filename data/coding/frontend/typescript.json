@@ -1,0 +1,14 @@
+[
+  {
+    "id": "write-generic-function-groups-array-objects",
+    "title": "Write a generic function that groups an array of objects by a key, with correct typing",
+    "difficulty": "Medium",
+    "hint": "Write a generic function with type parameters T and K extends keyof T, reducing into Record<string, T[]> keyed by the property value."
+  },
+  {
+    "id": "implement-debounce-throttle-functions-typescript",
+    "title": "Implement debounce and throttle functions in TypeScript",
+    "difficulty": "Medium",
+    "hint": "Debounce uses a closure with setTimeout and clearTimeout on each call; throttle ignores calls until a time window or a flag resets."
+  }
+]

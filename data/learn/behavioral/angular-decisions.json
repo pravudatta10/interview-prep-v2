@@ -1,0 +1,27 @@
+[
+  {
+    "id": "behavioral-angular-decisions-001",
+    "question": "Walk through an architecture decision you made on a real Angular project and why you chose it over an alternative.",
+    "hint": "Frame it as context, options considered, decision criteria, trade-offs, and what you would revisit with hindsight."
+  },
+  {
+    "id": "behavioral-angular-decisions-002",
+    "question": "Describe a case where change detection was firing too often, and how you diagnosed and optimized it — OnPush, signals, trackBy.",
+    "hint": "Think about the dirty-checking mechanism, how you spotted excess cycles with profiling tools, and strategies to narrow what gets re-checked."
+  },
+  {
+    "id": "behavioral-angular-decisions-003",
+    "question": "Describe a challenging API integration issue — race condition, stale cache, versioning mismatch — and how you resolved it.",
+    "hint": "Use a story structure: symptom, how you reproduced it, root cause category, the fix, and how you prevented recurrence."
+  },
+  {
+    "id": "behavioral-angular-decisions-004",
+    "question": "Describe a real performance bottleneck you diagnosed in a production Angular app and how you fixed it.",
+    "hint": "Think about what you measured with profiling tools, bundle size or change detection or rendering, and the before-and-after numbers."
+  },
+  {
+    "id": "behavioral-angular-decisions-005",
+    "question": "Describe a production issue you debugged purely from browser DevTools — console, network tab, performance profiler.",
+    "hint": "Think about reproducing the issue, reading console errors, inspecting network timing and payloads, and profiling rendering to locate the cause."
+  }
+]

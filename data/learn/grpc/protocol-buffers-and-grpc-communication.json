@@ -1,0 +1,32 @@
+[
+  {
+    "id": "grpc-protocol-buffers-and-grpc-communication-001",
+    "question": "What is Protocol Buffers, and how does binary serialization compare to JSON in size and speed?",
+    "hint": "Think about schema-first IDL, tags and varint encoding vs. text field names, parsing cost and the trade-off in human readability."
+  },
+  {
+    "id": "grpc-protocol-buffers-and-grpc-communication-002",
+    "question": "Difference between unary, server-streaming, client-streaming, and bidirectional-streaming gRPC calls.",
+    "hint": "Compare the four shapes by how many messages flow each way over one HTTP/2 stream, and pick a use case for each."
+  },
+  {
+    "id": "grpc-protocol-buffers-and-grpc-communication-003",
+    "question": "How does gRPC error handling differ from REST — status codes vs richer error models?",
+    "hint": "Think about a small fixed set of status codes, metadata trailers and detailed error payloads vs. the wide range of HTTP statuses and bodies."
+  },
+  {
+    "id": "grpc-protocol-buffers-and-grpc-communication-004",
+    "question": "How do gRPC interceptors work, client-side vs server-side?",
+    "hint": "Consider cross-cutting logic around calls, wrapping metadata and context, and typical uses like auth, logging and tracing on each side."
+  },
+  {
+    "id": "grpc-protocol-buffers-and-grpc-communication-005",
+    "question": "How do you handle deadlines and cancellation propagation in gRPC?",
+    "hint": "Think about absolute deadlines vs. timeouts, how remaining time flows to downstream calls, and releasing resources when a client cancels."
+  },
+  {
+    "id": "grpc-protocol-buffers-and-grpc-communication-006",
+    "question": "How do you version Protobuf messages while maintaining backward compatibility (field numbers, reserved fields)?",
+    "hint": "Think about wire format keyed by field numbers, safe vs. unsafe changes, retiring fields without reuse, and unknown-field handling by old readers."
+  }
+]

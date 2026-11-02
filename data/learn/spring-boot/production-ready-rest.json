@@ -1,0 +1,22 @@
+[
+  {
+    "id": "spring-boot-production-ready-rest-001",
+    "question": "Write a complete CRUD flow in Spring Boot, from controller through service to repository.",
+    "hint": "Think about layering: entity, repository, service, controller, DTOs, validation, status codes, and error handling."
+  },
+  {
+    "id": "spring-boot-production-ready-rest-002",
+    "question": "What is a Spring interceptor, and how would you use one to bind or validate a header (e.g., username/password) on every request?",
+    "hint": "Consider HandlerInterceptor preHandle, rejecting with an error status, and why filters or Spring Security may suit authentication better."
+  },
+  {
+    "id": "spring-boot-production-ready-rest-003",
+    "question": "How would you secure a Spring Boot application and its APIs at a high level (see Spring Security module for the deep dive)?",
+    "hint": "Consider authentication vs. authorization, filter chain, token-based stateless auth, HTTPS, CORS, and CSRF."
+  },
+  {
+    "id": "spring-boot-production-ready-rest-004",
+    "question": "How can you implement caching in a Spring Boot application (@Cacheable, Redis-backed cache)?",
+    "hint": "Think about enabling caching, cache keys, eviction and TTL, serialization, and distributed stores vs. local caches."
+  }
+]

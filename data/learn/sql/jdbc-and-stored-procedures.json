@@ -1,0 +1,7 @@
+[
+  {
+    "id": "sql-jdbc-and-stored-procedures-001",
+    "question": "Difference between Statement, PreparedStatement, and CallableStatement in JDBC, and why does a PreparedStatement protect against SQL injection?",
+    "hint": "Think about precompiled statements, separating code from data via parameter binding, and what each type is meant to call."
+  }
+]

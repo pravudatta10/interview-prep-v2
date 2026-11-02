@@ -1,0 +1,52 @@
+[
+  {
+    "id": "spring-framework-spring-aop-001",
+    "question": "Difference between Aspect, Advice, Pointcut, and JoinPoint.",
+    "hint": "Think of the cross-cutting concern, the action taken, the matching rule, and the point of execution."
+  },
+  {
+    "id": "spring-framework-spring-aop-002",
+    "question": "What is AOP, and what problem does it solve (cross-cutting concerns like logging, security, transactions)?",
+    "hint": "Think scattered concerns like logging or security, modularizing them, and terms like aspect, pointcut, join point."
+  },
+  {
+    "id": "spring-framework-spring-aop-003",
+    "question": "What are the different advice types — Before, After, Around, AfterReturning, AfterThrowing?",
+    "hint": "Compare execution points relative to the method call, and which one can control invocation and swallow exceptions."
+  },
+  {
+    "id": "spring-framework-spring-aop-004",
+    "question": "Difference between JDK dynamic proxy and CGLIB proxy in Spring AOP — when does Spring choose one over the other?",
+    "hint": "Consider interface-based vs. subclass-based proxies, final classes, and Spring Boot's default proxy setting."
+  },
+  {
+    "id": "spring-framework-spring-aop-005",
+    "question": "Why does a @Transactional method called from within the same class not get intercepted — the self-invocation problem — and how do you work around it?",
+    "hint": "Think about calls bypassing the proxy via this reference, and options like self-injection, extracting a bean, or AspectJ weaving."
+  },
+  {
+    "id": "spring-framework-spring-aop-006",
+    "question": "Why does @Transactional not work on self-invocation or private methods, and how do you fix it?",
+    "hint": "Consider proxy visibility rules, which methods the interceptor can see, and restructuring calls through another bean."
+  },
+  {
+    "id": "spring-framework-spring-aop-007",
+    "question": "Which exceptions trigger a rollback by default, and how do you change that behavior?",
+    "hint": "Think about the unchecked vs. checked distinction, and rollbackFor and noRollbackFor attributes."
+  },
+  {
+    "id": "spring-framework-spring-aop-008",
+    "question": "What happens to a transaction when you call @Async or start a new thread inside a transactional method?",
+    "hint": "Consider that transaction context is bound to a thread, so new threads get their own connection, and timing of commit."
+  },
+  {
+    "id": "spring-framework-spring-aop-009",
+    "question": "How do read-only transactions behave, and what do they optimize?",
+    "hint": "Think about flush mode, dirty checking skipped, database hints, and replica routing, versus actually preventing writes."
+  },
+  {
+    "id": "spring-framework-spring-aop-010",
+    "question": "How would you debug a case where a transaction was not committed or a LazyInitializationException appeared?",
+    "hint": "Consider proxy configuration, transaction boundaries, session open/close timing, lazy associations outside the session, and SQL logging."
+  }
+]

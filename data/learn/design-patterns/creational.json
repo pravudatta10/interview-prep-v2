@@ -1,0 +1,22 @@
+[
+  {
+    "id": "design-patterns-creational-001",
+    "question": "Difference between Factory Method and Abstract Factory patterns.",
+    "hint": "Compare creating one product via subclass choice vs. creating families of related products."
+  },
+  {
+    "id": "design-patterns-creational-002",
+    "question": "Explain the Singleton pattern and the different ways to implement it — eager, lazy, double-checked locking, enum.",
+    "hint": "Compare eager, lazy, synchronized, double-checked with volatile, holder idiom and enum, thinking about thread safety, reflection and serialization attacks."
+  },
+  {
+    "id": "design-patterns-creational-003",
+    "question": "Which design patterns have you used in your project, and where — walk through one in detail.",
+    "hint": "Choose a real example from your work and structure the answer as: problem, why that pattern, how it's implemented, and the outcome."
+  },
+  {
+    "id": "design-patterns-creational-004",
+    "question": "Explain the Builder pattern — when would you prefer it over a telescoping constructor?",
+    "hint": "Think about many optional parameters, readability, immutability, validation at build time, and what a fluent API gives you."
+  }
+]

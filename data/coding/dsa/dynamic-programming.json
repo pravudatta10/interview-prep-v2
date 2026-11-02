@@ -1,0 +1,8 @@
+[
+  {
+    "id": "solve-coin-change-problem",
+    "title": "Solve the coin-change problem (minimum coins to make a target amount)",
+    "difficulty": "Medium",
+    "hint": "Use a dp array where dp[a] is the minimum of dp[a - coin] + 1 over all coins, initializing others to infinity and dp[0] to 0."
+  }
+]

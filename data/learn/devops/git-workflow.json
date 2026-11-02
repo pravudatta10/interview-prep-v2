@@ -1,0 +1,17 @@
+[
+  {
+    "id": "devops-git-workflow-001",
+    "question": "Difference between git reset and git revert.",
+    "hint": "Consider rewriting history vs. adding a new commit, and which is safe on shared branches."
+  },
+  {
+    "id": "devops-git-workflow-002",
+    "question": "Difference between git merge and git rebase — when do you use each?",
+    "hint": "Compare history rewriting vs. preserving, shared vs. local branches, readability of the log, and the golden rule about public history."
+  },
+  {
+    "id": "devops-git-workflow-003",
+    "question": "How do you resolve a merge conflict in a shared branch?",
+    "hint": "Think about understanding both sides' intent, using tooling to see the three-way diff, testing after resolution, and communicating with the author."
+  }
+]

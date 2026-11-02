@@ -1,0 +1,12 @@
+[
+  {
+    "id": "devops-pipelines-and-deployment-strategies-001",
+    "question": "How does a typical Jenkins/GitHub Actions pipeline work for a Spring Boot microservice — build, test, containerize, deploy?",
+    "hint": "Walk the stages in order, thinking about quality gates, immutable artifacts, environment promotion and what makes a pipeline fail fast."
+  },
+  {
+    "id": "devops-pipelines-and-deployment-strategies-002",
+    "question": "Explain Blue-Green vs Canary deployment strategies, and how you'd roll back a bad canary.",
+    "hint": "Compare switching entire environments vs. shifting a slice of traffic, what you monitor, and how fast and how safely you reverse."
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "id": "troubleshooting-concurrency-threading-001",
+    "question": "A thread is stuck in BLOCKED state. How will you identify and fix it?",
+    "hint": "Think about thread dumps, finding which thread holds the monitor, lock ordering, scope of synchronization, and alternatives."
+  },
+  {
+    "id": "troubleshooting-concurrency-threading-002",
+    "question": "Multiple threads are updating shared data incorrectly. How will you fix it?",
+    "hint": "Think about race conditions on shared mutable state, visibility, atomicity, and options from immutability to locks to concurrent utilities."
+  },
+  {
+    "id": "troubleshooting-concurrency-threading-003",
+    "question": "A service becomes unresponsive randomly. What could be happening?",
+    "hint": "Consider deadlocks, thread pool exhaustion, GC pauses, blocked connections, and the evidence each would leave in dumps and metrics."
+  }
+]

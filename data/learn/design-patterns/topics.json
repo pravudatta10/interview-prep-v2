@@ -1,0 +1,22 @@
+[
+  {
+    "id": "creational",
+    "file": "creational",
+    "title": "Creational Patterns"
+  },
+  {
+    "id": "structural-patterns",
+    "file": "structural-patterns",
+    "title": "Adapter, Facade, Proxy & Decorator"
+  },
+  {
+    "id": "patterns-in-spring",
+    "file": "patterns-in-spring",
+    "title": "Patterns Behind Spring & Microservice Migration"
+  },
+  {
+    "id": "behavioral-patterns",
+    "file": "behavioral-patterns",
+    "title": "Strategy, Observer, Template Method & Chain of Responsibility"
+  }
+]

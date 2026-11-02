@@ -1,0 +1,22 @@
+[
+  {
+    "id": "java-generics-001",
+    "question": "What is the difference between ? extends T and ? super T?",
+    "hint": "Consider the producer vs. consumer rule, what you can read and what you can write."
+  },
+  {
+    "id": "java-generics-002",
+    "question": "What problem do Generics solve, and how do they provide compile-time type safety?",
+    "hint": "Consider casting errors moved from runtime to compile time, reusable algorithms, and type parameters on classes and methods."
+  },
+  {
+    "id": "java-generics-003",
+    "question": "What is type erasure, and what limitations does it impose (e.g., can't create a generic array)?",
+    "hint": "Think compile-time-only type information, bytecode, reifiable types, instanceof and new T restrictions, and bridge methods."
+  },
+  {
+    "id": "java-generics-004",
+    "question": "Explain the PECS principle (\"Producer Extends, Consumer Super\") with an example.",
+    "hint": "Think about what you read from versus write into a wildcard collection, and upper vs. lower bounds."
+  }
+]

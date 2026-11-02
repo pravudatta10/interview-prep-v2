@@ -1,0 +1,17 @@
+[
+  {
+    "id": "aws",
+    "file": "aws",
+    "title": "AWS"
+  },
+  {
+    "id": "gcp-messaging-kubernetes",
+    "file": "gcp-messaging-kubernetes",
+    "title": "Messaging & Kubernetes on GCP"
+  },
+  {
+    "id": "gcp-services-pubsub",
+    "file": "gcp-services-pubsub",
+    "title": "GCP Services & Pub/Sub in Practice"
+  }
+]

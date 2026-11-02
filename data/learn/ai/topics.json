@@ -1,0 +1,17 @@
+[
+  {
+    "id": "retrieval-augmented-generation",
+    "file": "retrieval-augmented-generation",
+    "title": "Retrieval-Augmented Generation"
+  },
+  {
+    "id": "orchestration-agents-and-mcp",
+    "file": "orchestration-agents-and-mcp",
+    "title": "Orchestration, Agents & MCP"
+  },
+  {
+    "id": "prompt-design-and-safety",
+    "file": "prompt-design-and-safety",
+    "title": "Prompt Design & Safety"
+  }
+]

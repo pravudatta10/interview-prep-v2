@@ -1,0 +1,47 @@
+[
+  {
+    "id": "distributed-systems-distributed-systems-fundamentals-001",
+    "question": "What makes distributed systems hard (partial failure, network unreliability, latency, clocks), and what are the fallacies of distributed computing?",
+    "hint": "Think about what a single machine gives you for free that a network takes away, and recall the classic list of false assumptions."
+  },
+  {
+    "id": "distributed-systems-distributed-systems-fundamentals-002",
+    "question": "How do you reason about event ordering without a global clock (Lamport timestamps, vector clocks, hybrid logical clocks)?",
+    "hint": "Consider logical versus physical time, causality, happens-before, and what metadata each technique attaches to events."
+  },
+  {
+    "id": "distributed-systems-distributed-systems-fundamentals-003",
+    "question": "What is a quorum (R + W > N), and how do Dynamo-style stores use it?",
+    "hint": "Think about overlapping read and write sets, tunable consistency, and how replicas converge when some are unavailable."
+  },
+  {
+    "id": "distributed-systems-distributed-systems-fundamentals-004",
+    "question": "What is consensus, and where do Raft or Paxos appear in systems you use (etcd, ZooKeeper, Kafka KRaft)?",
+    "hint": "Think about agreement among nodes despite failures, majority voting, a replicated log, and where coordination services rely on it."
+  },
+  {
+    "id": "distributed-systems-distributed-systems-fundamentals-005",
+    "question": "How does leader election work, and what are split brain and fencing tokens?",
+    "hint": "Consider how one node gains authority, what happens when two believe they lead, and how monotonic tokens protect resources."
+  },
+  {
+    "id": "distributed-systems-distributed-systems-fundamentals-006",
+    "question": "What is consistent hashing, and why are virtual nodes used?",
+    "hint": "Think about a hash ring, minimal data movement on node changes, and how load spreads unevenly without extra points per node."
+  },
+  {
+    "id": "distributed-systems-distributed-systems-fundamentals-007",
+    "question": "What are single-leader, multi-leader, and leaderless replication, and what problems does replication lag cause?",
+    "hint": "Compare who accepts writes in each model, how conflicts are handled, and anomalies users see when a replica is behind."
+  },
+  {
+    "id": "distributed-systems-distributed-systems-fundamentals-008",
+    "question": "How do you choose a sharding key, and how do you handle hot partitions and resharding?",
+    "hint": "Think about cardinality, even distribution, query patterns, skew from popular keys, and the pain of moving data later."
+  },
+  {
+    "id": "distributed-systems-distributed-systems-fundamentals-009",
+    "question": "Why is two-phase commit rarely used across microservices, and what do you use instead?",
+    "hint": "Consider blocking coordinators, availability and latency costs, and compensating workflows or event-driven alternatives."
+  }
+]

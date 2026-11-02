@@ -1,0 +1,42 @@
+[
+  {
+    "id": "spring-security-authentication-authorization-001",
+    "question": "Difference between authentication and authorization.",
+    "hint": "Think about proving who you are versus deciding what you are allowed to do."
+  },
+  {
+    "id": "spring-security-authentication-authorization-002",
+    "question": "Difference between OAuth2 and OpenID Connect.",
+    "hint": "Consider which one is about delegated access and which adds an identity layer on top of it."
+  },
+  {
+    "id": "spring-security-authentication-authorization-003",
+    "question": "What is the difference between OAuth 2.0 and JWT?",
+    "hint": "Compare a protocol/framework for obtaining access with a token format, and how they can be used together."
+  },
+  {
+    "id": "spring-security-authentication-authorization-004",
+    "question": "How do you restrict or allow access to specific URLs using Spring Security?",
+    "hint": "Think about filter chain configuration, matching rules ordering, public vs. authenticated paths, and method-level annotations as a complement."
+  },
+  {
+    "id": "spring-security-authentication-authorization-005",
+    "question": "How do you implement Role-Based Access Control (RBAC) at the API level?",
+    "hint": "Consider how roles map to authorities, where checks live (URL, method, or both), and how permissions get carried in tokens."
+  },
+  {
+    "id": "spring-security-authentication-authorization-006",
+    "question": "How do you support dual authentication (e.g., LDAP plus a local database of users) in the same application?",
+    "hint": "Think about multiple authentication providers tried in sequence, user details sources, and how provider ordering and fallback behave."
+  },
+  {
+    "id": "spring-security-authentication-authorization-007",
+    "question": "How do you auto-lock an account after repeated failed login attempts?",
+    "hint": "Consider tracking failures per user, application events on authentication failure, lockout duration or unlock flow, and protecting against enumeration."
+  },
+  {
+    "id": "spring-security-authentication-authorization-008",
+    "question": "What is the difference between RBAC and ABAC, and how do scopes differ from roles?",
+    "hint": "Compare static role membership against attribute-based policies, and think about OAuth scopes describing delegated client access rather than user identity."
+  }
+]

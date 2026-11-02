@@ -48,5 +48,11 @@
     "solution": "String compress(String s) {\n    StringBuilder sb = new StringBuilder();\n    int count = 1;\n    for (int i = 1; i <= s.length(); i++) {\n        if (i < s.length() && s.charAt(i) == s.charAt(i - 1)) {\n            count++;\n        } else {\n            sb.append(s.charAt(i - 1)).append(count);\n            count = 1;\n        }\n    }\n    return sb.toString();\n}",
     "complexity": "Time: O(n), Space: O(n) for the output",
     "interviewFollowUp": "What should happen if the compressed string ends up longer than the original — should the function return the original instead?"
+  },
+  {
+    "id": "find-longest-common-prefix-among-array",
+    "title": "Find the longest common prefix among an array of strings",
+    "difficulty": "Easy",
+    "hint": "Take the first string as the prefix candidate and shorten it until every other string starts with it, or compare column by column."
   }
 ]

@@ -1,0 +1,17 @@
+[
+  {
+    "id": "legacy-java-servlet-lifecycle-and-request-flow-001",
+    "question": "Explain the Servlet lifecycle — init(), service(), destroy().",
+    "hint": "Consider container-managed phases: one-time setup, per-request handling on shared instances, and cleanup, plus thread-safety implications."
+  },
+  {
+    "id": "legacy-java-servlet-lifecycle-and-request-flow-002",
+    "question": "How do Filters and Listeners work? Give a real use case for each.",
+    "hint": "Think about cross-cutting interception before and after requests versus reacting to lifecycle events, with logging or auth and context startup as examples."
+  },
+  {
+    "id": "legacy-java-servlet-lifecycle-and-request-flow-003",
+    "question": "How does session tracking work — cookies vs URL rewriting vs HttpSession?",
+    "hint": "Compare where session state lives and how the server and client re-associate each request, including what happens when cookies are disabled."
+  }
+]

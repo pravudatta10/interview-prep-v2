@@ -1,0 +1,26 @@
+[
+  {
+    "id": "reverse-singly-linked-list",
+    "title": "Reverse a singly linked list, iteratively and recursively",
+    "difficulty": "Easy",
+    "hint": "Iteratively keep prev, curr and next pointers flipping each link; recursively reverse the rest and attach the head at the end."
+  },
+  {
+    "id": "detect-cycle-linked-list",
+    "title": "Detect a cycle in a linked list (Floyd's cycle detection / slow-fast pointers)",
+    "difficulty": "Medium",
+    "hint": "Move a slow pointer one step and a fast pointer two steps; if they ever meet there is a cycle, and fast reaching null means none."
+  },
+  {
+    "id": "find-middle-node-linked-list-one",
+    "title": "Find the middle node of a linked list in one pass",
+    "difficulty": "Easy",
+    "hint": "Advance a fast pointer two nodes while a slow pointer advances one; when fast reaches the end, slow is at the middle."
+  },
+  {
+    "id": "merge-sorted-linked-lists-into-one",
+    "title": "Merge two sorted linked lists into one sorted list",
+    "difficulty": "Medium",
+    "hint": "Use a dummy head node and a tail pointer, repeatedly attaching the smaller of the two current nodes, then append the leftover list."
+  }
+]

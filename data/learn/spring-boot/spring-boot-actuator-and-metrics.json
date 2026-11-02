@@ -1,0 +1,17 @@
+[
+  {
+    "id": "spring-boot-spring-boot-actuator-and-metrics-001",
+    "question": "What is Spring Boot Actuator, and which endpoints do you use in production (/health, /metrics, /info)?",
+    "hint": "Consider management endpoints, health groups and probes, exposure settings, securing them, and metrics scraping."
+  },
+  {
+    "id": "spring-boot-spring-boot-actuator-and-metrics-002",
+    "question": "How do you configure structured logging (Logback/Log4j2) in a Spring Boot app?",
+    "hint": "Think logback-spring.xml, JSON encoders, MDC for correlation IDs, profile-specific appenders, and Boot's built-in structured format."
+  },
+  {
+    "id": "spring-boot-spring-boot-actuator-and-metrics-003",
+    "question": "How do you expose custom health indicators and metrics via Actuator/Micrometer?",
+    "hint": "Consider HealthIndicator beans, Micrometer meters like counters, timers, and gauges, and registry exports."
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "id": "testing-unit-and-integration-testing-001",
+    "question": "How do you write unit tests using JUnit 5 and Mockito?",
+    "hint": "Think about annotations, mocks and stubs, verifying interactions, arrange-act-assert, and isolating the class under test."
+  },
+  {
+    "id": "testing-unit-and-integration-testing-002",
+    "question": "Difference between unit tests, integration tests, and contract tests in a microservices setup.",
+    "hint": "Compare scope, speed, number of real components, and agreements between service consumers and providers."
+  },
+  {
+    "id": "testing-unit-and-integration-testing-003",
+    "question": "What is Mockito, and how do you use it to mock dependencies in a real project?",
+    "hint": "Think about replacing collaborators with test doubles, stubbing vs verifying, and @Mock with @InjectMocks."
+  },
+  {
+    "id": "testing-unit-and-integration-testing-004",
+    "question": "Can you unit test a private method — and if not directly, how do you approach it?",
+    "hint": "Think about whether private methods are behavior or implementation detail, and what the public API already exercises."
+  },
+  {
+    "id": "testing-unit-and-integration-testing-005",
+    "question": "How do you test a REST controller in isolation versus with a full Spring context — @WebMvcTest vs @SpringBootTest?",
+    "hint": "Compare sliced tests that load only the web layer with full-context tests, and what MockMvc and @MockBean do for each."
+  },
+  {
+    "id": "testing-unit-and-integration-testing-006",
+    "question": "How do you test code that depends on Kafka, databases, or external services (Testcontainers, WireMock, embedded brokers)?",
+    "hint": "Think about real vs. simulated dependencies: containers, HTTP stubs, embedded brokers, and the speed and fidelity trade-off of each."
+  },
+  {
+    "id": "testing-unit-and-integration-testing-007",
+    "question": "How do you test resilience behavior such as retries, timeouts, and circuit breakers?",
+    "hint": "Think about injecting faults and latency in tests, asserting on fallback and state transitions, and avoiding real sleeps."
+  },
+  {
+    "id": "testing-unit-and-integration-testing-008",
+    "question": "What is the testing pyramid for microservices, and where do contract and end-to-end tests fit?",
+    "hint": "Think about many fast unit tests at the base, fewer integration tests, and consumer-driven contracts replacing broad end-to-end suites."
+  },
+  {
+    "id": "testing-unit-and-integration-testing-009",
+    "question": "How do you keep tests fast and reliable (flaky test handling, test data management)?",
+    "hint": "Consider isolation, deterministic data, avoiding sleeps and shared state, quarantining flaky tests, and parallelism."
+  },
+  {
+    "id": "testing-unit-and-integration-testing-010",
+    "question": "How do you design positive, negative, and edge-case tests for a batch pipeline to meaningfully raise coverage — rather than chasing a number?",
+    "hint": "Think about what a batch pipeline can do wrong: valid inputs, malformed records, boundaries, partial failures, restarts, and testing behavior over lines."
+  }
+]

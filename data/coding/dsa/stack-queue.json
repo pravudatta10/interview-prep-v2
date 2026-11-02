@@ -1,0 +1,20 @@
+[
+  {
+    "id": "check-balanced-parentheses-brackets-expression-stack",
+    "title": "Check for balanced parentheses/brackets in an expression using a stack",
+    "difficulty": "Easy",
+    "hint": "Push opening brackets onto a stack and on each closing bracket pop and check it matches; the stack must be empty at the end."
+  },
+  {
+    "id": "implement-queue-stacks",
+    "title": "Implement a queue using two stacks",
+    "difficulty": "Medium",
+    "hint": "Use an input stack for pushes and an output stack for pops, moving all elements across only when the output stack is empty."
+  },
+  {
+    "id": "implement-min-stack-returns-minimum-element",
+    "title": "Implement a Min Stack that returns the minimum element in O(1)",
+    "difficulty": "Medium",
+    "hint": "Keep a second stack (or paired values) holding the minimum so far, pushing a new minimum whenever it is less than or equal to the current one."
+  }
+]

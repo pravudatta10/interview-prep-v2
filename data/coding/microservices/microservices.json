@@ -1,0 +1,44 @@
+[
+  {
+    "id": "implement-feign-client-call-another-microservice",
+    "title": "Implement a Feign Client call to another microservice with a custom error decoder that translates downstream errors",
+    "difficulty": "Medium",
+    "hint": "Declare a @FeignClient interface and implement ErrorDecoder, switching on response.status() to return custom exceptions, registered as a bean in the client config."
+  },
+  {
+    "id": "wrap-feign-rest-call-circuit-breaker",
+    "title": "Wrap a Feign/REST call with a Circuit Breaker (Resilience4j) including a fallback method",
+    "difficulty": "Medium",
+    "hint": "Annotate the call with @CircuitBreaker(name, fallbackMethod) from Resilience4j, with a fallback method of the same signature plus a Throwable parameter."
+  },
+  {
+    "id": "implement-outbox-pattern",
+    "title": "Implement the Outbox pattern — write a business change and an outbox event in the same local transaction, then publish it via a separate poller",
+    "difficulty": "Hard",
+    "hint": "Save the entity and an outbox event row in one @Transactional method, then a scheduled poller reads unpublished events, publishes them and marks them processed."
+  },
+  {
+    "id": "implement-simple-saga",
+    "title": "Implement a simple Saga (choreography-based) across two services for an order-and-payment flow, including compensating actions on failure",
+    "difficulty": "Hard",
+    "hint": "Each service publishes events (OrderCreated, PaymentFailed) and listens to the other's; on failure publish a compensating event that cancels the order."
+  },
+  {
+    "id": "implement-distributed-lock-redis",
+    "title": "Implement a distributed lock with Redis (SET NX PX) and safe release using a Lua script",
+    "difficulty": "Hard",
+    "hint": "Acquire with SET key value NX PX ttl using a unique token, and release with a Lua script that deletes the key only if the stored value matches."
+  },
+  {
+    "id": "implement-rate-limiting-filter-at-gateway",
+    "title": "Implement a rate-limiting filter at the gateway using a Redis-backed token bucket",
+    "difficulty": "Hard",
+    "hint": "Use a Lua script in Redis to refill and decrement tokens atomically per client key, called from a gateway filter, returning 429 when empty."
+  },
+  {
+    "id": "configure-resilience4j",
+    "title": "Configure Resilience4j (retry, circuit breaker, time limiter) with proper ordering and a fallback, and test the behavior",
+    "difficulty": "Medium",
+    "hint": "Configure Retry, CircuitBreaker and TimeLimiter instances in properties; the aspect order is Retry then CircuitBreaker then RateLimiter then TimeLimiter then Bulkhead, and test with a failing stub."
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "implement-equals-hashcode-correctly-custom-class",
+    "title": "Implement equals() and hashCode() correctly for a custom class, then verify it behaves properly in a HashSet",
+    "difficulty": "Medium",
+    "hint": "Override both using the same significant fields (Objects.equals and Objects.hash), then add duplicates to a HashSet and confirm only one stays."
+  },
+  {
+    "id": "write-own-immutable-class-mutable-field",
+    "title": "Write your own immutable class with a mutable field (e.g., a List), including defensive copying in the constructor and accessor",
+    "difficulty": "Medium",
+    "hint": "Make the class final with private final fields, copy the list in the constructor with List.copyOf or new ArrayList, and return an unmodifiable view or copy from the getter."
+  },
+  {
+    "id": "convert-traditional-pojo-builder-into-java",
+    "title": "Convert a traditional POJO with a builder into a Java Record, and discuss what's gained/lost",
+    "difficulty": "Easy",
+    "hint": "A record gives final fields, accessors, equals, hashCode and toString automatically; use a compact constructor for validation, but note records cannot extend classes or be mutable."
+  },
+  {
+    "id": "write-generic-pair",
+    "title": "Write a generic Pair<A, B> or Stack<T> class, and a generic method with a bounded type parameter (<T extends Comparable<T>>)",
+    "difficulty": "Medium",
+    "hint": "Declare the class with type parameters like Pair<A,B>, and write static <T extends Comparable<T>> T max(T a, T b) using compareTo for the bound."
+  },
+  {
+    "id": "implement-builder-pattern-class-many-optional",
+    "title": "Implement the Builder pattern for a class with many optional constructor parameters",
+    "difficulty": "Medium",
+    "hint": "Create a static nested Builder with setter-style methods returning this, plus a build() method that calls a private constructor taking the builder."
+  },
+  {
+    "id": "sort-map-key-value",
+    "title": "Sort a Map by key and by value (ascending and descending), using both streams and a comparator",
+    "difficulty": "Medium",
+    "hint": "Stream map.entrySet() sorted with Map.Entry.comparingByKey() or comparingByValue(), optionally reversed, collecting into a LinkedHashMap to preserve order; or use a TreeMap."
+  },
+  {
+    "id": "write-thread-safe-singleton-class",
+    "title": "Write a thread-safe Singleton class, and show how to break and then protect it from reflection and serialization",
+    "difficulty": "Medium",
+    "hint": "Use an enum or a private constructor with a volatile double-checked instance; guard reflection by throwing if instance exists, and serialization with readResolve()."
+  }
+]

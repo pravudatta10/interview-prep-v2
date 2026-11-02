@@ -1,0 +1,20 @@
+[
+  {
+    "id": "find-maximum-sum-subarray-size-k",
+    "title": "Find the maximum sum subarray of size k (fixed-size sliding window)",
+    "difficulty": "Easy",
+    "hint": "Compute the first window sum, then slide by adding the new element and subtracting the one leaving, tracking the maximum."
+  },
+  {
+    "id": "find-smallest-subarray-sum-greater-than",
+    "title": "Find the smallest subarray with a sum greater than or equal to a target (variable-size window)",
+    "difficulty": "Medium",
+    "hint": "Expand the right end adding to the sum, and while the sum meets the target shrink from the left, recording the minimum window length."
+  },
+  {
+    "id": "find-all-triplets-array-sum-zero",
+    "title": "Find all triplets in an array that sum to zero (3Sum), using sorting + two pointers",
+    "difficulty": "Medium",
+    "hint": "Sort the array, fix one element, then use two pointers on the remainder moving inward, skipping duplicates to avoid repeated triplets."
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "id": "redis-redis-caching-strategies-001",
+    "question": "Why use Redis over an in-memory HashMap cache in a distributed system?",
+    "hint": "Consider shared vs. per-instance memory, multiple app nodes, persistence options, data structures, and features beyond simple key-value lookups."
+  },
+  {
+    "id": "redis-redis-caching-strategies-002",
+    "question": "How do you handle a cache stampede / thundering herd problem?",
+    "hint": "Think about many requests missing at once on an expired hot key, and ideas like locking, request coalescing, jitter and early refresh."
+  },
+  {
+    "id": "redis-redis-caching-strategies-003",
+    "question": "Cache-aside vs write-through vs write-behind caching strategies — trade-offs of each.",
+    "hint": "Compare who writes to the cache and database and when, thinking about read latency, write latency, staleness, and data loss risk."
+  }
+]

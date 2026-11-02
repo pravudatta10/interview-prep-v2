@@ -18,5 +18,85 @@
     "id": "spring-boot-auto-configuration-003",
     "question": "How does @ConditionalOnMissingBean let your own beans take priority over the defaults?",
     "hint": "Think a condition that backs off when you have already defined the bean."
+  },
+  {
+    "id": "spring-boot-auto-configuration-004",
+    "question": "What is the difference between @ComponentScan and @SpringBootApplication?",
+    "hint": "Think about one meta-annotation that bundles several others, and what scanning alone does not give you."
+  },
+  {
+    "id": "spring-boot-auto-configuration-005",
+    "question": "What are the most common Spring Boot performance mistakes?",
+    "hint": "Consider N+1 queries, eager loading, blocking calls, unbounded pools, and excess logging or serialization."
+  },
+  {
+    "id": "spring-boot-auto-configuration-006",
+    "question": "Walk through the Spring Boot application startup workflow step by step, including how run() works internally.",
+    "hint": "Trace SpringApplication.run: environment preparation, context creation, refresh, runners, plus listeners and events along the way."
+  },
+  {
+    "id": "spring-boot-auto-configuration-007",
+    "question": "What is a Spring Boot Starter, and how would you create a custom one?",
+    "hint": "Think about dependency bundles, auto-configuration classes, the imports registration file, and conditional annotations."
+  },
+  {
+    "id": "spring-boot-auto-configuration-008",
+    "question": "How does the embedded server (Tomcat/Jetty/Undertow) get configured and started? How do you switch the default server to Jetty?",
+    "hint": "Consider the servlet web server factory, auto-configured via classpath, excluding Tomcat starter and adding the Jetty starter."
+  },
+  {
+    "id": "spring-boot-auto-configuration-009",
+    "question": "How is Spring Boot different from the traditional Spring Framework? What are its advantages?",
+    "hint": "Compare convention over configuration, auto-configuration, embedded servers, starters, and opinionated defaults against manual setup."
+  },
+  {
+    "id": "spring-boot-auto-configuration-010",
+    "question": "How does Spring Boot 3's ahead-of-time (AOT) processing / GraalVM native image support change startup behavior?",
+    "hint": "Think build-time processing instead of runtime reflection, closed-world assumption, startup time, memory, and reflection hints."
+  },
+  {
+    "id": "spring-boot-auto-configuration-011",
+    "question": "How does Spring Boot handle externalized configuration, and what is the precedence order?",
+    "hint": "Think about property sources layered by priority, command-line args, environment variables, profile files, and which overrides which."
+  },
+  {
+    "id": "spring-boot-auto-configuration-012",
+    "question": "What is the difference between a @Configuration class and a normal class (CGLIB proxying, proxyBeanMethods)?",
+    "hint": "Think about full vs. lite mode, inter-bean method calls, singleton guarantees, and the cost of proxying."
+  },
+  {
+    "id": "spring-boot-auto-configuration-013",
+    "question": "How does Spring Boot handle exception translation (@ControllerAdvice, ProblemDetail, persistence exception translation)?",
+    "hint": "Consider centralized exception handlers, RFC 7807 problem responses, and translating persistence exceptions to a consistent hierarchy."
+  },
+  {
+    "id": "spring-boot-auto-configuration-014",
+    "question": "What happens internally when you hit a REST endpoint (filter chain, DispatcherServlet, handler mapping, message converters)?",
+    "hint": "Trace the servlet filter chain, DispatcherServlet, handler mapping and adapter, argument resolvers, and HttpMessageConverters for JSON."
+  },
+  {
+    "id": "spring-boot-auto-configuration-015",
+    "question": "How do you write a custom Spring Boot starter with auto-configuration and @ConditionalOnMissingBean?",
+    "hint": "Think about conditions on classes and beans, back-off behavior, registration through the imports file, and configuration properties."
+  },
+  {
+    "id": "spring-boot-auto-configuration-016",
+    "question": "How do you share common cross-cutting logic (logging, error contract, security) across many microservices without copy-paste?",
+    "hint": "Consider a shared starter or library, auto-configured filters and advice, versioning, and gateway or mesh-level alternatives."
+  },
+  {
+    "id": "spring-boot-auto-configuration-017",
+    "question": "What changed in Spring Boot 3 (Jakarta EE, Java 17 baseline, observability with Micrometer, ProblemDetail, native images)?",
+    "hint": "Think about the javax to jakarta namespace move, baseline JDK, Micrometer observation, RFC 7807 support, and AOT."
+  },
+  {
+    "id": "spring-boot-auto-configuration-018",
+    "question": "What are the commonly used @Conditional annotations, and how do you debug why an auto-configuration did or did not apply (--debug, conditions report)?",
+    "hint": "Think about conditions on classes, beans, properties, and resources, and which debug output reveals matched and unmatched decisions."
+  },
+  {
+    "id": "spring-boot-auto-configuration-019",
+    "question": "When would you use GraalVM native images, and what are the trade-offs (reflection hints, build time, debugging)?",
+    "hint": "Weigh startup time and memory against closed-world analysis: reflection configuration, longer builds, and harder debugging."
   }
 ]

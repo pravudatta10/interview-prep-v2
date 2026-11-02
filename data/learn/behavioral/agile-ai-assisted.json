@@ -1,0 +1,12 @@
+[
+  {
+    "id": "behavioral-agile-ai-assisted-001",
+    "question": "What is Agile methodology, and how does it differ from Waterfall? Explain the key Agile terminology and how your team applies it.",
+    "hint": "Compare plan-driven sequential delivery with iterative feedback loops, and mention sprints, backlog, roles, and ceremonies you actually use."
+  },
+  {
+    "id": "behavioral-agile-ai-assisted-002",
+    "question": "How have you used AI/agentic tools (Copilot, Claude Code, Cursor) to improve your day-to-day engineering productivity?",
+    "hint": "Be concrete: which tools, which tasks, how you validate their output, and what you would never delegate."
+  }
+]

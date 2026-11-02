@@ -1,0 +1,22 @@
+[
+  {
+    "id": "troubleshooting-reliability-data-001",
+    "question": "Your logs show inconsistent behavior across requests. Why could that be (thread-local leakage, shared mutable state, stale cache, config drift)?",
+    "hint": "Think about state that survives across requests, shared mutable objects, caches out of sync, and differences between instances."
+  },
+  {
+    "id": "troubleshooting-reliability-data-002",
+    "question": "A cache is giving stale data. How will you fix it?",
+    "hint": "Think about who populates and invalidates the cache, TTLs, event-driven eviction, and races between writes and cache updates."
+  },
+  {
+    "id": "troubleshooting-reliability-data-003",
+    "question": "Your system processes duplicate requests. How will you handle it?",
+    "hint": "Think about retries, client double-clicks, message redelivery, unique constraints, and idempotency keys at each entry point."
+  },
+  {
+    "id": "troubleshooting-reliability-data-004",
+    "question": "How do you run an effective post-incident review (blameless, timeline, root cause, action items)?",
+    "hint": "Consider timeline, facts versus blame, root cause techniques, contributing factors, and actionable follow-ups with owners and deadlines."
+  }
+]

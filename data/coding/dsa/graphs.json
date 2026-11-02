@@ -1,0 +1,26 @@
+[
+  {
+    "id": "implement-bfs-dfs-traversal-graph-represented",
+    "title": "Implement BFS and DFS traversal of a graph represented as an adjacency list",
+    "difficulty": "Medium",
+    "hint": "BFS uses a Queue and visited set; DFS uses recursion or a Stack with a visited set to avoid revisiting nodes."
+  },
+  {
+    "id": "detect-cycle-directed-graph",
+    "title": "Detect a cycle in a directed graph",
+    "difficulty": "Medium",
+    "hint": "Run DFS tracking a recursion-stack (visiting) set alongside visited; reaching a node already in the current path means a cycle."
+  },
+  {
+    "id": "perform-topological-sort-directed-acyclic-graph",
+    "title": "Perform a topological sort of a directed acyclic graph (DAG)",
+    "difficulty": "Medium",
+    "hint": "Use Kahn's algorithm with in-degree counts and a queue, or DFS pushing nodes onto a stack after visiting all their neighbours."
+  },
+  {
+    "id": "count-number-connected-components-islands-grid",
+    "title": "Count the number of connected components / islands in a grid (Number of Islands)",
+    "difficulty": "Medium",
+    "hint": "Loop over cells and on each unvisited land cell, increment the count and flood fill with DFS or BFS marking connected land as visited."
+  }
+]

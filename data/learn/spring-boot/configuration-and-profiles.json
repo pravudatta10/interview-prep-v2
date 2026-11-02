@@ -1,0 +1,12 @@
+[
+  {
+    "id": "spring-boot-configuration-and-profiles-001",
+    "question": "How does property precedence work across profiles, environment variables, and command-line arguments?",
+    "hint": "Consider the order of command-line args, environment variables, profile-specific and default files, and how later sources override."
+  },
+  {
+    "id": "spring-boot-configuration-and-profiles-002",
+    "question": "How do you schedule a task to run every 15 minutes in a Spring Boot application (@Scheduled, cron expressions)?",
+    "hint": "Think about enabling scheduling, fixed rate vs. fixed delay vs. cron, and behavior across multiple instances."
+  }
+]

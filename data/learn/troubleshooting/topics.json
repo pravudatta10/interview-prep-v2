@@ -1,0 +1,22 @@
+[
+  {
+    "id": "jvm-memory-cpu",
+    "file": "jvm-memory-cpu",
+    "title": "JVM, Memory & CPU Scenarios"
+  },
+  {
+    "id": "concurrency-threading",
+    "file": "concurrency-threading",
+    "title": "Concurrency & Threading Scenarios"
+  },
+  {
+    "id": "performance-scalability",
+    "file": "performance-scalability",
+    "title": "Performance & Scalability Scenarios"
+  },
+  {
+    "id": "reliability-data",
+    "file": "reliability-data",
+    "title": "Reliability & Data Scenarios"
+  }
+]

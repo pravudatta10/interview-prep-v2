@@ -1,0 +1,32 @@
+[
+  {
+    "id": "kafka-reliability-delivery-001",
+    "question": "How do producer retries and max.in.flight.requests affect ordering and duplicates, and what does enable.idempotence change?",
+    "hint": "Think about retries after a failed send, how many unacknowledged requests are allowed, and how sequence numbers let the broker drop duplicates."
+  },
+  {
+    "id": "kafka-reliability-delivery-002",
+    "question": "How do you process messages in parallel while preserving per-key order?",
+    "hint": "Consider that order is only guaranteed within a partition, then think about dispatching work by key to workers and committing offsets safely."
+  },
+  {
+    "id": "kafka-reliability-delivery-003",
+    "question": "What happens during a consumer rebalance, and how do cooperative rebalancing and static membership help?",
+    "hint": "Think about partition ownership being revoked, stop-the-world pauses, incremental reassignment, and avoiding reshuffles when a restarted consumer returns."
+  },
+  {
+    "id": "kafka-reliability-delivery-004",
+    "question": "What is the difference between retention and log compaction, and when do you use each?",
+    "hint": "Compare deleting by age or size vs. keeping the latest value per key, and which data shapes (events vs. state) suit each."
+  },
+  {
+    "id": "kafka-reliability-delivery-005",
+    "question": "How do you replay or reprocess messages safely, and how do you handle schema evolution (Schema Registry)?",
+    "hint": "Think about resetting offsets, side effects that must be idempotent, compatibility modes, and centrally managed schemas for producers and consumers."
+  },
+  {
+    "id": "kafka-reliability-delivery-006",
+    "question": "How does Kafka compare with RabbitMQ, SQS, and Pub/Sub for different use cases?",
+    "hint": "Compare log vs. queue models, retention and replay, routing flexibility, ordering, throughput and managed-service operational trade-offs."
+  }
+]

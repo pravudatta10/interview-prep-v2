@@ -1,0 +1,74 @@
+[
+  {
+    "id": "build-complete-crud-rest-api-resource",
+    "title": "Build a complete CRUD REST API for a resource (e.g., Employee) — controller, service, repository, and DTO mapping",
+    "difficulty": "Medium",
+    "hint": "Layer a @RestController over a @Service and a JpaRepository, mapping entities to DTOs and returning proper HTTP statuses with ResponseEntity."
+  },
+  {
+    "id": "add-pagination-sorting-list-endpoint-spring",
+    "title": "Add pagination and sorting to a list endpoint using Spring Data's Pageable",
+    "difficulty": "Medium",
+    "hint": "Accept a Pageable parameter in the controller or build PageRequest.of(page, size, Sort), and have the repository return Page<T>."
+  },
+  {
+    "id": "add-request-validation-valid-bean-validation",
+    "title": "Add request validation with @Valid/Bean Validation annotations, and a @ControllerAdvice that returns structured error responses",
+    "difficulty": "Medium",
+    "hint": "Annotate request DTO fields with constraints, use @Valid on the parameter, and handle MethodArgumentNotValidException in a @RestControllerAdvice."
+  },
+  {
+    "id": "implement-jwt-based-authentication-api",
+    "title": "Implement JWT-based authentication for the API — token generation on login, and a filter that validates the token on each request",
+    "difficulty": "Hard",
+    "hint": "Generate a signed token on successful login, then add a OncePerRequestFilter that validates it and sets the Authentication in SecurityContextHolder."
+  },
+  {
+    "id": "add-caching-read-heavy-endpoint-cacheable",
+    "title": "Add caching to a read-heavy endpoint using @Cacheable/@CacheEvict, backed by Redis",
+    "difficulty": "Medium",
+    "hint": "Enable caching with @EnableCaching, configure RedisCacheManager with a TTL, and use @Cacheable on reads and @CacheEvict on updates and deletes."
+  },
+  {
+    "id": "wrap-multi-step-service-operation-transactional",
+    "title": "Wrap a multi-step service operation in a @Transactional method, and demonstrate what happens on partial failure and rollback",
+    "difficulty": "Medium",
+    "hint": "Annotate the service method with @Transactional, throw a RuntimeException mid-way to see rollback, and note checked exceptions need rollbackFor."
+  },
+  {
+    "id": "build-dynamic-search-filter-endpoint-jpa",
+    "title": "Build a dynamic search/filter endpoint using JPA Specifications, combining multiple optional filter criteria",
+    "difficulty": "Hard",
+    "hint": "Implement JpaSpecificationExecutor and build Specification objects per optional filter, composing non-null ones with Specification.where().and()."
+  },
+  {
+    "id": "design-implement-idempotent-post-payments-endpoint",
+    "title": "Design and implement an idempotent POST /payments endpoint using an idempotency key stored in Redis or the database",
+    "difficulty": "Hard",
+    "hint": "Require an Idempotency-Key header, store the key with the response using an atomic insert or Redis SETNX, and return the stored response on replays."
+  },
+  {
+    "id": "implement-global-exception-handler-returns-rfc",
+    "title": "Implement a global exception handler that returns RFC 7807 Problem Details with a correlation ID",
+    "difficulty": "Medium",
+    "hint": "Use @RestControllerAdvice returning ProblemDetail with type, title, status and detail, adding the correlation ID from MDC or the request header as a property."
+  },
+  {
+    "id": "implement-jwt-validation-spring-security-filter",
+    "title": "Implement JWT validation in a Spring Security filter chain with role-based method security",
+    "difficulty": "Hard",
+    "hint": "Register a custom JWT filter in SecurityFilterChain before UsernamePasswordAuthenticationFilter, enable @EnableMethodSecurity and use @PreAuthorize(\"hasRole(...)\")."
+  },
+  {
+    "id": "implement-webclient-call-timeout",
+    "title": "Implement a WebClient call with timeout, retry with backoff, and error mapping",
+    "difficulty": "Medium",
+    "hint": "Chain timeout(), retryWhen(Retry.backoff(...)) and onStatus() to map error responses to custom exceptions on the WebClient call."
+  },
+  {
+    "id": "add-correlation-id-filter-populates-mdc",
+    "title": "Add a correlation-ID filter that populates MDC and propagates the ID through Feign or WebClient calls",
+    "difficulty": "Medium",
+    "hint": "Write a OncePerRequestFilter that reads or generates the ID, puts it in MDC and clears it in finally; add a Feign RequestInterceptor or WebClient filter to forward it."
+  }
+]

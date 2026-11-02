@@ -1,0 +1,12 @@
+[
+  {
+    "id": "docker-docker-fundamentals-001",
+    "question": "Difference between a Docker image and a container.",
+    "hint": "Think about a read-only layered template vs. a running instance with a writable layer."
+  },
+  {
+    "id": "docker-docker-fundamentals-002",
+    "question": "What is a multi-stage Docker build, and why use it for Java applications?",
+    "hint": "Think about separating build tooling from runtime, image size, attack surface, layer caching and what the final image really needs."
+  }
+]

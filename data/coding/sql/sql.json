@@ -1,0 +1,92 @@
+[
+  {
+    "id": "find-second-highest",
+    "title": "Find the second-highest (and Nth-highest) salary in an employees table — using a subquery and using DENSE_RANK(). (Easy → Medium · Frequently Asked)",
+    "difficulty": "Medium",
+    "hint": "Use DENSE_RANK() OVER (ORDER BY salary DESC) and filter on rank N, or a subquery selecting MAX(salary) below the overall max."
+  },
+  {
+    "id": "find-top-n-earners-per-department",
+    "title": "Find the Top-N earners per department using a window function (RANK() OVER (PARTITION BY department ORDER BY salary DESC))",
+    "difficulty": "Medium",
+    "hint": "Apply RANK() or DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC) in a subquery or CTE and filter rank less than or equal to N."
+  },
+  {
+    "id": "find-employees-who-are-missing-salary",
+    "title": "Find employees who are missing a salary value (NULL handling) and identify which employees haven't been paid this cycle",
+    "difficulty": "Easy",
+    "hint": "Use WHERE salary IS NULL, since equals NULL never matches; for unpaid this cycle use LEFT JOIN with payments and check IS NULL or NOT EXISTS."
+  },
+  {
+    "id": "find-duplicate-records-table-based-subset",
+    "title": "Find duplicate records in a table based on a subset of columns",
+    "difficulty": "Easy",
+    "hint": "Use GROUP BY on the chosen columns with HAVING COUNT(*) greater than 1 to list the duplicated combinations."
+  },
+  {
+    "id": "write-self-join-query-list-each",
+    "title": "Write a self-join query to list each employee alongside their manager's name (employee/manager hierarchy)",
+    "difficulty": "Medium",
+    "hint": "Join the employee table to itself, aliasing one as e and one as m on e.manager_id = m.id, using LEFT JOIN to include top-level employees."
+  },
+  {
+    "id": "write-query-computing-running-total",
+    "title": "Write a query computing a running total (cumulative sum) of monthly order amounts using a window function",
+    "difficulty": "Medium",
+    "hint": "Group orders by month, then use SUM(amount) OVER (ORDER BY month) to get the cumulative total."
+  },
+  {
+    "id": "write-recursive-cte-traverse-org-chart",
+    "title": "Write a recursive CTE to traverse an org chart or a category tree with unknown depth",
+    "difficulty": "Hard",
+    "hint": "Write WITH RECURSIVE with an anchor query for root nodes and a UNION ALL step joining children to the previous level until no rows remain."
+  },
+  {
+    "id": "given-tables-overlapping-products-different-prices",
+    "title": "Given two tables of overlapping products with different prices, write a query returning the minimum price per product across both",
+    "difficulty": "Medium",
+    "hint": "UNION ALL the two tables, then GROUP BY product and take MIN(price) for each."
+  },
+  {
+    "id": "write-explain-query-optimization-exercise",
+    "title": "Write and explain a query optimization exercise — given a slow query and its EXPLAIN plan, propose an index or rewrite",
+    "difficulty": "Hard",
+    "hint": "Read the EXPLAIN plan for full table scans, then add a composite index on filter and join columns, avoid functions on indexed columns, or rewrite subqueries as joins."
+  },
+  {
+    "id": "given-employee-department-tables",
+    "title": "Given Employee and Department tables, find employees whose salary is greater than their department's average salary. Solve it with a correlated subquery, a JOIN, and a window function",
+    "difficulty": "Medium",
+    "hint": "Compute each department's AVG(salary) via a correlated subquery, a join to a grouped derived table, or AVG(salary) OVER (PARTITION BY dept_id), then filter."
+  },
+  {
+    "id": "delete-duplicate-rows-table",
+    "title": "Delete duplicate rows from a table, keeping only the latest row for each key",
+    "difficulty": "Medium",
+    "hint": "Use ROW_NUMBER() OVER (PARTITION BY key ORDER BY updated_at DESC) and delete rows with rn above 1, or a self-join delete keeping the max id."
+  },
+  {
+    "id": "find-employees-who-earn-more-than",
+    "title": "Find employees who earn more than their manager",
+    "difficulty": "Easy",
+    "hint": "Self-join employees to their managers on manager_id and filter where the employee's salary exceeds the manager's salary."
+  },
+  {
+    "id": "find-departments-have-no-employees",
+    "title": "Find departments that have no employees",
+    "difficulty": "Easy",
+    "hint": "LEFT JOIN departments to employees and filter where the employee id IS NULL, or use NOT EXISTS."
+  },
+  {
+    "id": "find-customers-who-have-never-placed",
+    "title": "Find customers who have never placed an order",
+    "difficulty": "Easy",
+    "hint": "LEFT JOIN customers to orders and keep rows where order id IS NULL, or use NOT EXISTS; avoid NOT IN with nullable columns."
+  },
+  {
+    "id": "find-top-3-highest-salaries-each",
+    "title": "Find the top 3 highest salaries in each department without using LIMIT",
+    "difficulty": "Medium",
+    "hint": "Use DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC) and filter rank at most 3, or a correlated count of distinct higher salaries below 3."
+  }
+]

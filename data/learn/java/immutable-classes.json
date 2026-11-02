@@ -1,0 +1,7 @@
+[
+  {
+    "id": "java-immutable-classes-001",
+    "question": "How do you write your own immutable class?",
+    "hint": "Think about final fields, no setters, defensive copies, and preventing subclasses from breaking guarantees."
+  }
+]

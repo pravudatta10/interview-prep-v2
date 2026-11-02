@@ -1,0 +1,8 @@
+[
+  {
+    "id": "find-kth-largest-element-unsorted-array",
+    "title": "Find the Kth largest element in an unsorted array using a PriorityQueue",
+    "difficulty": "Medium",
+    "hint": "Keep a min-heap PriorityQueue of size k, polling when it exceeds k; the heap root is the kth largest element."
+  }
+]

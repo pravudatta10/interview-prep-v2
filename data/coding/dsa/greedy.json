@@ -1,0 +1,8 @@
+[
+  {
+    "id": "solve-jump-game",
+    "title": "Solve the Jump Game — determine if you can reach the last index of an array",
+    "difficulty": "Medium",
+    "hint": "Greedily track the furthest reachable index while scanning, and return false if the current index ever exceeds it."
+  }
+]

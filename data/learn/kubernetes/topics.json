@@ -1,0 +1,12 @@
+[
+  {
+    "id": "workloads-networking",
+    "file": "workloads-networking",
+    "title": "Kubernetes Workloads & Networking"
+  },
+  {
+    "id": "operations-troubleshooting",
+    "file": "operations-troubleshooting",
+    "title": "Kubernetes Operations & Troubleshooting"
+  }
+]

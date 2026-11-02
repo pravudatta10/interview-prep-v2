@@ -1,0 +1,112 @@
+[
+  {
+    "id": "java-multithreading-001",
+    "question": "What is the difference between volatile and AtomicInteger?",
+    "hint": "Think about visibility vs. atomicity, and what happens with a compound operation like increment."
+  },
+  {
+    "id": "java-multithreading-002",
+    "question": "Difference between Callable and Runnable.",
+    "hint": "Compare return values, checked exceptions, and how each is submitted to an executor."
+  },
+  {
+    "id": "java-multithreading-003",
+    "question": "What is CountDownLatch, and what's a real scenario where you'd use one?",
+    "hint": "Think about one or more threads waiting for N events to complete, and whether the counter can be reset."
+  },
+  {
+    "id": "java-multithreading-004",
+    "question": "What are the different ways to create a thread — extending Thread vs implementing Runnable vs Callable? Which is the better approach and why?",
+    "hint": "Compare inheritance limits, return values, checked exceptions, and separating the task from the execution mechanism."
+  },
+  {
+    "id": "java-multithreading-005",
+    "question": "Explain the thread lifecycle in Java (New, Runnable, Running, Blocked/Waiting, Terminated).",
+    "hint": "Walk through states from creation to termination, and what moves a thread between runnable, blocked, waiting, and timed waiting."
+  },
+  {
+    "id": "java-multithreading-006",
+    "question": "What is the synchronized keyword? Difference between method-level and block-level synchronization.",
+    "hint": "Think about monitor locks, what object is locked, and the scope of the critical section in each form."
+  },
+  {
+    "id": "java-multithreading-007",
+    "question": "How can you make a multi-threaded singleton object's initialization synchronized safely (double-checked locking)?",
+    "hint": "Think about lazy initialization, visibility across threads, instruction reordering, and the keyword that prevents it."
+  },
+  {
+    "id": "java-multithreading-008",
+    "question": "How do you detect a deadlock in a running thread using thread dumps?",
+    "hint": "Consider jstack or jcmd output, thread states BLOCKED, lock owner and waiting-on entries, and circular wait."
+  },
+  {
+    "id": "java-multithreading-009",
+    "question": "Difference between wait() and sleep() — which releases the lock, and why does wait() live on Object?",
+    "hint": "Compare monitor release, required lock ownership, notify, and why the lock is tied to every object."
+  },
+  {
+    "id": "java-multithreading-010",
+    "question": "What is ThreadLocal, and where have you used it in production (e.g., request-scoped correlation IDs)?",
+    "hint": "Think per-thread storage, thread pool reuse, cleanup with remove(), and propagating context like MDC across a request."
+  },
+  {
+    "id": "java-multithreading-011",
+    "question": "Explain ExecutorService and the different types of thread pools it offers.",
+    "hint": "Think about decoupling submission from execution, pool sizing and queue behavior in fixed, cached, single, and scheduled variants."
+  },
+  {
+    "id": "java-multithreading-012",
+    "question": "What is the Fork/Join framework, and when would you reach for it over a standard thread pool?",
+    "hint": "Consider divide-and-conquer, work stealing, recursive tasks, and CPU-bound versus blocking workloads."
+  },
+  {
+    "id": "java-multithreading-013",
+    "question": "How do you handle a classic producer-consumer problem in Java?",
+    "hint": "Think about a shared bounded buffer, blocking queues, and coordination with wait/notify as the lower-level alternative."
+  },
+  {
+    "id": "java-multithreading-014",
+    "question": "Why would you choose ReentrantLock over synchronized? What can it do that synchronized can't?",
+    "hint": "Consider tryLock, timeouts, interruptibility, fairness, multiple Conditions, and explicit unlock responsibility."
+  },
+  {
+    "id": "java-multithreading-015",
+    "question": "What is Semaphore, and how would you use it to limit concurrent access to a resource (e.g., a connection pool)?",
+    "hint": "Think permits, acquire and release, and making sure release happens even when exceptions occur."
+  },
+  {
+    "id": "java-multithreading-016",
+    "question": "Your service starts 5 background initializer threads and must not accept traffic until all 5 finish. Which utility would you use, and how would you wire it?",
+    "hint": "Consider a one-shot coordination primitive that counts down to zero, and which side awaits versus signals."
+  },
+  {
+    "id": "java-multithreading-017",
+    "question": "You need at most 10 concurrent outbound calls to a rate-limited third-party API across many threads. How would you enforce that?",
+    "hint": "Think about permit-based throttling, blocking vs. failing fast when limit is hit, and a shared limiter across threads."
+  },
+  {
+    "id": "java-multithreading-018",
+    "question": "What is AtomicInteger, and how does it achieve thread safety without using locks?",
+    "hint": "Think about lock-free counters, hardware-level atomic instructions, and visibility guarantees from volatile semantics."
+  },
+  {
+    "id": "java-multithreading-019",
+    "question": "Explain Compare-And-Swap (CAS) at a conceptual level. What happens when the CAS operation fails?",
+    "hint": "Consider read-compare-write as one atomic step, retry loops, spinning cost, and the ABA problem."
+  },
+  {
+    "id": "java-multithreading-020",
+    "question": "Multiple threads are updating the same object. How would you make it thread-safe without hurting performance?",
+    "hint": "Consider reducing shared mutable state, immutability, atomics, striped counters, and narrowing lock scope."
+  },
+  {
+    "id": "java-multithreading-021",
+    "question": "When would you use CompletableFuture instead of Virtual Threads, and when would you choose Virtual Threads instead?",
+    "hint": "Compare composing async pipelines on a pool against cheap blocking-style code, and think about pinning and I/O-bound workloads."
+  },
+  {
+    "id": "java-multithreading-022",
+    "question": "How would you design a bounded, back-pressured producer-consumer pipeline in Java?",
+    "hint": "Think bounded queues, blocking or rejecting when full, rejection policies, and how slow consumers signal producers."
+  }
+]

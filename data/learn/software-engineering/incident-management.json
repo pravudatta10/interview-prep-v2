@@ -1,0 +1,22 @@
+[
+  {
+    "id": "software-engineering-incident-management-001",
+    "question": "Walk through your incident management process from alert to postmortem — what makes a postmortem blameless and useful?",
+    "hint": "Think about detection, triage, mitigation, communication, then review: timeline, contributing factors, and system fixes rather than people."
+  },
+  {
+    "id": "software-engineering-incident-management-002",
+    "question": "What do you monitor and alert on for a production service, and how do you avoid alert fatigue?",
+    "hint": "Think about symptom-based alerts, golden signals, thresholds that require action, severity tiers, and tuning noisy alerts."
+  },
+  {
+    "id": "software-engineering-incident-management-003",
+    "question": "Describe your general debugging methodology when facing an unfamiliar production bug with limited information.",
+    "hint": "Think about reproducing, narrowing scope, gathering logs and metrics, forming hypotheses, testing one change at a time, and documenting."
+  },
+  {
+    "id": "software-engineering-incident-management-004",
+    "question": "What belongs on a \"production readiness checklist\" before a new service goes live — logging, alerting, runbooks, rollback plan, load testing?",
+    "hint": "Consider logging, metrics and alerts, runbooks, rollback, load and failure testing, security, capacity, ownership, and on-call readiness."
+  }
+]

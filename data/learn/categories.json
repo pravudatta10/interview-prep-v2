@@ -6,57 +6,171 @@
     "available": true
   },
   {
+    "slug": "spring-framework",
+    "name": "Spring Framework",
+    "icon": "🍃",
+    "available": true
+  },
+  {
     "slug": "spring-boot",
     "name": "Spring Boot",
     "icon": "🌱",
-    "available": false
+    "available": true
+  },
+  {
+    "slug": "webflux",
+    "name": "WebFlux & Reactive",
+    "icon": "⚡",
+    "available": true
   },
   {
     "slug": "microservices",
     "name": "Microservices",
     "icon": "🧩",
-    "available": false
+    "available": true
+  },
+  {
+    "slug": "angular",
+    "name": "Angular & Frontend",
+    "icon": "🅰️",
+    "available": true
   },
   {
     "slug": "sql",
-    "name": "SQL",
+    "name": "SQL & Database",
     "icon": "🗄️",
-    "available": false
+    "available": true
+  },
+  {
+    "slug": "hibernate-jpa",
+    "name": "Hibernate & JPA",
+    "icon": "🧬",
+    "available": true
+  },
+  {
+    "slug": "spring-security",
+    "name": "Spring Security",
+    "icon": "🔐",
+    "available": true
+  },
+  {
+    "slug": "rest",
+    "name": "REST & Web Services",
+    "icon": "🌐",
+    "available": true
   },
   {
     "slug": "kafka",
-    "name": "Kafka",
+    "name": "Kafka & Messaging",
     "icon": "📨",
-    "available": false
+    "available": true
   },
   {
-    "slug": "system-design",
-    "name": "System Design",
-    "icon": "🏗️",
-    "available": false
+    "slug": "redis",
+    "name": "Redis",
+    "icon": "🟥",
+    "available": true
   },
   {
-    "slug": "aws",
-    "name": "AWS",
+    "slug": "nosql",
+    "name": "NoSQL & Data Stores",
+    "icon": "📦",
+    "available": true
+  },
+  {
+    "slug": "grpc",
+    "name": "gRPC & Protobuf",
+    "icon": "🔌",
+    "available": true
+  },
+  {
+    "slug": "design-patterns",
+    "name": "Design Patterns",
+    "icon": "🧱",
+    "available": true
+  },
+  {
+    "slug": "cloud",
+    "name": "Cloud (AWS & GCP)",
     "icon": "☁️",
-    "available": false
-  },
-  {
-    "slug": "ai",
-    "name": "AI",
-    "icon": "🤖",
-    "available": false
+    "available": true
   },
   {
     "slug": "docker",
     "name": "Docker",
     "icon": "🐳",
-    "available": false
+    "available": true
   },
   {
     "slug": "kubernetes",
     "name": "Kubernetes",
     "icon": "⛴️",
-    "available": false
+    "available": true
+  },
+  {
+    "slug": "devops",
+    "name": "DevOps for Developers",
+    "icon": "🔧",
+    "available": true
+  },
+  {
+    "slug": "testing",
+    "name": "Testing",
+    "icon": "🧪",
+    "available": true
+  },
+  {
+    "slug": "observability",
+    "name": "Observability",
+    "icon": "📈",
+    "available": true
+  },
+  {
+    "slug": "ai",
+    "name": "AI Engineering",
+    "icon": "🤖",
+    "available": true
+  },
+  {
+    "slug": "system-design",
+    "name": "System Design",
+    "icon": "🏗️",
+    "available": true
+  },
+  {
+    "slug": "distributed-systems",
+    "name": "Distributed Systems",
+    "icon": "🕸️",
+    "available": true
+  },
+  {
+    "slug": "performance",
+    "name": "Performance Engineering",
+    "icon": "🚀",
+    "available": true
+  },
+  {
+    "slug": "troubleshooting",
+    "name": "Production Scenarios",
+    "icon": "🚨",
+    "available": true
+  },
+  {
+    "slug": "legacy-java",
+    "name": "Legacy Enterprise Java",
+    "icon": "🏛️",
+    "available": true
+  },
+  {
+    "slug": "software-engineering",
+    "name": "Software Engineering",
+    "icon": "🛠️",
+    "available": true
+  },
+  {
+    "slug": "behavioral",
+    "name": "Behavioral & Project",
+    "icon": "💬",
+    "available": true
   }
 ]

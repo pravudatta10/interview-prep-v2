@@ -1,0 +1,12 @@
+[
+  {
+    "id": "design-patterns-patterns-in-spring-001",
+    "question": "Which GoF patterns does the Spring Framework use internally, and where?",
+    "hint": "Think about singleton scope, proxies for AOP, templates, factory beans, and observer for events."
+  },
+  {
+    "id": "design-patterns-patterns-in-spring-002",
+    "question": "Explain the Strangler Fig pattern for incrementally migrating a monolith to microservices.",
+    "hint": "Think about routing traffic gradually to new services, a facade intercepting calls, and why a big-bang rewrite is riskier."
+  }
+]

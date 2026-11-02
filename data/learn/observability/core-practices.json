@@ -1,0 +1,27 @@
+[
+  {
+    "id": "observability-core-practices-001",
+    "question": "How do you implement structured logging with correlation IDs across microservices?",
+    "hint": "Consider generating an ID at the edge, propagating it via headers and MDC, JSON log fields, and tracing a single request across services."
+  },
+  {
+    "id": "observability-core-practices-002",
+    "question": "How do you take and analyze a thread dump for a hung or high-CPU JVM process?",
+    "hint": "Think about capturing several dumps over time, thread states, locks and blocked chains, and correlating hot threads with OS-level CPU usage."
+  },
+  {
+    "id": "observability-core-practices-003",
+    "question": "How do you take and analyze a heap dump to find a memory leak?",
+    "hint": "Consider capturing at the right moment, dominator trees, retained size vs. shallow size, GC roots, and comparing snapshots over time."
+  },
+  {
+    "id": "observability-core-practices-004",
+    "question": "What is distributed tracing (OpenTelemetry, Jaeger/Zipkin), and how does the trace/span model work?",
+    "hint": "Think about a request's journey, a trace ID propagated across services, spans with parent links, context propagation, and sampling."
+  },
+  {
+    "id": "observability-core-practices-005",
+    "question": "How do you set up meaningful alerting on Kafka consumer lag, API latency, and error rate — the four golden signals?",
+    "hint": "Think about the golden signals, thresholds tied to user impact, lag trends rather than snapshots, and routing alerts to the right owners."
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "id": "software-engineering-agile-delivery-and-ceremonies-001",
+    "question": "Explain the phases of the SDLC and how they map to sprints in an Agile/Scrum team.",
+    "hint": "Think about the stages from requirements to maintenance and how each lands in sprint planning, development, review, and release."
+  },
+  {
+    "id": "software-engineering-agile-delivery-and-ceremonies-002",
+    "question": "Difference between Scrum and Kanban — when would a team choose one over the other?",
+    "hint": "Compare cadence and fixed commitments with continuous flow and WIP limits, and think about which team context fits each."
+  },
+  {
+    "id": "software-engineering-agile-delivery-and-ceremonies-003",
+    "question": "How do you handle a mid-sprint scope change from a stakeholder without derailing the sprint commitment?",
+    "hint": "Think about protecting the commitment: impact assessment, trade-offs, product owner negotiation, and backlog placement instead of silently absorbing work."
+  }
+]

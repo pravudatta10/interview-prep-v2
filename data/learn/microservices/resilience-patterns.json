@@ -1,0 +1,17 @@
+[
+  {
+    "id": "microservices-resilience-patterns-001",
+    "question": "Difference between retry, timeout, and bulkhead patterns.",
+    "hint": "Compare re-attempting, giving up after a limit, and isolating resources so one slow dependency can't starve others."
+  },
+  {
+    "id": "microservices-resilience-patterns-002",
+    "question": "How do you prevent cascading failures across a chain of microservices?",
+    "hint": "Consider timeouts, circuit breakers, bulkheads, fallbacks, retries with backoff, and load shedding stopping failures from spreading."
+  },
+  {
+    "id": "microservices-resilience-patterns-003",
+    "question": "What are the different fault-tolerance patterns (Retry, Circuit Breaker, Timeout, Rate Limiter, Bulkhead, Fallback), and when do you use each?",
+    "hint": "Compare what failure each pattern guards against: transient errors, persistent failure, slowness, overload, resource isolation, and degraded responses."
+  }
+]

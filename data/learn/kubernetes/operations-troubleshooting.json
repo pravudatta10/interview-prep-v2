@@ -1,0 +1,12 @@
+[
+  {
+    "id": "kubernetes-operations-troubleshooting-001",
+    "question": "What are resource requests and limits, and how do they relate to scheduling, throttling, and OOMKilled?",
+    "hint": "Think about the scheduler using requests, CPU being compressible vs. memory not, and what happens when a container exceeds its limit."
+  },
+  {
+    "id": "kubernetes-operations-troubleshooting-002",
+    "question": "How do you troubleshoot CrashLoopBackOff, ImagePullBackOff, and Pending pods?",
+    "hint": "Walk through a diagnostic order: describe events, logs of previous container, image and registry access, and resource or scheduling constraints."
+  }
+]

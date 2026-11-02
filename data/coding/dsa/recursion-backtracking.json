@@ -1,0 +1,26 @@
+[
+  {
+    "id": "compute-factorial-number-recursion",
+    "title": "Compute the factorial of a number using recursion",
+    "difficulty": "Easy",
+    "hint": "Define the base case as n at most 1 returning 1, and otherwise return n multiplied by factorial(n - 1)."
+  },
+  {
+    "id": "print-fibonacci-series-recursion",
+    "title": "Print the Fibonacci series using recursion",
+    "difficulty": "Easy",
+    "hint": "Use recursion where fib(n) returns n for n less than 2, else fib(n-1) plus fib(n-2), and loop to print each term; memoize to avoid repeated work."
+  },
+  {
+    "id": "generate-all-permutations-string",
+    "title": "Generate all permutations of a string",
+    "difficulty": "Medium",
+    "hint": "Backtrack by fixing one character at each position, swapping or using a used array, recursing, and undoing the choice after returning."
+  },
+  {
+    "id": "generate-all-subsets",
+    "title": "Generate all subsets (the power set) of a given set",
+    "difficulty": "Medium",
+    "hint": "At each element branch into include or exclude via backtracking, or iterate bitmasks from 0 to 2^n minus 1."
+  }
+]

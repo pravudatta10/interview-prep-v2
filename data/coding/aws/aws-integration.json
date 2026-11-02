@@ -1,0 +1,8 @@
+[
+  {
+    "id": "generate-s3-pre-signed-upload-url",
+    "title": "Generate an S3 pre-signed upload URL with the AWS SDK for Java v2",
+    "difficulty": "Medium",
+    "hint": "Build an S3Presigner, create a PutObjectRequest, wrap it in PutObjectPresignRequest with a signature duration, and call presignPutObject for the URL."
+  }
+]

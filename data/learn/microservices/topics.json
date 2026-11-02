@@ -3,5 +3,25 @@
     "id": "fundamentals",
     "file": "fundamental",
     "title": "Microservices Fundamentals"
+  },
+  {
+    "id": "architecture-communication",
+    "file": "architecture-communication",
+    "title": "Architecture & Communication"
+  },
+  {
+    "id": "resilience-patterns",
+    "file": "resilience-patterns",
+    "title": "Circuit Breaker, Retry, Timeout & Bulkhead"
+  },
+  {
+    "id": "data-consistency",
+    "file": "data-consistency",
+    "title": "Data & Consistency Patterns"
+  },
+  {
+    "id": "production-observability",
+    "file": "production-observability",
+    "title": "Production & Observability"
   }
 ]

@@ -1,0 +1,27 @@
+[
+  {
+    "id": "kubernetes-workloads-networking-001",
+    "question": "Difference between a Kubernetes Service (ClusterIP, NodePort, LoadBalancer) and an Ingress.",
+    "hint": "Compare in-cluster vs. external exposure, L4 vs. L7 routing, and host/path based rules."
+  },
+  {
+    "id": "kubernetes-workloads-networking-002",
+    "question": "Explain Pods, Deployments, and ReplicaSets, and how they relate to each other.",
+    "hint": "Think about the layering of desired state: the unit that runs containers, the controller that manages replicas, and how versions are tracked."
+  },
+  {
+    "id": "kubernetes-workloads-networking-003",
+    "question": "How do Rolling Updates work, and how do you configure zero-downtime deployments?",
+    "hint": "Consider replacing pods gradually, surge and unavailable settings, readiness gating, graceful shutdown and connection draining."
+  },
+  {
+    "id": "kubernetes-workloads-networking-004",
+    "question": "What is a Horizontal Pod Autoscaler (HPA), and how does it decide to scale?",
+    "hint": "Think about a control loop comparing observed metrics to targets, replica math, bounds, stabilization windows and the need for resource requests."
+  },
+  {
+    "id": "kubernetes-workloads-networking-005",
+    "question": "How do liveness and readiness probes affect traffic routing to a pod?",
+    "hint": "Compare what each probe decides: restarting a container vs. removing it from service endpoints, and what goes wrong with poorly tuned probes."
+  }
+]

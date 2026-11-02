@@ -1,0 +1,17 @@
+[
+  {
+    "id": "software-engineering-dora-slo-001",
+    "question": "Explain the DORA metrics (deployment frequency, lead time for changes, change failure rate, MTTR) and what each signals about team health.",
+    "hint": "Think about speed versus stability, and what each of the four measures reveals when it moves in the wrong direction."
+  },
+  {
+    "id": "software-engineering-dora-slo-002",
+    "question": "Difference between SLIs, SLOs, and SLAs, and how do you choose a meaningful SLI for a customer-facing API?",
+    "hint": "Compare the measurement, the target, and the contractual promise, and think about what users actually experience on a customer-facing API."
+  },
+  {
+    "id": "software-engineering-dora-slo-003",
+    "question": "How would you use an error budget derived from an SLO to decide whether to prioritize new features or reliability work?",
+    "hint": "Consider what happens to release policy as the budget is consumed versus when plenty remains, and who decides."
+  }
+]

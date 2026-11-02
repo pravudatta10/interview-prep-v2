@@ -1,0 +1,27 @@
+[
+  {
+    "id": "troubleshooting-jvm-memory-cpu-001",
+    "question": "Your application slows down after running for a few hours. What will you check?",
+    "hint": "Consider trends over time: heap and GC behavior, thread counts, connection leaks, growing collections, and what changed since startup."
+  },
+  {
+    "id": "troubleshooting-jvm-memory-cpu-002",
+    "question": "You suspect a memory leak. How will you confirm it?",
+    "hint": "Think about heap growth after full GC, taking heap dumps over time, comparing snapshots, and finding what holds references."
+  },
+  {
+    "id": "troubleshooting-jvm-memory-cpu-003",
+    "question": "Your application crashes without any clear error. How will you debug it?",
+    "hint": "Consider the OS killer, JVM exit logs, crash files, native memory, container limits, and checking exit codes and last logs."
+  },
+  {
+    "id": "troubleshooting-jvm-memory-cpu-004",
+    "question": "Your service is memory intensive and crashes under load. How will you troubleshoot?",
+    "hint": "Think about heap versus off-heap usage, container limits, large objects, heap dump analysis, and load-shaping or bounding input."
+  },
+  {
+    "id": "troubleshooting-jvm-memory-cpu-005",
+    "question": "How do you check memory usage of a running server and a JVM (free, top, jcmd, jstat, GC logs)?",
+    "hint": "Think about the difference between OS-level and JVM-level tools, and what GC logs and live JVM commands each reveal."
+  }
+]

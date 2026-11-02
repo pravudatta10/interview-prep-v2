@@ -1,0 +1,12 @@
+[
+  {
+    "id": "architecture-consumer-groups",
+    "file": "architecture-consumer-groups",
+    "title": "Kafka Architecture & Consumer Groups"
+  },
+  {
+    "id": "reliability-delivery",
+    "file": "reliability-delivery",
+    "title": "Kafka Reliability & Delivery Semantics"
+  }
+]

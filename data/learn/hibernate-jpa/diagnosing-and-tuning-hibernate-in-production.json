@@ -1,0 +1,7 @@
+[
+  {
+    "id": "hibernate-jpa-diagnosing-and-tuning-hibernate-in-production-001",
+    "question": "How do you diagnose and fix slow Hibernate queries in production?",
+    "hint": "Start from measuring: SQL logging and slow query logs, N+1 symptoms, fetch strategies, indexes and batch sizes, then verify with execution plans."
+  }
+]

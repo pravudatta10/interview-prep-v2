@@ -1,0 +1,17 @@
+[
+  {
+    "id": "sql-postgres-oracle-mysql-001",
+    "question": "What index types exist in PostgreSQL (B-tree, GIN, GiST, partial, expression), and when do you use each?",
+    "hint": "Consider data shapes and query operators: ordering, full-text, JSON or array containment, geometric data, subsets of rows and computed values."
+  },
+  {
+    "id": "sql-postgres-oracle-mysql-002",
+    "question": "How do you design a database schema for search and filtering on large datasets?",
+    "hint": "Think about query patterns first, indexing and denormalization, partitioning, pagination approach and when to offload to a dedicated search engine."
+  },
+  {
+    "id": "sql-postgres-oracle-mysql-003",
+    "question": "How do you perform zero-downtime schema migrations (Flyway, Liquibase, expand and contract)?",
+    "hint": "Think about backward-compatible steps in sequence: additive changes, dual writes or reads, backfill, then cleanup, plus tooling that versions changes."
+  }
+]

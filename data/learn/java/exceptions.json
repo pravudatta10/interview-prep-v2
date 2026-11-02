@@ -82,5 +82,20 @@
     "id": "java-exceptions-012",
     "question": "Describe a real NullPointerException or ClassCastException you've faced in production — how did you diagnose and resolve it?",
     "hint": "Think stack trace, reproducing the failure, root cause, and the permanent fix."
+  },
+  {
+    "id": "java-exceptions-013",
+    "question": "In which layer of your application do you catch exceptions, and how do you map them to HTTP status codes / error responses?",
+    "hint": "Consider throwing low in the stack, handling centrally at the boundary, and mapping types to HTTP codes."
+  },
+  {
+    "id": "java-exceptions-014",
+    "question": "Is throwing an exception expensive in Java? Which part of the operation actually costs the most?",
+    "hint": "Think about what the JVM captures at creation time versus the throw and catch itself."
+  },
+  {
+    "id": "java-exceptions-015",
+    "question": "Why is using exceptions for normal/expected control flow considered an anti-pattern?",
+    "hint": "Consider performance, readability, hidden jumps, and distinguishing truly exceptional conditions from ordinary outcomes."
   }
 ]

@@ -1,0 +1,12 @@
+[
+  {
+    "id": "design-patterns-behavioral-patterns-001",
+    "question": "Explain the Strategy pattern — how does Spring use it internally (e.g., PlatformTransactionManager)?",
+    "hint": "Think about swappable algorithms behind a common interface, how the context picks one, and what the transaction abstraction hides from callers."
+  },
+  {
+    "id": "design-patterns-behavioral-patterns-002",
+    "question": "Explain the Chain of Responsibility pattern — how does the Servlet Filter chain use it?",
+    "hint": "Think about a linked sequence of handlers, each deciding to process or pass along, and what a filter must call to continue."
+  }
+]

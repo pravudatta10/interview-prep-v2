@@ -1,0 +1,22 @@
+[
+  {
+    "id": "kafka-architecture-consumer-groups-001",
+    "question": "How do you handle a poison-pill message that repeatedly fails processing?",
+    "hint": "Think about retry limits, a side topic for failed records, not blocking the partition, and keeping enough context to diagnose and replay."
+  },
+  {
+    "id": "kafka-architecture-consumer-groups-002",
+    "question": "Explain Kafka transactions and exactly-once semantics (EOS).",
+    "hint": "Consider idempotent producers, atomic writes across topics and offsets, consumer isolation level, and what the guarantee does not cover."
+  },
+  {
+    "id": "kafka-architecture-consumer-groups-003",
+    "question": "If a Kafka consumer service goes down, how do you maintain message order?",
+    "hint": "Think about partition-level ordering, what happens to a partition after reassignment, and how offsets committed correctly prevent skipping or reordering."
+  },
+  {
+    "id": "kafka-architecture-consumer-groups-004",
+    "question": "What is idempotence, and how does producer idempotence work in Kafka?",
+    "hint": "Think about retries producing duplicates, and what identifiers and sequence numbers let the broker discard repeated writes."
+  }
+]

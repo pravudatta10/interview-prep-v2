@@ -1,0 +1,12 @@
+[
+  {
+    "id": "docker-fundamentals",
+    "file": "docker-fundamentals",
+    "title": "Docker Fundamentals for Java Applications"
+  },
+  {
+    "id": "jvm-in-containers",
+    "file": "jvm-in-containers",
+    "title": "JVM in Containers"
+  }
+]

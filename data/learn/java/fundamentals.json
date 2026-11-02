@@ -184,5 +184,130 @@
     "id": "java-fundamentals-030",
     "question": "Which Java version would you recommend for a new enterprise application and why?",
     "hint": "Think LTS support, framework compatibility, and library support."
+  },
+  {
+    "id": "java-fundamentals-031",
+    "question": "Is Java strictly pass-by-value? Explain with an object-reference example.",
+    "hint": "Think about what actually gets copied when you pass an object: the object itself or its reference, and what reassigning does."
+  },
+  {
+    "id": "java-fundamentals-032",
+    "question": "Difference between static and instance variables/methods.",
+    "hint": "Compare ownership by the class vs. by each object, memory location, and whether 'this' is available."
+  },
+  {
+    "id": "java-fundamentals-033",
+    "question": "Why is the main() method declared static?",
+    "hint": "Think about who calls main(), when, and whether an instance exists yet at that moment."
+  },
+  {
+    "id": "java-fundamentals-034",
+    "question": "What is autoboxing and unboxing, and what are the performance implications?",
+    "hint": "Consider hidden conversions between primitives and wrappers, object allocation in loops, and null surprises on unboxing."
+  },
+  {
+    "id": "java-fundamentals-035",
+    "question": "Difference between final, finally, and finalize().",
+    "hint": "Think of a keyword, a try-block companion, and an old Object method; they only share a name prefix."
+  },
+  {
+    "id": "java-fundamentals-036",
+    "question": "Difference between composition and aggregation, with an example from your project.",
+    "hint": "Focus on lifecycle ownership: does the part die with the whole, or can it exist independently?"
+  },
+  {
+    "id": "java-fundamentals-037",
+    "question": "What does the compiler insert automatically if you don't call this() or super() explicitly?",
+    "hint": "Start from implicit constructor behaviour and what the compiler needs from the parent class to make it work."
+  },
+  {
+    "id": "java-fundamentals-038",
+    "question": "Why does 0.1 + 0.2 == 0.3 evaluate to false in Java?",
+    "hint": "Think about how binary floating point represents decimal fractions and why equality comparisons are risky."
+  },
+  {
+    "id": "java-fundamentals-039",
+    "question": "Why should BigDecimal be constructed from a String rather than a double?",
+    "hint": "Consider where the imprecision gets introduced: before the constructor ever sees the value."
+  },
+  {
+    "id": "java-fundamentals-040",
+    "question": "What are the different ways to create an object in Java besides the new keyword?",
+    "hint": "Think about reflection, cloning, deserialization, and factory methods, and which of them bypass constructors."
+  },
+  {
+    "id": "java-fundamentals-041",
+    "question": "Can you access an instance field from a static context? Can you call a static method through an object reference?",
+    "hint": "Consider which context has an implicit 'this', and what the compiler does with a static call via an instance."
+  },
+  {
+    "id": "java-fundamentals-042",
+    "question": "Where should the static keyword be preferred, and where does it become an anti-pattern (e.g., in testability)?",
+    "hint": "Think utility methods and constants vs. hidden global state, mocking difficulty, and tight coupling."
+  },
+  {
+    "id": "java-fundamentals-043",
+    "question": "Why is Integer caching (−128 to 127) implemented, and how can it cause subtle bugs with == comparisons?",
+    "hint": "Consider the pool of shared wrapper instances, what == compares for references, and where small tests pass but large values fail."
+  },
+  {
+    "id": "java-fundamentals-044",
+    "question": "Why does comparing two boxed Integer objects outside the cache range with == silently break, and how do you avoid it?",
+    "hint": "Think about valueOf creating new objects past the cache boundary, and what equality method to use instead."
+  },
+  {
+    "id": "java-fundamentals-045",
+    "question": "What are the access modifiers in Java, and what is their visibility scope across package, subclass, and class boundaries?",
+    "hint": "Build a grid of private, default, protected, public against same class, same package, subclass, and elsewhere."
+  },
+  {
+    "id": "java-fundamentals-046",
+    "question": "If no access modifier is specified on a member (default/package-private), who can access it?",
+    "hint": "Think about the package boundary and whether subclasses in other packages are included."
+  },
+  {
+    "id": "java-fundamentals-047",
+    "question": "Why was finalize() deprecated since Java 9, and what replaced it (Cleaner, try-with-resources)?",
+    "hint": "Consider unpredictability of GC timing, performance cost, resurrection, and deterministic or phantom-reference-based alternatives."
+  },
+  {
+    "id": "java-fundamentals-048",
+    "question": "When a subclass object is created for the first time, what is the exact order of execution across static blocks, instance blocks, and constructors — for both parent and child?",
+    "hint": "Consider order: parent static, child static, then for each construction parent instance init and constructor before the child's."
+  },
+  {
+    "id": "java-fundamentals-049",
+    "question": "Do static initializer blocks run once per class or once per object? What triggers them?",
+    "hint": "Think about class initialization once per class loader and what events (instantiation, static access) trigger it."
+  },
+  {
+    "id": "java-fundamentals-050",
+    "question": "Given a two-level class hierarchy with static blocks, instance blocks, and constructors that each print a value, trace the exact output when a child object is instantiated.",
+    "hint": "Apply the load-then-construct sequence: static blocks top-down first, then instance blocks and constructors parent-first."
+  },
+  {
+    "id": "java-fundamentals-051",
+    "question": "What are the rules for using this() and super() inside a constructor (position, mutual exclusivity)?",
+    "hint": "Think about first-statement positioning, what happens with both, and what the compiler inserts if you give neither."
+  },
+  {
+    "id": "java-fundamentals-052",
+    "question": "If a parent class has only a parameterized constructor (no no-arg constructor), what must every subclass constructor do?",
+    "hint": "Consider the implicit super() call failing and what the child's constructor must explicitly do."
+  },
+  {
+    "id": "java-fundamentals-053",
+    "question": "Why should you never use float/double for currency calculations? What should you use instead?",
+    "hint": "Think about binary representation errors accumulating in money, and a type with exact decimal arithmetic or integer cents."
+  },
+  {
+    "id": "java-fundamentals-054",
+    "question": "Why do you need to specify a RoundingMode explicitly when dividing with BigDecimal?",
+    "hint": "Consider non-terminating decimal expansions like one third, and what the library does when it can't be exact."
+  },
+  {
+    "id": "java-fundamentals-055",
+    "question": "Why does BigDecimal.equals() return false for 1.0 and 1.00, while compareTo() treats them as equal? Where does this cause bugs (e.g., in a HashSet)?",
+    "hint": "Think about scale being part of equality, hashing consistency, and which comparison suits sorted vs. hashed sets."
   }
 ]

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "behavioral-project-walkthrough-001",
+    "question": "Tell me about your current project and your role/responsibilities in it.",
+    "hint": "Structure your answer around the business problem, your specific ownership, the tech stack, and a measurable outcome."
+  },
+  {
+    "id": "behavioral-project-walkthrough-002",
+    "question": "Which classes or modules did you personally design and build — walk through one in detail?",
+    "hint": "Pick a component you truly owned, and cover its purpose, key classes, design choices, and the trade-offs you made."
+  },
+  {
+    "id": "behavioral-project-walkthrough-003",
+    "question": "What versions of the key technologies (Java, Spring Boot, database) does your project use, and why?",
+    "hint": "Think about LTS support, framework compatibility, security patches, feature needs, and migration cost behind each version choice."
+  },
+  {
+    "id": "behavioral-project-walkthrough-004",
+    "question": "How do you run or contribute to a design review, and what do you look for?",
+    "hint": "Consider what you look for: requirements fit, boundaries, failure modes, scalability, and how you keep it constructive."
+  },
+  {
+    "id": "behavioral-project-walkthrough-005",
+    "question": "How do you mentor junior engineers and raise the quality of a team's code?",
+    "hint": "Think about pairing, code review feedback, shared standards, automation like linters, and teaching reasoning instead of handing over fixes."
+  },
+  {
+    "id": "behavioral-project-walkthrough-006",
+    "question": "How do you manage technical debt alongside feature delivery?",
+    "hint": "Consider making debt visible, a reserved capacity share, tying cleanup to touched areas, and communicating cost to the business."
+  },
+  {
+    "id": "behavioral-project-walkthrough-007",
+    "question": "How do you estimate work, and what do you do when an estimate turns out wrong?",
+    "hint": "Think about breaking down work, comparing with past tasks, buffers, spotting the miss early, communicating and re-planning."
+  },
+  {
+    "id": "behavioral-project-walkthrough-008",
+    "question": "Tell me about a time you pushed back on an infeasible requirement and what the outcome was.",
+    "hint": "Use a story structure: the requirement, why it was infeasible, evidence you brought, alternatives offered, and the result."
+  },
+  {
+    "id": "behavioral-project-walkthrough-009",
+    "question": "How do you use AI coding assistants responsibly in code reviews, log analysis, and test generation, and what are their limits?",
+    "hint": "Consider where AI saves time, where human verification remains essential, and risks like hallucination, data leakage, and over-trust."
+  },
+  {
+    "id": "behavioral-project-walkthrough-010",
+    "question": "Describe a project where you owned a feature from requirement analysis through production support.",
+    "hint": "Pick one feature and walk the lifecycle: requirements, design, build, test, release, then monitoring and support after go-live."
+  },
+  {
+    "id": "behavioral-project-walkthrough-011",
+    "question": "Walk me through the architecture of a project you built end-to-end.",
+    "hint": "Pick a real project and cover goals, components, data flow, key decisions, and trade-offs, ending with measurable results."
+  },
+  {
+    "id": "behavioral-project-walkthrough-012",
+    "question": "How do you make and document an architecture decision (ADR), and how do you handle trade-offs and disagreement?",
+    "hint": "Think about a decision record's context, options, outcome, and consequences, and how to handle disagreement with evidence and commitment."
+  }
+]

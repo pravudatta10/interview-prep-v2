@@ -1,0 +1,27 @@
+[
+  {
+    "id": "angular-rxjs-and-reactive-state-001",
+    "question": "What is the difference between Subject, BehaviorSubject, ReplaySubject, and AsyncSubject?",
+    "hint": "Consider what each subject does for late subscribers: initial value, replay history, or only the final emission."
+  },
+  {
+    "id": "angular-rxjs-and-reactive-state-002",
+    "question": "What is the difference between combineLatest, forkJoin, zip, and withLatestFrom?",
+    "hint": "Compare when each operator emits, whether it needs completion, and how it pairs values from multiple streams."
+  },
+  {
+    "id": "angular-rxjs-and-reactive-state-003",
+    "question": "How do you handle errors in streams (catchError, retry, retryWhen) without killing the stream?",
+    "hint": "Consider where in the pipe an error terminates the stream, and how to contain failures inside an inner observable or retry with backoff."
+  },
+  {
+    "id": "angular-rxjs-and-reactive-state-004",
+    "question": "What does shareReplay do, and how do you use it to avoid duplicate HTTP calls?",
+    "hint": "Think about multicasting a cold observable, how many subscribers share one execution, and what the replay buffer and refCount do."
+  },
+  {
+    "id": "angular-rxjs-and-reactive-state-005",
+    "question": "How do you cancel an in-flight HTTP request, and what happens on unsubscribe?",
+    "hint": "Consider what unsubscribing triggers in the underlying XMLHttpRequest, and which flattening operators automatically cancel the previous request."
+  }
+]

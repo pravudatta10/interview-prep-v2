@@ -1,0 +1,77 @@
+[
+  {
+    "id": "spring-framework-spring-core-ioc-and-di-001",
+    "question": "What is Inversion of Control (IoC), and what is Dependency Injection (DI)? How do they relate?",
+    "hint": "Think about who controls object creation and wiring: a principle vs. a technique that implements it."
+  },
+  {
+    "id": "spring-framework-spring-core-ioc-and-di-002",
+    "question": "What are the types of DI in Spring — constructor, setter, and field injection — and what are the pros/cons of each?",
+    "hint": "Compare immutability and testability, mandatory dependencies, circular dependency detection, and reflection-based private field injection."
+  },
+  {
+    "id": "spring-framework-spring-core-ioc-and-di-003",
+    "question": "How do you resolve ambiguity when multiple beans of the same type exist (@Qualifier, @Primary)?",
+    "hint": "Consider injection by type first, then narrowing by name or preference, and which annotation overrides which."
+  },
+  {
+    "id": "spring-framework-spring-core-ioc-and-di-004",
+    "question": "Explain the Spring Bean lifecycle from definition to destruction.",
+    "hint": "Walk through instantiation, property population, Aware callbacks, post-processors, init callbacks, then destroy callbacks."
+  },
+  {
+    "id": "spring-framework-spring-core-ioc-and-di-005",
+    "question": "What are the different Bean scopes (singleton, prototype, request, session), and what is the default?",
+    "hint": "Think about the default scope, web-aware scopes, and how many instances exist per container or per request."
+  },
+  {
+    "id": "spring-framework-spring-core-ioc-and-di-006",
+    "question": "Difference between the singleton scope in Spring and the classic Gang-of-Four Singleton pattern.",
+    "hint": "Consider one instance per container versus one per classloader, and whether the container controls instance creation."
+  },
+  {
+    "id": "spring-framework-spring-core-ioc-and-di-007",
+    "question": "How do @PostConstruct and @PreDestroy work?",
+    "hint": "Think about callbacks around initialization and shutdown, who invokes them, and the post-processor that detects the annotations."
+  },
+  {
+    "id": "spring-framework-spring-core-ioc-and-di-008",
+    "question": "How do you manage multiple property files or externalized configuration in Spring?",
+    "hint": "Think about application.properties vs. YAML, profile-specific files, @PropertySource, and overriding via environment or command line."
+  },
+  {
+    "id": "spring-framework-spring-core-ioc-and-di-009",
+    "question": "What are Spring Profiles, and how do you activate them per environment?",
+    "hint": "Consider conditional bean registration, spring.profiles.active, environment variables, and per-environment config files."
+  },
+  {
+    "id": "spring-framework-spring-core-ioc-and-di-010",
+    "question": "How do you read values from an external property file, and how do you encrypt sensitive properties (e.g., with Jasypt) in centralized configuration?",
+    "hint": "Think about @Value vs. @ConfigurationProperties, and transparent decryption of ENC-wrapped values with a key kept outside the repo."
+  },
+  {
+    "id": "spring-framework-spring-core-ioc-and-di-011",
+    "question": "What is Spring, and why do we use it?",
+    "hint": "Consider inversion of control, dependency injection, boilerplate reduction, and the ecosystem built around the container."
+  },
+  {
+    "id": "spring-framework-spring-core-ioc-and-di-012",
+    "question": "How does autowiring work internally (BeanPostProcessor, by type, by name, @Qualifier, @Primary)?",
+    "hint": "Think about the post-processor that scans injection points, resolution by type, then qualifier or name fallback, and ambiguity errors."
+  },
+  {
+    "id": "spring-framework-spring-core-ioc-and-di-013",
+    "question": "What is the difference between @Component, @Service, @Repository, and @Controller beyond naming?",
+    "hint": "Consider stereotype roles, component scanning, exception translation for persistence, and web-layer handling."
+  },
+  {
+    "id": "spring-framework-spring-core-ioc-and-di-014",
+    "question": "How do you handle a prototype-scoped bean injected into a singleton?",
+    "hint": "Think about scope mismatch, a singleton holding a stale instance, and lookup methods, ObjectProvider, or scoped proxies."
+  },
+  {
+    "id": "spring-framework-spring-core-ioc-and-di-015",
+    "question": "What are BeanFactoryPostProcessor and BeanPostProcessor, and when have you used them?",
+    "hint": "Compare hooks that modify bean definitions before creation with hooks that modify bean instances after creation."
+  }
+]

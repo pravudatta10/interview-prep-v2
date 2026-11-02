@@ -1,0 +1,26 @@
+[
+  {
+    "id": "implement-level-order",
+    "title": "Implement level-order (BFS) traversal of a binary tree",
+    "difficulty": "Medium",
+    "hint": "Use a Queue, and for each level record the current queue size, then process exactly that many nodes while enqueuing their children."
+  },
+  {
+    "id": "check-if-binary-tree-height-balanced",
+    "title": "Check if a binary tree is height-balanced",
+    "difficulty": "Medium",
+    "hint": "Recursively compute subtree heights, returning a sentinel such as -1 as soon as a subtree is unbalanced, so each node is visited once."
+  },
+  {
+    "id": "validate-whether-binary-tree-valid-binary",
+    "title": "Validate whether a binary tree is a valid Binary Search Tree",
+    "difficulty": "Medium",
+    "hint": "Recurse passing a min and max bound for each node, or do an inorder traversal and check values are strictly increasing."
+  },
+  {
+    "id": "find-lowest-common-ancestor-nodes-bst",
+    "title": "Find the Lowest Common Ancestor of two nodes in a BST and in a general binary tree",
+    "difficulty": "Medium",
+    "hint": "For a BST, walk down using value comparison; for a general tree, recurse and return the node where both left and right searches find a target."
+  }
+]

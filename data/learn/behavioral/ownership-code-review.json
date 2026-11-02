@@ -1,0 +1,17 @@
+[
+  {
+    "id": "behavioral-ownership-code-review-001",
+    "question": "How do you prioritize when assigned many tasks of varying difficulty in a sprint — e.g., 15 easy, 4 moderate, and 1 very difficult task in one week?",
+    "hint": "Consider ordering by value, risk, and dependencies, tackling the hard item early, and communicating trade-offs to stakeholders."
+  },
+  {
+    "id": "behavioral-ownership-code-review-002",
+    "question": "How do you handle a disagreement with a teammate or reviewer during a code review? Walk through how code review generally happens on your team.",
+    "hint": "Think about focusing on code and standards rather than people, using data, seeking a shared goal, and escalating only when stuck."
+  },
+  {
+    "id": "behavioral-ownership-code-review-003",
+    "question": "Describe a situation where you took ownership beyond your assigned task.",
+    "hint": "Pick a concrete story that shows noticing a gap, acting without being asked, and the measurable impact afterward."
+  }
+]

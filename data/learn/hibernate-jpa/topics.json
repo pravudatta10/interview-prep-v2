@@ -1,0 +1,17 @@
+[
+  {
+    "id": "mapping-and-fetching",
+    "file": "mapping-and-fetching",
+    "title": "Mapping & Fetching"
+  },
+  {
+    "id": "core-concepts",
+    "file": "core-concepts",
+    "title": "Hibernate Core Concepts"
+  },
+  {
+    "id": "diagnosing-and-tuning-hibernate-in-production",
+    "file": "diagnosing-and-tuning-hibernate-in-production",
+    "title": "Diagnosing & Tuning Hibernate in Production"
+  }
+]

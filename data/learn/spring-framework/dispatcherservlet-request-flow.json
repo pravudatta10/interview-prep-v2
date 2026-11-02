@@ -1,0 +1,27 @@
+[
+  {
+    "id": "spring-framework-dispatcherservlet-request-flow-001",
+    "question": "Difference between @Controller and @RestController.",
+    "hint": "Consider view resolution vs. writing straight to the response body and which annotation is a composition."
+  },
+  {
+    "id": "spring-framework-dispatcherservlet-request-flow-002",
+    "question": "What are the key differences between Spring MVC and Spring Boot?",
+    "hint": "Compare a web framework with an opinionated setup layer: configuration, embedded server, and starters."
+  },
+  {
+    "id": "spring-framework-dispatcherservlet-request-flow-003",
+    "question": "Explain the complete Spring MVC / DispatcherServlet request flow, end to end.",
+    "hint": "Trace the request from the servlet container through the front controller, handler mapping, adapter, controller, view or converter, and response."
+  },
+  {
+    "id": "spring-framework-dispatcherservlet-request-flow-004",
+    "question": "How does Spring MVC handle validation (@Valid, BindingResult)?",
+    "hint": "Think about Bean Validation annotations, binding results, handling MethodArgumentNotValidException, and validation groups."
+  },
+  {
+    "id": "spring-framework-dispatcherservlet-request-flow-005",
+    "question": "How would you intercept every request to log the caller's IP address before it reaches your controller (HandlerInterceptor)?",
+    "hint": "Consider the HandlerInterceptor callbacks, registering via WebMvcConfigurer, and reading remote address with forwarded-header caveats."
+  }
+]

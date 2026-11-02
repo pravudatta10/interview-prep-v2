@@ -1,0 +1,37 @@
+[
+  {
+    "id": "java-jvm-garbage-collection-001",
+    "question": "Difference between Serial, Parallel, CMS, and G1 garbage collectors.",
+    "hint": "Compare thread usage, stop-the-world pauses, throughput vs. latency goals, and heap region layout."
+  },
+  {
+    "id": "java-jvm-garbage-collection-002",
+    "question": "Explain the JVM memory areas — heap, stack, metaspace, PC register.",
+    "hint": "Consider what is per-thread vs. shared, where objects and frames live, and where class metadata moved to in Java 8."
+  },
+  {
+    "id": "java-jvm-garbage-collection-003",
+    "question": "Explain the class loading mechanism and the class loader hierarchy (Bootstrap, Extension/Platform, Application).",
+    "hint": "Think about delegation to the parent first, which loader handles which classes, and why it protects core classes."
+  },
+  {
+    "id": "java-jvm-garbage-collection-004",
+    "question": "What are ZGC and Shenandoah, and how do they achieve sub-millisecond pause times?",
+    "hint": "Consider concurrent marking and relocation, colored pointers or load barriers, and why pause time is independent of heap size."
+  },
+  {
+    "id": "java-jvm-garbage-collection-005",
+    "question": "How do you analyze a heap dump or thread dump in production, and what tools do you use?",
+    "hint": "Think about triggering and capturing dumps, then tools for finding leaks, dominators, blocked threads and deadlocks."
+  },
+  {
+    "id": "java-jvm-garbage-collection-006",
+    "question": "How do you increase heap size? What do -Xms and -Xmx control?",
+    "hint": "Think about initial vs. maximum heap and what happens when memory demand outgrows each setting."
+  },
+  {
+    "id": "java-jvm-garbage-collection-007",
+    "question": "How do you tune the JVM differently for a low-latency service versus a high-throughput batch service?",
+    "hint": "Compare what each workload optimizes for, such as pause times versus total work, and think about collector choice, heap sizing, and measurement."
+  }
+]

@@ -1,0 +1,7 @@
+[
+  {
+    "id": "nosql-choosing-the-right-data-store-001",
+    "question": "How do you choose among relational, document, key-value, wide-column, graph, and search stores for a given workload?",
+    "hint": "Think about access patterns, consistency needs, data shape and scale, and why polyglot persistence adds operational cost."
+  }
+]

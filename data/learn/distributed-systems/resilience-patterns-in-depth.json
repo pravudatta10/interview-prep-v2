@@ -1,0 +1,37 @@
+[
+  {
+    "id": "distributed-systems-resilience-patterns-in-depth-001",
+    "question": "How do timeouts, retries, circuit breakers, bulkheads, rate limiters, and fallbacks compose, and in what order should they be applied (Resilience4j aspect order)?",
+    "hint": "Think about layering: which pattern wraps which, how retries multiply load, and the order of the aspect chain."
+  },
+  {
+    "id": "distributed-systems-resilience-patterns-in-depth-002",
+    "question": "Which errors are safe to retry, and why does retrying require idempotent operations?",
+    "hint": "Consider failure types (transient vs. permanent, client vs. server errors), side effects of repeated calls, and deduplication."
+  },
+  {
+    "id": "distributed-systems-resilience-patterns-in-depth-003",
+    "question": "How do you implement a distributed rate limiter, and where should it be enforced (gateway, per-user, per-service)?",
+    "hint": "Think about shared counters, algorithms such as token bucket, atomic stores like Redis, and trade-offs of enforcing at the edge versus near services."
+  },
+  {
+    "id": "distributed-systems-resilience-patterns-in-depth-004",
+    "question": "How do you protect a service that is overloaded (bounded queues, concurrency limits, adaptive limits, priority shedding)?",
+    "hint": "Think about shedding load early: limits on queue depth and concurrency, adapting to latency, and deciding which requests are dropped first."
+  },
+  {
+    "id": "distributed-systems-resilience-patterns-in-depth-005",
+    "question": "What is graceful degradation, and what fallbacks are acceptable (stale cache, default response, feature flags)?",
+    "hint": "Think about keeping core function alive when dependencies fail, and which substitutes keep users acceptably informed without being misleading."
+  },
+  {
+    "id": "distributed-systems-resilience-patterns-in-depth-006",
+    "question": "How do liveness, readiness, and startup probes differ, and why can a deep health check cause a cascading failure?",
+    "hint": "Compare what each probe asks the orchestrator to do on failure, and what happens when a shared dependency failure makes every instance look unhealthy."
+  },
+  {
+    "id": "distributed-systems-resilience-patterns-in-depth-007",
+    "question": "What are RTO and RPO, and how do they drive your disaster-recovery design (backup and restore, pilot light, warm standby, active-active)?",
+    "hint": "Think about how much data loss and downtime the business tolerates, and how cost climbs as those targets tighten."
+  }
+]

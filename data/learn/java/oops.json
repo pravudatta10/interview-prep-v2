@@ -47,5 +47,95 @@
     "id": "java-oops-007",
     "question": "When would you reach for an interface instead of an abstract class?",
     "hint": "Think contract vs. shared state and code, and single vs. multiple inheritance."
+  },
+  {
+    "id": "java-oops-008",
+    "question": "Difference between abstraction and encapsulation.",
+    "hint": "Contrast hiding complexity at the design level with protecting internal state at the implementation level."
+  },
+  {
+    "id": "java-oops-009",
+    "question": "Where in your project have you applied encapsulation, and in which layer?",
+    "hint": "Consider private state, validated setters or constructors, DTO vs. entity boundaries, and where invariants are enforced."
+  },
+  {
+    "id": "java-oops-010",
+    "question": "Where have you applied polymorphism in your project?",
+    "hint": "Think of one interface with several implementations chosen at runtime, such as strategies, handlers or payment types."
+  },
+  {
+    "id": "java-oops-011",
+    "question": "Given a class you designed recently, identify which OOP principle each design decision maps to and why.",
+    "hint": "Pick one concrete class and tag each decision: hiding fields, interfaces, delegation, and overridable behaviour."
+  },
+  {
+    "id": "java-oops-012",
+    "question": "How do you apply OOP principles (encapsulation, abstraction, composition, polymorphism) in a real service you built, and where did you deliberately avoid inheritance?",
+    "hint": "Think about favoring interfaces and delegation, the fragility of deep hierarchies, and a concrete case where you chose composition."
+  },
+  {
+    "id": "java-oops-013",
+    "question": "Can an interface have concrete methods? Explain default and static methods in interfaces (Java 8+).",
+    "hint": "Think about what Java 8 added to interfaces, why backward compatibility drove it, and how static ones are called."
+  },
+  {
+    "id": "java-oops-014",
+    "question": "What is the diamond problem, and how does Java avoid it with default methods in interfaces?",
+    "hint": "Consider ambiguity from multiple parents with the same method and the explicit resolution rule the compiler forces."
+  },
+  {
+    "id": "java-oops-015",
+    "question": "If a class has five abstract methods, could you redesign it as an interface — what would you gain or lose?",
+    "hint": "Think about what you gain (multiple implementation, loose coupling) and lose (shared state, constructors, protected members)."
+  },
+  {
+    "id": "java-oops-016",
+    "question": "How are abstract classes and interfaces used together in your project's design?",
+    "hint": "Consider an interface as the contract and an abstract class supplying skeletal shared behaviour, like a template method."
+  },
+  {
+    "id": "java-oops-017",
+    "question": "What is a functional interface? Name a few used in Java 8 Streams (Predicate, Function, Supplier, Consumer).",
+    "hint": "Think about a single abstract method, lambda targets, and the roles of test, transform, produce and consume."
+  },
+  {
+    "id": "java-oops-018",
+    "question": "What is method overloading vs method overriding, and how do they relate to polymorphism?",
+    "hint": "Compare compile-time vs. runtime method selection, and which provides dynamic dispatch."
+  },
+  {
+    "id": "java-oops-019",
+    "question": "Can you overload or override static methods? Why or why not?",
+    "hint": "Think about binding at compile time by class vs. by object, and what really happens when a subclass redeclares one."
+  },
+  {
+    "id": "java-oops-020",
+    "question": "What are the rules that govern a valid method override (exceptions, access modifiers, return types)?",
+    "hint": "Consider signature match, visibility not narrowing, covariant returns, and exception limits for checked types."
+  },
+  {
+    "id": "java-oops-021",
+    "question": "Why would you use an enum instead of a set of int/String constants?",
+    "hint": "Think about type safety, namespaces, switch exhaustiveness, and attaching behaviour to the values."
+  },
+  {
+    "id": "java-oops-022",
+    "question": "Can an enum have fields, constructors, and methods? Can each constant override a method differently?",
+    "hint": "Consider enums as full classes with private constructors, and constant-specific class bodies."
+  },
+  {
+    "id": "java-oops-023",
+    "question": "What is Effective Java's recommended way to implement a Singleton, and why is it enum-based?",
+    "hint": "Think about serialization, reflection, thread-safe initialization, and what the JVM guarantees about enum constants."
+  },
+  {
+    "id": "java-oops-024",
+    "question": "Why is enum-based Singleton considered safer against reflection attacks and deserialization than a classic private-constructor Singleton?",
+    "hint": "Consider how reflection and deserialization can create extra instances of a classic singleton and what the JVM blocks for enums."
+  },
+  {
+    "id": "java-oops-025",
+    "question": "You have an anonymous inner class used as an event listener that's registered and never unregistered. Why might this cause a memory leak, and how would you fix it?",
+    "hint": "Think about what the event source holds, reachability from GC roots, and the lifecycle of the registration or weak references."
   }
 ]

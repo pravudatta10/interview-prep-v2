@@ -1,0 +1,26 @@
+[
+  {
+    "id": "implement-typeahead-search-box-debouncetime",
+    "title": "Implement a typeahead search box using debounceTime, distinctUntilChanged, and switchMap",
+    "difficulty": "Medium",
+    "hint": "Pipe the input's valueChanges through debounceTime, distinctUntilChanged and switchMap to the search API so stale requests are cancelled."
+  },
+  {
+    "id": "call-three-apis-parallel-combine-results",
+    "title": "Call three APIs in parallel and combine the results using forkJoin, handling a failure in one of them",
+    "difficulty": "Medium",
+    "hint": "Pass the three observables to forkJoin and wrap each in catchError returning a default value so one failure does not cancel the others."
+  },
+  {
+    "id": "cache-http-response-service-sharereplay-so",
+    "title": "Cache an HTTP response in a service using shareReplay so that multiple subscribers cause a single call",
+    "difficulty": "Medium",
+    "hint": "Store the HTTP observable in a field piped through shareReplay(1) so later subscribers reuse the cached emission rather than triggering new calls."
+  },
+  {
+    "id": "prevent-double-submit-save-button-exhaustmap",
+    "title": "Prevent double-submit on a save button using exhaustMap",
+    "difficulty": "Medium",
+    "hint": "Pipe the click stream through exhaustMap into the save call, so new clicks are ignored while a save is in progress."
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "id": "angular-routing-forms-and-http-001",
+    "question": "What are route guards (CanActivate, CanMatch, CanDeactivate) and resolvers, and how are functional guards written?",
+    "hint": "Think about decisions made before a route activates, loading vs. matching, unsaved changes, and function-style guards using inject()."
+  },
+  {
+    "id": "angular-routing-forms-and-http-002",
+    "question": "How do child routes, route parameters, and query parameters work, and how do you react to param changes?",
+    "hint": "Consider the difference between a snapshot and an observable, how nested outlets work, and what happens when the same component is reused."
+  },
+  {
+    "id": "angular-routing-forms-and-http-003",
+    "question": "How do FormGroup, FormControl, FormArray, and FormBuilder work, and what are typed forms?",
+    "hint": "Think about the model tree of controls, grouping vs. dynamic lists, builder shorthand, and compile-time type safety on form values."
+  },
+  {
+    "id": "angular-routing-forms-and-http-004",
+    "question": "How do you write custom synchronous and asynchronous validators, including cross-field validation?",
+    "hint": "Consider validator return shapes, how async validators avoid hammering a server, and which level (control vs. group) sees multiple fields."
+  },
+  {
+    "id": "angular-routing-forms-and-http-005",
+    "question": "How do you build dynamic forms, and how do you handle valueChanges efficiently?",
+    "hint": "Think about building controls from metadata, adding or removing controls at runtime, and limiting emissions with operators and cleanup."
+  },
+  {
+    "id": "angular-routing-forms-and-http-006",
+    "question": "How do you handle form state in large forms (dirty, touched, pending, patchValue vs setValue)?",
+    "hint": "Consider what each flag means, how strict each update method is about missing fields, and how pending status interacts with async validation."
+  },
+  {
+    "id": "angular-routing-forms-and-http-007",
+    "question": "How do HTTP interceptors work, and what do you use them for (auth token, global error handling, loading indicator, retry)?",
+    "hint": "Think about a middleware chain on requests and responses, immutable cloning, ordering, and cross-cutting concerns applied in one place."
+  },
+  {
+    "id": "angular-routing-forms-and-http-008",
+    "question": "How do you handle CORS issues in development and production?",
+    "hint": "Think about browser same-origin policy, who sets response headers, and why a dev proxy differs from server-side configuration in production."
+  },
+  {
+    "id": "angular-routing-forms-and-http-009",
+    "question": "How do you implement real-time updates in Angular (WebSockets, SSE, RxJS webSocket)?",
+    "hint": "Compare bidirectional vs. one-way transports, reconnection and backoff, and how to turn pushed messages into streams the UI consumes."
+  }
+]

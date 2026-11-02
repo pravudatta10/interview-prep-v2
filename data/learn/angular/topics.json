@@ -1,0 +1,27 @@
+[
+  {
+    "id": "typescript-and-javascript",
+    "file": "typescript-and-javascript",
+    "title": "TypeScript & JavaScript"
+  },
+  {
+    "id": "angular-core",
+    "file": "angular-core",
+    "title": "Angular Core"
+  },
+  {
+    "id": "rxjs-and-reactive-state",
+    "file": "rxjs-and-reactive-state",
+    "title": "RxJS & Reactive State"
+  },
+  {
+    "id": "architecture-testing-delivery",
+    "file": "architecture-testing-delivery",
+    "title": "Architecture, Testing & Delivery"
+  },
+  {
+    "id": "routing-forms-and-http",
+    "file": "routing-forms-and-http",
+    "title": "Routing, Forms & HTTP"
+  }
+]

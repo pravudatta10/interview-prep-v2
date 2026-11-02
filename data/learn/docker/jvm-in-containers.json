@@ -1,0 +1,7 @@
+[
+  {
+    "id": "docker-jvm-in-containers-001",
+    "question": "How does the JVM behave inside a container (container-aware memory, MaxRAMPercentage, CPU limits), and what causes OOMKilled?",
+    "hint": "Consider how the JVM reads cgroup limits, heap as a fraction of container memory, non-heap usage, and what the kernel does when limits are exceeded."
+  }
+]

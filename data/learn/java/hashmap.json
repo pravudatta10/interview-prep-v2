@@ -1,0 +1,42 @@
+[
+  {
+    "id": "java-hashmap-001",
+    "question": "What is the role of hashCode() and equals() in HashMap lookups?",
+    "hint": "Think about the two-step lookup: which method picks the bucket, and which confirms the match."
+  },
+  {
+    "id": "java-hashmap-002",
+    "question": "Can a HashMap have a null key? Null values? What about Hashtable and ConcurrentHashMap?",
+    "hint": "Compare null policy across each map: which allow null keys, which allow null values, and why concurrency changes the rules."
+  },
+  {
+    "id": "java-hashmap-003",
+    "question": "How does HashMap handle collisions, and what changed in Java 8 (treeification of buckets past a threshold)?",
+    "hint": "Consider linked lists in buckets, a size threshold, balanced trees, and the improvement in worst-case lookup time."
+  },
+  {
+    "id": "java-hashmap-004",
+    "question": "What happens during HashMap resizing (rehashing)? What is the load factor, and why 0.75?",
+    "hint": "Think about capacity vs. size threshold, bucket redistribution cost, and the trade-off between space and collision probability."
+  },
+  {
+    "id": "java-hashmap-005",
+    "question": "Is HashMap thread-safe? How would you make it thread-safe?",
+    "hint": "Consider unsynchronized structural changes, lost updates, and the wrapper, legacy, and concurrent alternatives available."
+  },
+  {
+    "id": "java-hashmap-006",
+    "question": "How does ConcurrentHashMap achieve thread safety in Java 8+ without segment locking (CAS + synchronized on bins)?",
+    "hint": "Think about CAS for empty bins, locking only the bin head when occupied, and how reads avoid locking."
+  },
+  {
+    "id": "java-hashmap-007",
+    "question": "A HashMap suddenly performs very slowly or degrades under heavy load. What could be the reasons (poor hashCode, resizing, treeification, contention, key size, memory)?",
+    "hint": "Consider hash quality, resize storms, long bucket chains vs. trees, lock contention, oversized keys, and memory pressure."
+  },
+  {
+    "id": "java-hashmap-008",
+    "question": "Why must keys be immutable, and what breaks if a key's hashCode changes after insertion?",
+    "hint": "Think about how lookups locate a bucket, and what happens when the computed bucket no longer matches the stored one."
+  }
+]

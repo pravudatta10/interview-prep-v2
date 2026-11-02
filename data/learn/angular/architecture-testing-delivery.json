@@ -1,0 +1,62 @@
+[
+  {
+    "id": "angular-architecture-testing-delivery-001",
+    "question": "What is the difference between smart (container) and presentational components?",
+    "hint": "Think about separation of concerns: who fetches data and holds state vs. who just renders inputs and emits outputs."
+  },
+  {
+    "id": "angular-architecture-testing-delivery-002",
+    "question": "What are the core NgRx concepts (actions, reducers, effects, selectors), and how do effects handle side effects?",
+    "hint": "Think about the unidirectional flow from dispatched events to state change, where impure work lives, and how derived data is memoized."
+  },
+  {
+    "id": "angular-architecture-testing-delivery-003",
+    "question": "How do you structure a large Angular codebase (feature modules or folders, shared libraries, core layer, Nx monorepo)?",
+    "hint": "Consider boundaries by feature vs. by type, dependency direction rules between layers, and tooling that enforces them in a monorepo."
+  },
+  {
+    "id": "angular-architecture-testing-delivery-004",
+    "question": "What are micro frontends (Module Federation), and what trade-offs do they bring?",
+    "hint": "Think about independently deployable frontends, runtime loading of remote bundles, shared dependency versions, and the operational cost."
+  },
+  {
+    "id": "angular-architecture-testing-delivery-005",
+    "question": "How do you design the contract between the Angular UI, a BFF, and backend microservices?",
+    "hint": "Consider who owns the response shape, aggregation and tailoring for the UI, versioning of contracts, and how breaking changes are avoided."
+  },
+  {
+    "id": "angular-architecture-testing-delivery-006",
+    "question": "How do you handle API errors consistently across the application and show user-friendly messages?",
+    "hint": "Think about a single place that maps failures to messages, differentiating status classes, and separating logging from what the user sees."
+  },
+  {
+    "id": "angular-architecture-testing-delivery-007",
+    "question": "How do you unit-test components and services (TestBed, mocks, HttpTestingController, marble testing)?",
+    "hint": "Think about isolating the unit with test doubles, verifying outgoing requests without a network, and controlling virtual time for streams."
+  },
+  {
+    "id": "angular-architecture-testing-delivery-008",
+    "question": "What do you test at unit, integration, and end-to-end level (Jest, Cypress, Playwright)?",
+    "hint": "Consider the testing pyramid: speed and cost at each level, what each catches, and where real browsers add value."
+  },
+  {
+    "id": "angular-architecture-testing-delivery-009",
+    "question": "How does Angular protect against XSS (sanitization, DomSanitizer, bypassSecurityTrust), and what is CSP?",
+    "hint": "Think about untrusted values in templates, automatic escaping, the escape hatches that bypass it, and a response header limiting script sources."
+  },
+  {
+    "id": "angular-architecture-testing-delivery-010",
+    "question": "How do you upgrade Angular across major versions (ng update, migration schematics, deprecations)?",
+    "hint": "Consider incremental steps, automated code transformations, reading the changelog for breaking changes, and verifying with tests after each hop."
+  },
+  {
+    "id": "angular-architecture-testing-delivery-011",
+    "question": "What are the major features of Angular 17 to 19 (new control flow, @defer, signals, standalone by default, esbuild, hydration, zoneless)?",
+    "hint": "Consider what changed in templates, rendering strategy, reactivity model, build tooling and the default way of declaring components across these releases."
+  },
+  {
+    "id": "angular-architecture-testing-delivery-012",
+    "question": "How do you handle environment configuration and runtime configuration in Angular builds?",
+    "hint": "Think about build-time vs. runtime values, configuration that must change per deployment without rebuilding, and keeping secrets out of the bundle."
+  }
+]

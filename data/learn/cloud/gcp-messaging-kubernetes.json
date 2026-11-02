@@ -1,0 +1,12 @@
+[
+  {
+    "id": "cloud-gcp-messaging-kubernetes-001",
+    "question": "How do you use Cloud Logging for root-cause analysis in a GCP-hosted microservice?",
+    "hint": "Think about correlating entries by trace or request ID, querying with filters and severity, and moving from symptom to the originating service."
+  },
+  {
+    "id": "cloud-gcp-messaging-kubernetes-002",
+    "question": "How do you manage IAM roles and service accounts securely for inter-service GCP access?",
+    "hint": "Consider least privilege, avoiding downloaded keys, identity attached to workloads, and how one service impersonates or is granted access to another."
+  }
+]

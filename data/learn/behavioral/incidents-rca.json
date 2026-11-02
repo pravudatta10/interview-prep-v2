@@ -1,0 +1,22 @@
+[
+  {
+    "id": "behavioral-incidents-rca-001",
+    "question": "How do you approach debugging an issue that even your project lead doesn't understand?",
+    "hint": "Start from systematic isolation: reproduce, gather evidence, form hypotheses, narrow scope, and tap other people and tools."
+  },
+  {
+    "id": "behavioral-incidents-rca-002",
+    "question": "A bug is detected in production and no one on the team, including your lead, knows the cause — how do you handle that situation?",
+    "hint": "Think about triage first: impact and mitigation, then collecting evidence, escalating sensibly, and communicating while you investigate."
+  },
+  {
+    "id": "behavioral-incidents-rca-003",
+    "question": "How do you identify which specific request or code path is failing in a production environment?",
+    "hint": "Think about correlation IDs, structured logs, distributed traces, error metrics by endpoint, and recent deployments or config changes."
+  },
+  {
+    "id": "behavioral-incidents-rca-004",
+    "question": "Describe a production incident you handled — what was the root cause and the fix?",
+    "hint": "Use a structure: impact and detection, mitigation, root cause evidence, fix, and the follow-up actions that prevented a repeat."
+  }
+]

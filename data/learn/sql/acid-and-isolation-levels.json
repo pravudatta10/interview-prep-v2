@@ -1,0 +1,12 @@
+[
+  {
+    "id": "sql-acid-and-isolation-levels-001",
+    "question": "Explain ACID properties with examples.",
+    "hint": "Walk through each letter with a bank transfer style example, thinking about what fails halfway, concurrent users and crash recovery."
+  },
+  {
+    "id": "sql-acid-and-isolation-levels-002",
+    "question": "What are database locks — shared vs exclusive? What is a deadlock at the database level, and how do you resolve it?",
+    "hint": "Compare read-sharing vs. exclusive write access, circular waiting between transactions, and how databases detect, abort and how you prevent it."
+  }
+]

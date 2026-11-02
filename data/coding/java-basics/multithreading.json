@@ -1,0 +1,74 @@
+[
+  {
+    "id": "implement-classic-producer-consumer-problem-wait",
+    "title": "Implement the classic Producer-Consumer problem using wait()/notify(), then re-implement it using a BlockingQueue",
+    "difficulty": "Medium",
+    "hint": "Guard a shared queue with synchronized, wait() when full or empty and notifyAll() after changes; then simply use BlockingQueue put() and take()."
+  },
+  {
+    "id": "implement-thread-safe-singleton-double-checked",
+    "title": "Implement a thread-safe Singleton using double-checked locking, then compare it to an enum-based Singleton",
+    "difficulty": "Medium",
+    "hint": "Use a volatile static instance with a synchronized block and a second null check; an enum singleton is simpler and safe against reflection and serialization."
+  },
+  {
+    "id": "use-executorservice-run-multiple-tasks-parallel",
+    "title": "Use ExecutorService to run multiple tasks in parallel and collect their results via Future",
+    "difficulty": "Medium",
+    "hint": "Create an ExecutorService, submit Callables to get Futures, then call future.get() on each and finally shutdown the executor."
+  },
+  {
+    "id": "use-completablefuture-chain-three-dependent-asynchronous",
+    "title": "Use CompletableFuture to chain three dependent asynchronous calls, with proper exception handling",
+    "difficulty": "Medium",
+    "hint": "Chain supplyAsync with thenApply or thenCompose for each dependent step, and add exceptionally or handle at the end for errors."
+  },
+  {
+    "id": "use-countdownlatch-make-main-thread-wait",
+    "title": "Use CountDownLatch to make a main thread wait until several worker threads complete initialization",
+    "difficulty": "Medium",
+    "hint": "Initialize a CountDownLatch with the worker count, have each worker call countDown() after initialization, and call await() in the main thread."
+  },
+  {
+    "id": "use-semaphore-limit-concurrent-access-resource",
+    "title": "Use a Semaphore to limit concurrent access to a resource pool (e.g., a fixed number of DB connections)",
+    "difficulty": "Medium",
+    "hint": "Create a Semaphore with N permits, call acquire() before using a resource and release() in a finally block."
+  },
+  {
+    "id": "implement-simple-thread-safe-counter-three",
+    "title": "Implement a simple thread-safe counter three ways — synchronized, AtomicInteger, and ReentrantLock — and discuss the trade-offs",
+    "difficulty": "Medium",
+    "hint": "Implement three versions: synchronized increment, AtomicInteger.incrementAndGet(), and ReentrantLock with lock() and unlock() in finally; compare contention and flexibility."
+  },
+  {
+    "id": "demonstrate-then-fix-deadlock-between-threads",
+    "title": "Demonstrate and then fix a deadlock between two threads locking two resources in opposite order",
+    "difficulty": "Hard",
+    "hint": "Threads taking locks in opposite order deadlock; fix it by always acquiring the locks in one consistent global order, or use tryLock with a timeout."
+  },
+  {
+    "id": "implement-thread-safe-token-bucket-rate",
+    "title": "Implement a thread-safe token bucket rate limiter",
+    "difficulty": "Hard",
+    "hint": "Track token count and last refill time; refill based on elapsed time on each request, and guard the check-and-decrement with synchronized or a lock."
+  },
+  {
+    "id": "call-three-independent-services-parallel-completablefuture",
+    "title": "Call three independent services in parallel using CompletableFuture with a timeout and a fallback, and combine the results",
+    "difficulty": "Medium",
+    "hint": "Start three supplyAsync calls, add orTimeout or completeOnTimeout plus exceptionally for fallbacks, then combine them with allOf or thenCombine."
+  },
+  {
+    "id": "implement-thread-safe-bounded-cache-expiry",
+    "title": "Implement a thread-safe bounded cache with expiry (TTL) using ConcurrentHashMap and a scheduled cleaner",
+    "difficulty": "Hard",
+    "hint": "Store values with an expiry timestamp in a ConcurrentHashMap, check expiry on read, and run a ScheduledExecutorService task to remove expired entries and enforce size."
+  },
+  {
+    "id": "implement-simple-retry-utility-exponential-backoff",
+    "title": "Implement a simple retry utility with exponential backoff and jitter",
+    "difficulty": "Medium",
+    "hint": "Loop up to max attempts, sleeping for base times 2 to the attempt, plus a random jitter, and rethrow after the final failure."
+  }
+]

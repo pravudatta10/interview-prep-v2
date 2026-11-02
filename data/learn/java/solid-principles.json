@@ -1,0 +1,17 @@
+[
+  {
+    "id": "java-solid-principles-001",
+    "question": "Explain each SOLID principle with a real code example.",
+    "hint": "Go through single responsibility, open/closed, Liskov, interface segregation, and dependency inversion, each with a violation and fix."
+  },
+  {
+    "id": "java-solid-principles-002",
+    "question": "How would you refactor a class that violates the Single Responsibility Principle?",
+    "hint": "Think about identifying separate reasons to change, extracting collaborators, and injecting them through abstractions."
+  },
+  {
+    "id": "java-solid-principles-003",
+    "question": "What is the Open/Closed Principle, and how do design patterns help enforce it?",
+    "hint": "Think extension without modification, abstraction points like Strategy, Decorator, and polymorphism replacing if-else chains."
+  }
+]

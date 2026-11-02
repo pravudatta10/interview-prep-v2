@@ -1,0 +1,87 @@
+[
+  {
+    "id": "angular-angular-core-001",
+    "question": "What are the types of data binding in Angular?",
+    "hint": "Think about direction of data flow: component to view, view to component, and both ways."
+  },
+  {
+    "id": "angular-angular-core-002",
+    "question": "What are ViewChild, ContentChild, and content projection (ng-content)?",
+    "hint": "Compare querying your own template vs. projected content, and how a parent passes markup into a child."
+  },
+  {
+    "id": "angular-angular-core-003",
+    "question": "What is the difference between detectChanges() and markForCheck()?",
+    "hint": "Think about running change detection immediately vs. flagging for the next cycle, especially with OnPush."
+  },
+  {
+    "id": "angular-angular-core-004",
+    "question": "What is the Angular architecture (components, templates, services, dependency injection, routing)?",
+    "hint": "Start from the building blocks: what a component owns, how services get supplied, and how the router maps URLs to views."
+  },
+  {
+    "id": "angular-angular-core-005",
+    "question": "What are standalone components, and how do they differ from NgModule-based apps? How do you migrate?",
+    "hint": "Compare where dependencies are declared: module-level vs. component-level imports, then think about the incremental steps and schematics for migrating."
+  },
+  {
+    "id": "angular-angular-core-006",
+    "question": "What are the component lifecycle hooks, and in what order do they run? What is the difference between the constructor and ngOnInit?",
+    "hint": "Think about the sequence from creation through change detection to destruction, and what is guaranteed to be ready at each point."
+  },
+  {
+    "id": "angular-angular-core-007",
+    "question": "When does ngOnChanges run, and how do you react to input changes?",
+    "hint": "Consider reference changes vs. mutations on inputs, what the SimpleChanges object holds, and alternatives such as setters or signals."
+  },
+  {
+    "id": "angular-angular-core-008",
+    "question": "How do @Input, @Output, and EventEmitter work, and what are signal inputs and the model() API?",
+    "hint": "Think about parent-to-child and child-to-parent data flow, event emission, and how signal-based inputs reduce boilerplate and enable two-way binding."
+  },
+  {
+    "id": "angular-angular-core-009",
+    "question": "What is the difference between structural and attribute directives, and how do you write a custom directive?",
+    "hint": "Compare directives that change the DOM structure with ones that change appearance or behavior, and think about host elements and HostListener."
+  },
+  {
+    "id": "angular-angular-core-010",
+    "question": "What is the new built-in control flow (@if, @for, @switch) compared with *ngIf and *ngFor, and why is track required?",
+    "hint": "Think about template syntax built into the compiler, performance of diffing lists, and why identity of items matters in loops."
+  },
+  {
+    "id": "angular-angular-core-011",
+    "question": "What is the difference between pure and impure pipes, and how does the async pipe work?",
+    "hint": "Consider when a pipe re-runs (input change vs. every change detection cycle) and how subscriptions and cleanup are managed for you."
+  },
+  {
+    "id": "angular-angular-core-012",
+    "question": "How does hierarchical dependency injection work (providedIn root, component providers, InjectionToken, inject())?",
+    "hint": "Think about the injector tree, scoping of provided instances, tokens for non-class values, and function-based lookup outside constructors."
+  },
+  {
+    "id": "angular-angular-core-013",
+    "question": "What are the ways components communicate (inputs and outputs, shared service, signals, router state, state store)?",
+    "hint": "Compare parent-child bindings with sibling or distant communication, thinking about coupling, reactivity and shared state ownership."
+  },
+  {
+    "id": "angular-angular-core-014",
+    "question": "How do you optimize the performance of a large Angular application (lazy loading, OnPush, trackBy, virtual scrolling, @defer, bundle analysis)?",
+    "hint": "Consider change detection cost, how much code loads upfront, DOM rendering of long lists, and how you measure before optimizing."
+  },
+  {
+    "id": "angular-angular-core-015",
+    "question": "What are SSR and hydration in Angular, and when are they worth the complexity?",
+    "hint": "Think about rendering on the server for first paint and SEO, reusing the server DOM on the client, and the cost in complexity."
+  },
+  {
+    "id": "angular-angular-core-016",
+    "question": "How do you find and fix memory leaks in an Angular application?",
+    "hint": "Consider forgotten subscriptions, listeners and timers, then how heap snapshots reveal detached DOM nodes and growing retained objects."
+  },
+  {
+    "id": "angular-angular-core-017",
+    "question": "How do you reduce initial bundle size and improve Core Web Vitals?",
+    "hint": "Think about code splitting, tree shaking, deferring non-critical content, image handling and which metrics (LCP, INP, CLS) you would watch."
+  }
+]

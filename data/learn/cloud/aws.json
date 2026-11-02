@@ -1,0 +1,107 @@
+[
+  {
+    "id": "cloud-aws-001",
+    "question": "Difference between an Application Load Balancer and a Network Load Balancer.",
+    "hint": "Compare OSI layers, routing capabilities, performance, static IPs, and protocol support."
+  },
+  {
+    "id": "cloud-aws-002",
+    "question": "What is the difference between security groups and network ACLs?",
+    "hint": "Consider the level each applies to (instance vs. subnet), statefulness, rule types, and evaluation order."
+  },
+  {
+    "id": "cloud-aws-003",
+    "question": "Where do you deploy a Spring Boot/microservices application on AWS, and which AWS services are used for deployment?",
+    "hint": "Think about container vs. serverless vs. managed platform options, plus the supporting pieces: registry, load balancer, database, pipeline."
+  },
+  {
+    "id": "cloud-aws-004",
+    "question": "What is the difference between AWS Lambda and AWS Fargate, and when would you choose one over the other?",
+    "hint": "Compare execution time limits, startup model, scaling granularity, cost shape for steady vs. spiky traffic, and control over the runtime."
+  },
+  {
+    "id": "cloud-aws-005",
+    "question": "How do you scale an application horizontally when it keeps session state (externalizing sessions, JWT, ElastiCache)?",
+    "hint": "Think about making instances interchangeable: where state lives, signed tokens vs. server-side storage, and a shared fast store."
+  },
+  {
+    "id": "cloud-aws-006",
+    "question": "How would you migrate an on-premises monolith to AWS (rehost, replatform, refactor), and what are the risks?",
+    "hint": "Consider the spectrum from lift-and-shift to re-architecture, data migration and cutover, and risks like downtime, cost surprises and hidden dependencies."
+  },
+  {
+    "id": "cloud-aws-007",
+    "question": "How do applications on EC2, ECS, or EKS access AWS services without long-lived keys (instance profiles, task roles, IRSA)?",
+    "hint": "Think about temporary credentials, identity attached to the workload, and why embedding access keys in config is a liability."
+  },
+  {
+    "id": "cloud-aws-008",
+    "question": "What are public and private subnets, route tables, internet gateways, and NAT gateways in a VPC?",
+    "hint": "Consider what makes a subnet public (routing), how private resources reach the internet outbound, and how traffic flows between components."
+  },
+  {
+    "id": "cloud-aws-009",
+    "question": "How do Auto Scaling policies work (target tracking, step, scheduled), and what are health checks and cooldowns?",
+    "hint": "Compare reactive tracking of a metric vs. time-based rules, how instances are judged unhealthy, and why you need warm-up or cooldown periods."
+  },
+  {
+    "id": "cloud-aws-010",
+    "question": "How do S3 versioning, encryption (SSE-S3, SSE-KMS), bucket policies, and Block Public Access work?",
+    "hint": "Think about keeping history of objects, who holds the encryption keys, resource-level vs. identity policies, and an account-level safety net."
+  },
+  {
+    "id": "cloud-aws-011",
+    "question": "How do you upload very large files from an Angular client to S3 (pre-signed URLs, multipart upload)?",
+    "hint": "Consider keeping large bytes off your servers, time-limited signed access, splitting files into parts, and recovering from partial failure."
+  },
+  {
+    "id": "cloud-aws-012",
+    "question": "How does SNS to SQS fan-out work, and when would you use EventBridge instead?",
+    "hint": "Think about publish once and deliver to many queues, decoupled consumers, and when content-based routing or SaaS integrations matter."
+  },
+  {
+    "id": "cloud-aws-013",
+    "question": "How do you make an SQS consumer idempotent and handle poison messages?",
+    "hint": "Consider at-least-once delivery, deduplication keys, visibility timeout, retry limits and where failed messages end up for inspection."
+  },
+  {
+    "id": "cloud-aws-014",
+    "question": "What are Lambda cold starts, concurrency limits, and timeouts, and how do you mitigate them (provisioned concurrency, SnapStart)?",
+    "hint": "Think about initialization delay, how many instances run at once, a maximum run duration, and ways to keep environments pre-warmed."
+  },
+  {
+    "id": "cloud-aws-015",
+    "question": "How do you deploy a Spring Boot service on ECS Fargate behind an ALB (task definition, service, autoscaling, ECR)?",
+    "hint": "Walk through image to registry, the task definition's resources and roles, service desired count, load balancer target groups and scaling rules."
+  },
+  {
+    "id": "cloud-aws-016",
+    "question": "How do CloudWatch metrics, logs, alarms, and Logs Insights work, and how do you build useful alarms?",
+    "hint": "Think about metrics vs. log queries, namespaces and dimensions, thresholds vs. anomaly, and avoiding noisy alarms that get ignored."
+  },
+  {
+    "id": "cloud-aws-017",
+    "question": "How do KMS, Secrets Manager, and Parameter Store differ, and how do you rotate secrets without downtime?",
+    "hint": "Compare key management vs. secret storage vs. configuration values, cost, built-in rotation, and how apps pick up new values without restart."
+  },
+  {
+    "id": "cloud-aws-018",
+    "question": "How do you implement infrastructure as code on AWS (CloudFormation, CDK, Terraform), and how do you manage state and drift?",
+    "hint": "Consider declarative templates vs. programming constructs, where state is stored, how manual changes are detected, and collaboration safety."
+  },
+  {
+    "id": "cloud-aws-019",
+    "question": "How do you configure RDS for a production Spring Boot application — connection pooling, read replicas?",
+    "hint": "Think about instance sizing, Multi-AZ, pool sizes relative to connection limits, replica lag, and routing reads versus writes."
+  },
+  {
+    "id": "cloud-aws-020",
+    "question": "How do multi-AZ and multi-region architectures differ, and when is multi-region justified?",
+    "hint": "Compare fault domains and what each protects against, against cost, latency, data replication complexity, and compliance needs."
+  },
+  {
+    "id": "cloud-aws-021",
+    "question": "When would you choose DynamoDB over RDS, and how do you design partition keys, GSIs, and capacity modes?",
+    "hint": "Think about access patterns known up front, key distribution, secondary index cost, and on-demand versus provisioned throughput."
+  }
+]

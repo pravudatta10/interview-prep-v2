@@ -1,0 +1,7 @@
+[
+  {
+    "id": "legacy-java-jdbc-architecture-and-transactions-001",
+    "question": "What is connection pooling, and why is it needed? How does HikariCP achieve better performance than older pools like DBCP?",
+    "hint": "Think about the cost of opening a connection, reusing connections, and what a pool does about lean code paths and contention."
+  }
+]

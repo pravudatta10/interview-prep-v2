@@ -1,0 +1,7 @@
+[
+  {
+    "id": "java-object-class-001",
+    "question": "You have a class with overridden hashCode() and equals(). Walk through what happens when two logically-equal instances are inserted into a HashSet.",
+    "hint": "Walk through hash bucket selection, equality check on collision, and whether the second instance is added."
+  }
+]

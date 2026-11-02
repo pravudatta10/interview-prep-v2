@@ -1,0 +1,17 @@
+[
+  {
+    "id": "redis-caching-strategy-and-eviction-001",
+    "question": "You need to cache frequently accessed data. Which cache would you choose, and what eviction strategy?",
+    "hint": "Consider access patterns, local vs. distributed cache, memory limits, recency vs. frequency, and consistency requirements for the data."
+  },
+  {
+    "id": "redis-caching-strategy-and-eviction-002",
+    "question": "How do you handle stale cache data (TTL, write-through, write-behind, cache-aside, event-based invalidation)?",
+    "hint": "Compare ways to keep cache and source in sync: expiry, write paths, invalidation events, and the staleness vs. complexity trade-off."
+  },
+  {
+    "id": "redis-caching-strategy-and-eviction-003",
+    "question": "What are cache stampede, cache penetration, and cache avalanche, and how do you prevent each?",
+    "hint": "Distinguish by cause: simultaneous expiry of one hot key, requests for nonexistent keys, and mass expiry; match each with a mitigation."
+  }
+]

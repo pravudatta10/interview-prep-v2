@@ -1,0 +1,27 @@
+[
+  {
+    "id": "hibernate-jpa-mapping-and-fetching-001",
+    "question": "Difference between FetchType.LAZY and FetchType.EAGER.",
+    "hint": "Consider when the associated data is loaded, proxies, and the risk of LazyInitializationException."
+  },
+  {
+    "id": "hibernate-jpa-mapping-and-fetching-002",
+    "question": "Explain @OneToMany, @ManyToOne, @ManyToMany, and @OneToOne mappings, and how you configure a \"one to many\" association.",
+    "hint": "Think about owning side vs. inverse side, join column vs. join table, cascade and fetch settings, and keeping both sides in sync."
+  },
+  {
+    "id": "hibernate-jpa-mapping-and-fetching-003",
+    "question": "How do JPA Specifications enable dynamic, composable queries?",
+    "hint": "Consider predicates as reusable objects, combining them at runtime, and how this avoids a explosion of repository query methods."
+  },
+  {
+    "id": "hibernate-jpa-mapping-and-fetching-004",
+    "question": "What is \"projection\" in Hibernate, and when would you use it instead of fetching a full entity?",
+    "hint": "Think about selecting only needed columns, interface or DTO result types, and how it avoids loading and tracking full entity graphs."
+  },
+  {
+    "id": "hibernate-jpa-mapping-and-fetching-005",
+    "question": "Explain Cascade types (PERSIST, MERGE, REMOVE, etc.) with examples — and what happens if you only want to delete a child record without cascading the delete?",
+    "hint": "Think about parent-child lifecycle propagation per operation, orphan handling, and the difference between removing from a collection and removing an entity."
+  }
+]

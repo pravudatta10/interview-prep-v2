@@ -1,0 +1,44 @@
+[
+  {
+    "id": "implement-kafka-producer-publishes-order-created",
+    "title": "Implement a Kafka producer that publishes an order-created event, and a @KafkaListener consumer that processes it",
+    "difficulty": "Medium",
+    "hint": "Use KafkaTemplate.send() with the order ID as the key in the producer, and annotate the consumer method with @KafkaListener specifying topic and groupId."
+  },
+  {
+    "id": "implement-retry-backoff-dead-letter-queue",
+    "title": "Implement retry-with-backoff and Dead Letter Queue (DLQ) handling for a consumer that fails processing",
+    "difficulty": "Hard",
+    "hint": "Configure DefaultErrorHandler with an ExponentialBackOff and a DeadLetterPublishingRecoverer so records failing after retries go to a DLT topic."
+  },
+  {
+    "id": "implement-idempotent-consumer-safely-handles-duplicate",
+    "title": "Implement an idempotent consumer that safely handles duplicate delivery of the same message (dedup by message key/ID)",
+    "difficulty": "Hard",
+    "hint": "Persist the processed message ID (unique constraint) or check a store before handling, so duplicates are skipped and processing plus recording happens atomically."
+  },
+  {
+    "id": "implement-manual-offset-commit-after-successful",
+    "title": "Implement manual offset commit after successful processing, instead of relying on auto-commit",
+    "difficulty": "Medium",
+    "hint": "Set enable.auto.commit to false and AckMode MANUAL, inject Acknowledgment into the listener, and call acknowledge() only after processing succeeds."
+  },
+  {
+    "id": "implement-event-ordering-sensitive-consumer-processes",
+    "title": "Implement an event-ordering-sensitive consumer that processes events for the same entity (e.g., same order ID) strictly in order",
+    "difficulty": "Hard",
+    "hint": "Use the entity ID as the message key so all its events land on one partition, and keep a single consumer thread per partition without async reordering."
+  },
+  {
+    "id": "implement-retry-topics-dead-letter-topic",
+    "title": "Implement retry topics and a dead-letter topic with Spring Kafka, including non-retryable exceptions",
+    "difficulty": "Hard",
+    "hint": "Use @RetryableTopic with attempts and backoff, a @DltHandler method, and exclude or notRetryOn for exceptions that should go straight to the DLT."
+  },
+  {
+    "id": "implement-transactional-outbox-polling-publisher",
+    "title": "Implement a transactional outbox with a polling publisher",
+    "difficulty": "Hard",
+    "hint": "Write the business row and an outbox row in one transaction, then have a scheduled poller publish unsent rows to Kafka and mark them sent."
+  }
+]

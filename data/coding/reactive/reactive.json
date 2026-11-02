@@ -1,4 +1,3 @@
-
 [
   {
     "id": "create-mono-flux",
@@ -99,5 +98,17 @@
     "solution": "String fetchWithTimeout() {\n    return Mono.<String>never()\n        .timeout(Duration.ofSeconds(2))\n        .onErrorReturn(\"Fallback response\")\n        .block();\n}",
     "complexity": "Time: Up to approximately 2 seconds before fallback, plus scheduling overhead; Space: O(1)",
     "interviewFollowUp": "Does timeout() cancel the upstream subscription, and how is a timeout different from a retry policy?"
+  },
+  {
+    "id": "call-services-parallel-webclient-combine-results",
+    "title": "Call two services in parallel with WebClient and combine the results using Mono.zip",
+    "difficulty": "Medium",
+    "hint": "Create two WebClient calls returning Mono, combine them with Mono.zip, and map the tuple into one result; the calls subscribe in parallel."
+  },
+  {
+    "id": "wrap-blocking-jdbc-call-safely-reactive",
+    "title": "Wrap a blocking JDBC call safely in a reactive pipeline using boundedElastic",
+    "difficulty": "Medium",
+    "hint": "Wrap the JDBC call in Mono.fromCallable and apply subscribeOn(Schedulers.boundedElastic()) so blocking work stays off event-loop threads."
   }
 ]

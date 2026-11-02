@@ -1,0 +1,32 @@
+[
+  {
+    "id": "java-strings-001",
+    "question": "What is the difference between String s = \"xyz\" and String s = new String(\"xyz\")?",
+    "hint": "Think about the string pool, heap allocation, and how many objects might be created in each case."
+  },
+  {
+    "id": "java-strings-002",
+    "question": "Why is String immutable in Java, and what are the benefits?",
+    "hint": "Consider security, thread-safety, hash caching, string pool sharing, and use as map keys."
+  },
+  {
+    "id": "java-strings-003",
+    "question": "What is the String constant pool, and how does String.intern() work?",
+    "hint": "Think about where literals live, how identical literals are shared, and what intern does to heap strings."
+  },
+  {
+    "id": "java-strings-004",
+    "question": "How would you write your own immutable class? What other JDK classes besides String are immutable?",
+    "hint": "Think final class and fields, defensive copying, and wrapper classes or java.time types as other examples."
+  },
+  {
+    "id": "java-strings-005",
+    "question": "Difference between String, StringBuffer, and StringBuilder — when do you choose each?",
+    "hint": "Compare mutability, synchronization overhead, and single-threaded vs. multi-threaded usage, plus what happens to repeated concatenation in loops."
+  },
+  {
+    "id": "java-strings-006",
+    "question": "How do you compare two strings correctly in Java, and why does == often produce the wrong answer?",
+    "hint": "Think about content equality vs. reference equality, and null-safe or case-insensitive options."
+  }
+]

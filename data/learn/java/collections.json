@@ -15,5 +15,65 @@
     "id": "java-collections-003",
     "question": "What's the time complexity of get() on a HashMap in the worst case, and when does that worst case happen?",
     "hint": "Think hash collisions, bucket structure, and what Java 8 changed for long buckets."
+  },
+  {
+    "id": "java-collections-004",
+    "question": "Difference between HashSet, LinkedHashSet, and TreeSet.",
+    "hint": "Compare ordering guarantees, underlying structures, null handling, and the cost of each operation."
+  },
+  {
+    "id": "java-collections-005",
+    "question": "Difference between HashMap, LinkedHashMap, and TreeMap.",
+    "hint": "Consider iteration order, backing data structure, key requirements, and time complexity of get/put."
+  },
+  {
+    "id": "java-collections-006",
+    "question": "Explain the Collection and Map hierarchy in Java.",
+    "hint": "Sketch the root interfaces, their main branches, and note that Map sits outside the Collection tree."
+  },
+  {
+    "id": "java-collections-007",
+    "question": "Difference between ArrayList and LinkedList — internal structure and time complexity.",
+    "hint": "Compare array-backed vs. node-based storage, and random access, insertion in the middle, and memory overhead."
+  },
+  {
+    "id": "java-collections-008",
+    "question": "What is the underlying data structure of ArrayList? What's the difference between its size and capacity?",
+    "hint": "Think about the backing array, logical element count vs. allocated slots, and why they differ."
+  },
+  {
+    "id": "java-collections-009",
+    "question": "If an ArrayList at capacity inserts one more element, what happens internally (resize factor, array copy cost)?",
+    "hint": "Consider growth factor, allocating a bigger array, copying elements, and amortized cost."
+  },
+  {
+    "id": "java-collections-010",
+    "question": "Difference between Comparable and Comparator — when do you use each?",
+    "hint": "Compare natural ordering inside the class with external, pluggable orderings."
+  },
+  {
+    "id": "java-collections-011",
+    "question": "What is fail-fast vs fail-safe iteration? Give an example of each (ArrayList vs CopyOnWriteArrayList).",
+    "hint": "Think about concurrent modification detection vs. iterating over a snapshot, and the trade-offs of each."
+  },
+  {
+    "id": "java-collections-012",
+    "question": "If two threads access the same collection concurrently, what can go wrong, and how do you fix it?",
+    "hint": "Consider race conditions, lost updates, ConcurrentModificationException, and synchronization or concurrent collections as fixes."
+  },
+  {
+    "id": "java-collections-013",
+    "question": "Difference between Collections.synchronizedList() and CopyOnWriteArrayList — when to use which.",
+    "hint": "Think about locking on every operation vs. copy on write, and read-heavy vs. write-heavy workloads."
+  },
+  {
+    "id": "java-collections-014",
+    "question": "How do you create an immutable collection in Java 9+ (List.of, Map.of) versus Collections.unmodifiableList?",
+    "hint": "Consider true immutability vs. a read-only view on a mutable backing collection, plus null handling."
+  },
+  {
+    "id": "java-collections-015",
+    "question": "What is a BlockingQueue, and where would you use one in production?",
+    "hint": "Think about producer-consumer decoupling, blocking on empty or full, bounded capacity and backpressure."
   }
 ]

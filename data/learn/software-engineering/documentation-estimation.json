@@ -1,0 +1,12 @@
+[
+  {
+    "id": "software-engineering-documentation-estimation-001",
+    "question": "What versioning strategies have you used for breaking API changes, and how do you communicate deprecation to consumers?",
+    "hint": "Think about URL vs. header vs. media-type versioning, backward compatibility windows, sunset headers, changelogs, and consumer outreach."
+  },
+  {
+    "id": "software-engineering-documentation-estimation-002",
+    "question": "How do you estimate a backlog item or project — story points vs T-shirt sizing vs hours — and what causes estimates to be systematically wrong?",
+    "hint": "Compare relative vs. absolute measures, uncertainty, and common biases like optimism, hidden work, dependencies, and scope creep."
+  }
+]

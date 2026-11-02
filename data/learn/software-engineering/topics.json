@@ -1,0 +1,32 @@
+[
+  {
+    "id": "agile-delivery-and-ceremonies",
+    "file": "agile-delivery-and-ceremonies",
+    "title": "Agile Delivery & Ceremonies"
+  },
+  {
+    "id": "reviews-refactoring",
+    "file": "reviews-refactoring",
+    "title": "Reviews, Refactoring & Design Principles"
+  },
+  {
+    "id": "owasp-secrets",
+    "file": "owasp-secrets",
+    "title": "OWASP Top 10 & Secrets Management"
+  },
+  {
+    "id": "documentation-estimation",
+    "file": "documentation-estimation",
+    "title": "Documentation, Versioning & Estimation"
+  },
+  {
+    "id": "incident-management",
+    "file": "incident-management",
+    "title": "Incident Management & Readiness Checklists"
+  },
+  {
+    "id": "dora-slo",
+    "file": "dora-slo",
+    "title": "DORA Metrics, SLIs/SLOs/SLAs"
+  }
+]

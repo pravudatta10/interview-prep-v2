@@ -1,0 +1,12 @@
+[
+  {
+    "id": "spring-boot-report-generation-pdf-and-excel-001",
+    "question": "How do you generate very large Excel files without running out of memory (SXSSF streaming, pagination, async job plus download link)?",
+    "hint": "Consider streaming rows to disk with a sliding window, paging queries, and decoupling generation from download."
+  },
+  {
+    "id": "spring-boot-report-generation-pdf-and-excel-002",
+    "question": "How do you design report generation for heavy workloads (async job, queue, object storage, notification when ready)?",
+    "hint": "Think about accepting a request, queuing a job, status tracking, storing output, and notifying the user with a link."
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "build-reusable-component-input-output",
+    "title": "Build a reusable component with @Input and @Output (or signal inputs) and OnPush change detection",
+    "difficulty": "Easy",
+    "hint": "Use @Input and @Output with EventEmitter (or input() and output() signals), and set changeDetection to ChangeDetectionStrategy.OnPush."
+  },
+  {
+    "id": "build-reactive-form-cross-field-validator",
+    "title": "Build a reactive form with a cross-field validator and an async validator (for example, username availability)",
+    "difficulty": "Medium",
+    "hint": "Put a ValidatorFn on the FormGroup comparing two controls, and an AsyncValidatorFn on the username control returning an Observable of errors, ideally debounced."
+  },
+  {
+    "id": "build-dynamic-form-formarray-supports-add",
+    "title": "Build a dynamic form with a FormArray that supports add and remove rows",
+    "difficulty": "Medium",
+    "hint": "Use a FormArray of FormGroups, expose a getter, push a new group to add a row and call removeAt(index) to delete one."
+  },
+  {
+    "id": "write-functional-route-guard-restricts-route",
+    "title": "Write a functional route guard that restricts a route by role and redirects to a login page",
+    "difficulty": "Medium",
+    "hint": "Write a CanActivateFn that injects AuthService and Router, checks the user's role, and returns true or router.createUrlTree(['/login'])."
+  },
+  {
+    "id": "write-http-interceptor-attaches-token-handles",
+    "title": "Write an HTTP interceptor that attaches a token and handles 401 with a single token refresh for concurrent requests",
+    "difficulty": "Hard",
+    "hint": "Use an HttpInterceptorFn that adds the Authorization header, and on 401 use a shared refresh observable (BehaviorSubject or shareReplay) with switchMap so concurrent requests wait for one refresh."
+  },
+  {
+    "id": "build-counter-derived-value-signals",
+    "title": "Build a counter and a derived value using signals, computed, and effect",
+    "difficulty": "Easy",
+    "hint": "Create a signal for the count, a computed() for the derived value, and an effect() for side effects, updating with set() or update()."
+  },
+  {
+    "id": "write-unit-test-component-calls-api",
+    "title": "Write a unit test for a component that calls an API, using TestBed and HttpTestingController",
+    "difficulty": "Medium",
+    "hint": "Configure TestBed with provideHttpClientTesting, inject HttpTestingController, trigger the component, then use expectOne(url).flush(data) and verify()."
+  }
+]

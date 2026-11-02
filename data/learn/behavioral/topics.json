@@ -1,0 +1,27 @@
+[
+  {
+    "id": "project-walkthrough",
+    "file": "project-walkthrough",
+    "title": "Project Walkthrough"
+  },
+  {
+    "id": "incidents-rca",
+    "file": "incidents-rca",
+    "title": "Production Incidents & Root Cause Analysis"
+  },
+  {
+    "id": "ownership-code-review",
+    "file": "ownership-code-review",
+    "title": "Prioritization, Ownership & Code Review"
+  },
+  {
+    "id": "agile-ai-assisted",
+    "file": "agile-ai-assisted",
+    "title": "Agile Methodology & AI-Assisted Engineering"
+  },
+  {
+    "id": "angular-decisions",
+    "file": "angular-decisions",
+    "title": "Real-World Angular Decisions & Debugging"
+  }
+]

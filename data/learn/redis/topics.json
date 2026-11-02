@@ -1,0 +1,12 @@
+[
+  {
+    "id": "redis-caching-strategies",
+    "file": "redis-caching-strategies",
+    "title": "Redis Caching Strategies"
+  },
+  {
+    "id": "caching-strategy-and-eviction",
+    "file": "caching-strategy-and-eviction",
+    "title": "Caching Strategy & Eviction"
+  }
+]

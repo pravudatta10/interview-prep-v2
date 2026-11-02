@@ -1,0 +1,32 @@
+[
+  {
+    "id": "find-top-2",
+    "title": "Find the top-2 (or top-K) highest-frequency elements in a list using a HashMap",
+    "difficulty": "Medium",
+    "hint": "Count frequencies in a HashMap, then pick the top K using a min-heap of size K or bucket sort by frequency."
+  },
+  {
+    "id": "group-list-strings-into-anagram-groups",
+    "title": "Group a list of strings into anagram groups",
+    "difficulty": "Medium",
+    "hint": "Use a HashMap whose key is the sorted characters (or a 26-count signature) of each word, with a list of originals as values."
+  },
+  {
+    "id": "find-longest-consecutive-sequence-unsorted-array",
+    "title": "Find the longest consecutive sequence in an unsorted array in O(n)",
+    "difficulty": "Medium",
+    "hint": "Put all numbers in a HashSet and only start counting from numbers whose predecessor is absent, extending while the next number exists."
+  },
+  {
+    "id": "given-list-numbers",
+    "title": "Given a list of numbers, find the subarray whose sum equals a target (prefix-sum + HashMap)",
+    "difficulty": "Medium",
+    "hint": "Keep a running prefix sum and a HashMap of prefix sums seen; if current minus target was seen earlier, a matching subarray exists."
+  },
+  {
+    "id": "design-implement-lru-cache-linkedhashmap",
+    "title": "Design and implement an LRU Cache using LinkedHashMap (or a HashMap + doubly linked list)",
+    "difficulty": "Hard",
+    "hint": "Use a HashMap for O(1) lookup plus a doubly linked list for recency order, moving nodes to the head on access and evicting the tail."
+  }
+]

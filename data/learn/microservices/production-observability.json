@@ -1,0 +1,22 @@
+[
+  {
+    "id": "microservices-production-observability-001",
+    "question": "How do you debug a microservice when you find an issue?",
+    "hint": "Consider reproducing the issue, logs, metrics, traces, recent deployments, dependency health, and narrowing down systematically."
+  },
+  {
+    "id": "microservices-production-observability-002",
+    "question": "How do you identify which service is causing the issue from a Trace ID?",
+    "hint": "Think about propagating trace context across calls, spans with timing and errors, and a tracing UI to find the slow or failing hop."
+  },
+  {
+    "id": "microservices-production-observability-003",
+    "question": "How do you implement centralized logging?",
+    "hint": "Consider structured logs, correlation IDs, log shippers, a central searchable store, retention, and dashboards."
+  },
+  {
+    "id": "microservices-production-observability-004",
+    "question": "How would you design an event-driven integration with an external CRM using Pub/Sub, and how would you handle failures and retries?",
+    "hint": "Start from requirements and failure modes: decoupling via topics, delivery semantics, retries with backoff, dead-letter handling, and idempotency."
+  }
+]

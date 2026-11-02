@@ -1,0 +1,12 @@
+[
+  {
+    "id": "software-engineering-reviews-refactoring-001",
+    "question": "What makes a code review effective versus purely a rubber stamp? What do you specifically look for?",
+    "hint": "Consider correctness, design, readability, tests, security, and tone, versus skimming for style and approving quickly."
+  },
+  {
+    "id": "software-engineering-reviews-refactoring-002",
+    "question": "How do you decide when working code needs refactoring versus being left alone — the technical debt trade-off?",
+    "hint": "Weigh the risk and cost of change against the benefit: test coverage, frequency of change, and pain actually caused."
+  }
+]

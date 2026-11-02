@@ -1,0 +1,17 @@
+[
+  {
+    "id": "design-patterns-structural-patterns-001",
+    "question": "Difference between Adapter, Facade, and Proxy patterns.",
+    "hint": "Consider intent: converting an interface, simplifying a subsystem, and controlling access to an object."
+  },
+  {
+    "id": "design-patterns-structural-patterns-002",
+    "question": "Explain the Adapter pattern with an example, such as legacy system integration.",
+    "hint": "Consider incompatible interfaces, a wrapper translating calls, and how it isolates the new code from a legacy dependency's shape."
+  },
+  {
+    "id": "design-patterns-structural-patterns-003",
+    "question": "How does Spring implement the Proxy pattern (JDK dynamic proxy vs CGLIB), and where have you seen it used?",
+    "hint": "Compare proxying interfaces vs. subclassing classes, what cross-cutting concerns get woven in, and limitations like self-invocation and final classes."
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "sql-fundamentals",
+    "file": "sql-fundamentals",
+    "title": "SQL Fundamentals"
+  },
+  {
+    "id": "indexes-and-query-plans",
+    "file": "indexes-and-query-plans",
+    "title": "Indexes & Query Plans"
+  },
+  {
+    "id": "acid-and-isolation-levels",
+    "file": "acid-and-isolation-levels",
+    "title": "ACID & Isolation Levels"
+  },
+  {
+    "id": "jdbc-and-stored-procedures",
+    "file": "jdbc-and-stored-procedures",
+    "title": "JDBC & Stored Procedures"
+  },
+  {
+    "id": "postgres-oracle-mysql",
+    "file": "postgres-oracle-mysql",
+    "title": "PostgreSQL, Oracle & MySQL in Practice"
+  },
+  {
+    "id": "normalization-sharding",
+    "file": "normalization-sharding",
+    "title": "Normalization, Partitioning & Sharding"
+  }
+]

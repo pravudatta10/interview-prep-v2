@@ -1,0 +1,86 @@
+[
+  {
+    "id": "use-collectors-groupingby-group-list-strings",
+    "title": "Use Collectors.groupingBy() to group a list of strings by their length",
+    "difficulty": "Medium",
+    "hint": "Use Collectors.groupingBy(String::length) to get a Map from length to a list of strings."
+  },
+  {
+    "id": "use-collectors-tomap-merge-function-build",
+    "title": "Use Collectors.toMap() with a merge function to build a frequency map from a List<Integer>",
+    "difficulty": "Medium",
+    "hint": "Collect with Collectors.toMap(x -> x, x -> 1, Integer::sum), where the merge function adds counts for repeated keys."
+  },
+  {
+    "id": "use-streams-find-second-largest-second",
+    "title": "Use Streams to find the second-largest/second-smallest number in a list",
+    "difficulty": "Medium",
+    "hint": "Stream distinct values, sort them, then skip(1).findFirst() for second-largest using reverseOrder, or the same with natural order for smallest."
+  },
+  {
+    "id": "given-nested-structure",
+    "title": "Given a nested structure (e.g., List<List<Integer>>), use flatMap() to flatten it into a single stream",
+    "difficulty": "Medium",
+    "hint": "Call list.stream().flatMap(List::stream) to merge the inner lists into one stream, then collect or process it."
+  },
+  {
+    "id": "find-second-highest-salary-list-employees",
+    "title": "Find the second-highest salary from a list of employees using Streams",
+    "difficulty": "Medium",
+    "hint": "Take salaries as a stream, apply distinct(), sort in reverse order, skip(1) and findFirst() to get the second-highest."
+  },
+  {
+    "id": "find-highest-salary-each-department-streams",
+    "title": "Find the highest salary in each department using Streams",
+    "difficulty": "Medium",
+    "hint": "Use groupingBy on department with maxBy(Comparator.comparingDouble(Employee::getSalary)) as the downstream collector, yielding Optional employees per department."
+  },
+  {
+    "id": "find-frequency-each-character-string-streams",
+    "title": "Find the frequency of each character in a string using Streams",
+    "difficulty": "Easy",
+    "hint": "Convert to chars with chars().mapToObj(c -> (char) c) and collect with groupingBy(Function.identity(), counting())."
+  },
+  {
+    "id": "group-employees-department-streams",
+    "title": "Group employees by department using Streams",
+    "difficulty": "Easy",
+    "hint": "Stream the employees and collect with Collectors.groupingBy(Employee::getDepartment) to get a map of department to employee list."
+  },
+  {
+    "id": "find-top-3-highest-salaries-streams",
+    "title": "Find the top 3 highest salaries using Streams",
+    "difficulty": "Medium",
+    "hint": "Sort salaries in reverse order (optionally after distinct), then use limit(3) to keep the top three."
+  },
+  {
+    "id": "convert-list-employee-into-map-id",
+    "title": "Convert a List<Employee> into a Map<Id, Employee> and handle duplicate keys",
+    "difficulty": "Easy",
+    "hint": "Use Collectors.toMap(Employee::getId, Function.identity(), (a, b) -> a) so the merge function resolves duplicate keys instead of throwing."
+  },
+  {
+    "id": "find-duplicate-elements-list-streams",
+    "title": "Find duplicate elements in a list using Streams",
+    "difficulty": "Easy",
+    "hint": "Add elements to a HashSet and filter those where add() returns false, or group by counting and keep entries with count above one."
+  },
+  {
+    "id": "find-frequency-each-word-sentence-streams",
+    "title": "Find the frequency of each word in a sentence using Streams",
+    "difficulty": "Easy",
+    "hint": "Split the sentence on whitespace, stream the words, and collect with groupingBy(Function.identity(), counting()), normalizing case first."
+  },
+  {
+    "id": "find-all-employees-whose-salary-greater",
+    "title": "Find all employees whose salary is greater than the average salary",
+    "difficulty": "Medium",
+    "hint": "Compute the average with mapToDouble(...).average() first, then filter employees whose salary is above that value."
+  },
+  {
+    "id": "find-nth-highest-salary-streams",
+    "title": "Find the Nth highest salary using Streams",
+    "difficulty": "Medium",
+    "hint": "Take distinct salaries sorted in descending order, then skip(n-1) and findFirst() to get the Nth highest."
+  }
+]

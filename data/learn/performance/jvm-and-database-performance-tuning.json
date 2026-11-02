@@ -1,0 +1,12 @@
+[
+  {
+    "id": "performance-jvm-and-database-performance-tuning-001",
+    "question": "How do you approach JVM tuning for a service under high load — heap sizing, GC choice?",
+    "hint": "Start with measurement under realistic load: heap versus metaspace and native memory, GC pause goals, and profiling before changing flags."
+  },
+  {
+    "id": "performance-jvm-and-database-performance-tuning-002",
+    "question": "How do you size and tune a database connection pool correctly (HikariCP)?",
+    "hint": "Think about the pool-sizing trade-off: database capacity, concurrency of requests, queueing, and the counter-intuitive fact that bigger is not better."
+  }
+]

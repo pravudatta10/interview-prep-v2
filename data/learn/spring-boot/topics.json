@@ -3,5 +3,25 @@
     "id": "auto-configuration",
     "file": "auto-configuration",
     "title": "Spring Boot Auto-Configuration"
+  },
+  {
+    "id": "configuration-and-profiles",
+    "file": "configuration-and-profiles",
+    "title": "Configuration & Profiles"
+  },
+  {
+    "id": "spring-boot-actuator-and-metrics",
+    "file": "spring-boot-actuator-and-metrics",
+    "title": "Spring Boot Actuator & Metrics"
+  },
+  {
+    "id": "production-ready-rest",
+    "file": "production-ready-rest",
+    "title": "Production-Ready REST Endpoints"
+  },
+  {
+    "id": "report-generation-pdf-and-excel",
+    "file": "report-generation-pdf-and-excel",
+    "title": "Report Generation (PDF & Excel)"
   }
 ]

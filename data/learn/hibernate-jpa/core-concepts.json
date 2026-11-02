@@ -1,0 +1,17 @@
+[
+  {
+    "id": "hibernate-jpa-core-concepts-001",
+    "question": "What is the Hibernate/JPA entity lifecycle — transient, persistent, detached, removed?",
+    "hint": "Consider how an object moves between states, its association with a session, and which operations trigger each transition."
+  },
+  {
+    "id": "hibernate-jpa-core-concepts-002",
+    "question": "What is the Persistence Context, and how does dirty checking work?",
+    "hint": "Think about the session-scoped identity map, snapshots taken at load, and when changes are compared and flushed to the database."
+  },
+  {
+    "id": "hibernate-jpa-core-concepts-003",
+    "question": "Explain first-level and second-level cache in Hibernate — when does each expire, and how do you configure the second-level cache provider?",
+    "hint": "Compare session-scoped vs. factory-scoped caching, what invalidates entries, region configuration, and which data is safe to cache."
+  }
+]

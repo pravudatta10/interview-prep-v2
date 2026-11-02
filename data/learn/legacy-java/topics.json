@@ -1,0 +1,12 @@
+[
+  {
+    "id": "jdbc-architecture-and-transactions",
+    "file": "jdbc-architecture-and-transactions",
+    "title": "JDBC Architecture & Transactions"
+  },
+  {
+    "id": "servlet-lifecycle-and-request-flow",
+    "file": "servlet-lifecycle-and-request-flow",
+    "title": "Servlet Lifecycle & Request Flow"
+  }
+]

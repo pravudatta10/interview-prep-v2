@@ -1,0 +1,62 @@
+[
+  {
+    "id": "webflux-reactive-fundamentals-001",
+    "question": "What is reactive programming, and what problem does it solve compared with the thread-per-request model?",
+    "hint": "Compare blocking thread-per-request with event loops, non-blocking I/O, and where concurrency scaling limits show up."
+  },
+  {
+    "id": "webflux-reactive-fundamentals-002",
+    "question": "What are Reactive Streams (Publisher, Subscriber, Subscription, Processor), and what is backpressure?",
+    "hint": "Think about the four interfaces, demand signaling via request(n), and what happens when producers outpace consumers."
+  },
+  {
+    "id": "webflux-reactive-fundamentals-003",
+    "question": "When do you use Mono versus Flux?",
+    "hint": "Consider cardinality: zero-or-one vs. zero-to-many results, and what each returns for typical service calls."
+  },
+  {
+    "id": "webflux-reactive-fundamentals-004",
+    "question": "What is the difference between map, flatMap, concatMap, and flatMapSequential in Reactor, and what are the ordering and concurrency implications?",
+    "hint": "Compare transformation vs. async inner publishers, whether order is preserved, and how many inners run concurrently."
+  },
+  {
+    "id": "webflux-reactive-fundamentals-005",
+    "question": "Why does nothing happen until you subscribe, and what are common bugs caused by forgetting this?",
+    "hint": "Think cold publishers, lazy assembly, subscribe triggering the pipeline, and bugs like discarded results or unreturned chains."
+  },
+  {
+    "id": "webflux-reactive-fundamentals-006",
+    "question": "How do error operators work (onErrorResume, onErrorReturn, retryWhen, doOnError), and how do you design a retry with backoff?",
+    "hint": "Compare fallback, default value, side-effect logging, and resubscription, plus exponential backoff, jitter, and max attempts."
+  },
+  {
+    "id": "webflux-reactive-fundamentals-007",
+    "question": "How do you detect blocking calls in a reactive application (BlockHound), and how do you safely call blocking code such as JDBC (Schedulers.boundedElastic)?",
+    "hint": "Consider tools that flag blocking calls on event-loop threads, and offloading to a dedicated scheduler designed for blocking tasks."
+  },
+  {
+    "id": "webflux-reactive-fundamentals-008",
+    "question": "What is the difference between WebClient, RestTemplate, and RestClient, and how do you configure timeouts, connection pooling, and retries for WebClient?",
+    "hint": "Compare blocking vs. non-blocking clients, timeouts at connect, read, and response levels, connection provider limits, and retry filters."
+  },
+  {
+    "id": "webflux-reactive-fundamentals-009",
+    "question": "How do you test reactive code (StepVerifier, WebTestClient)?",
+    "hint": "Think about verifying signals without subscribing manually, virtual time for delays, and testing endpoints without a full server."
+  },
+  {
+    "id": "webflux-reactive-fundamentals-010",
+    "question": "What are R2DBC and reactive transactions, and when is JDBC with Virtual Threads a better fit?",
+    "hint": "Consider non-blocking database drivers, transaction propagation through context, and how virtual threads let blocking JDBC scale."
+  },
+  {
+    "id": "webflux-reactive-fundamentals-011",
+    "question": "How do you choose between Server-Sent Events, WebSockets, and gRPC streaming for real-time updates to a UI?",
+    "hint": "Compare direction of communication, protocol support in browsers, reconnection, proxies, and typed contracts."
+  },
+  {
+    "id": "webflux-reactive-fundamentals-012",
+    "question": "What backpressure strategies exist in Reactor (buffer, drop, latest, error), and how do you choose?",
+    "hint": "Think about a fast producer and slow consumer, and what each strategy sacrifices: memory, completeness, freshness, or availability."
+  }
+]

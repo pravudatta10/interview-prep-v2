@@ -1,0 +1,157 @@
+[
+  {
+    "id": "microservices-architecture-communication-001",
+    "question": "What is an API Gateway, and what responsibilities does it typically own?",
+    "hint": "Think about a single entry point handling routing, authentication, rate limiting, and aggregation for clients."
+  },
+  {
+    "id": "microservices-architecture-communication-002",
+    "question": "What are the core characteristics of microservices architecture versus a monolith? What are the benefits and drawbacks of each?",
+    "hint": "Compare independent deployability, data ownership, operational complexity, team scaling, and when simplicity wins."
+  },
+  {
+    "id": "microservices-architecture-communication-003",
+    "question": "What challenges does adopting microservices introduce that a monolith doesn't have?",
+    "hint": "Consider network failures, distributed data consistency, observability, versioning, and operational overhead of many deployable units."
+  },
+  {
+    "id": "microservices-architecture-communication-004",
+    "question": "How do you ensure high availability across a microservices deployment?",
+    "hint": "Think redundancy, health checks, multiple zones, failover, graceful degradation, and removing single points of failure."
+  },
+  {
+    "id": "microservices-architecture-communication-005",
+    "question": "How does Feign Client simplify inter-service REST calls, and how do you write a custom error decoder for it?",
+    "hint": "Think declarative HTTP clients, interface-based definitions, ErrorDecoder, and mapping status codes to domain exceptions."
+  },
+  {
+    "id": "microservices-architecture-communication-006",
+    "question": "How does service discovery work (Eureka/Consul), and why is it needed? How do you set up a Eureka server?",
+    "hint": "Consider a registry, instance registration and heartbeats, client lookup, dynamic IPs, and a standalone server application."
+  },
+  {
+    "id": "microservices-architecture-communication-007",
+    "question": "What is a Config Server, and how does centralized configuration work across services?",
+    "hint": "Think about externalized, versioned config stored in Git, services fetching at startup, and refreshing at runtime."
+  },
+  {
+    "id": "microservices-architecture-communication-008",
+    "question": "Difference between vertical and horizontal scaling, and which do microservices generally favor?",
+    "hint": "Compare bigger machines vs. more instances, statelessness, limits, and failure isolation."
+  },
+  {
+    "id": "microservices-architecture-communication-009",
+    "question": "How do you improve microservice performance?",
+    "hint": "Consider profiling first, caching, async calls, connection pools, database indexing, payload size, and parallelism."
+  },
+  {
+    "id": "microservices-architecture-communication-010",
+    "question": "How do you handle multiple inter-service calls taking a lot of time?",
+    "hint": "Think about sequential vs. parallel calls, timeouts, caching, aggregation, and fallbacks for slow dependencies."
+  },
+  {
+    "id": "microservices-architecture-communication-011",
+    "question": "How do you implement CompletableFuture for multiple service calls?",
+    "hint": "Consider supplyAsync with a custom executor, allOf to join, combining results, and handling exceptions and timeouts per call."
+  },
+  {
+    "id": "microservices-architecture-communication-012",
+    "question": "How do you decide service boundaries (bounded contexts, team ownership, data ownership)?",
+    "hint": "Think about business capabilities, bounded contexts, data ownership, change frequency, and team structure."
+  },
+  {
+    "id": "microservices-architecture-communication-013",
+    "question": "What is a distributed monolith, and how do you recognize and avoid one?",
+    "hint": "Consider tight runtime coupling, shared databases, lock-step deployments, and chatty call chains."
+  },
+  {
+    "id": "microservices-architecture-communication-014",
+    "question": "How do you migrate a monolith to microservices incrementally (strangler fig, anti-corruption layer)?",
+    "hint": "Think about routing traffic gradually, wrapping legacy behind translation layers, and extracting one capability at a time."
+  },
+  {
+    "id": "microservices-architecture-communication-015",
+    "question": "How do you handle shared libraries and shared data models across services without tight coupling?",
+    "hint": "Consider versioned contracts, avoiding shared domain entities, duplication vs. coupling, and publishing clients or schemas."
+  },
+  {
+    "id": "microservices-architecture-communication-016",
+    "question": "What is consumer-driven contract testing (Pact), and where does it fit in your test strategy?",
+    "hint": "Think about consumer-defined expectations, provider verification, integration tests versus mocks, and where it sits in the test pyramid."
+  },
+  {
+    "id": "microservices-architecture-communication-017",
+    "question": "What is a service mesh (Istio, Linkerd), and which problems does it solve that a library such as Resilience4j does not?",
+    "hint": "Consider a sidecar proxy handling mTLS, traffic routing, retries and observability, language-agnostic, versus in-process libraries."
+  },
+  {
+    "id": "microservices-architecture-communication-018",
+    "question": "Should every service validate the JWT, or only the gateway? What are the trade-offs?",
+    "hint": "Compare trust boundaries, defense in depth, latency from repeated validation, and internal calls bypassing the gateway."
+  },
+  {
+    "id": "microservices-architecture-communication-019",
+    "question": "How do you manage service-to-service authorization (scopes, roles, network policies)?",
+    "hint": "Think about token propagation vs. service identities, scopes and claims, mTLS, and network-level segmentation."
+  },
+  {
+    "id": "microservices-architecture-communication-020",
+    "question": "You need to call another service that is slow and unreliable. Would you use synchronous or asynchronous communication, and why?",
+    "hint": "Compare blocking threads, timeouts, circuit breakers, queues or events, and what the caller needs back immediately."
+  },
+  {
+    "id": "microservices-architecture-communication-021",
+    "question": "Your service runs on multiple instances. How are requests distributed efficiently (client-side versus server-side load balancing)?",
+    "hint": "Compare load balancing in a client library vs. an external proxy, with discovery, health awareness, and hop count."
+  },
+  {
+    "id": "microservices-architecture-communication-022",
+    "question": "Your application logs are scattered across services. How do you centralize logging?",
+    "hint": "Think about shipping logs to a central store, structured JSON, correlation IDs, and an aggregation stack for search."
+  },
+  {
+    "id": "microservices-architecture-communication-023",
+    "question": "You need to deploy a new version without downtime. How do you achieve it (rolling, blue-green, canary, backward-compatible schema changes)?",
+    "hint": "Compare rolling, blue-green, and canary strategies, readiness probes, and expand-then-contract database changes."
+  },
+  {
+    "id": "microservices-architecture-communication-024",
+    "question": "You want to reduce latency between services. What optimizations would you apply (caching, batching, async calls, gRPC, co-location)?",
+    "hint": "Think about the cost of each network hop, caching, batching, binary protocols, parallelism, and keeping chatty services close."
+  },
+  {
+    "id": "microservices-architecture-communication-025",
+    "question": "Your API Gateway has become a single point of failure. How do you fix it?",
+    "hint": "Consider redundant gateway instances, load balancers across zones, stateless design, rate limiting, and avoiding a monolithic gateway."
+  },
+  {
+    "id": "microservices-architecture-communication-026",
+    "question": "You need to handle partial failures in a distributed transaction. Which pattern do you use?",
+    "hint": "Think about the saga pattern, compensating actions, orchestration vs. choreography, and why two-phase commit is avoided."
+  },
+  {
+    "id": "microservices-architecture-communication-027",
+    "question": "Your system requires event-driven communication. How do you design it (events versus commands, ordering, schema, DLQ)?",
+    "hint": "Consider events as facts and commands as requests, partition keys, schema evolution, idempotent consumers, retries, and dead-letter queues."
+  },
+  {
+    "id": "microservices-architecture-communication-028",
+    "question": "Your service is tightly coupled with another service. How would you refactor it?",
+    "hint": "Think about introducing events or interfaces, removing shared data, clear contracts, and asynchronous communication to break dependencies."
+  },
+  {
+    "id": "microservices-architecture-communication-029",
+    "question": "Your database has become the bottleneck in a microservices system. What strategies would you use (caching, read replicas, CQRS, partitioning, async writes)?",
+    "hint": "Consider first measuring where it hurts, then offloading reads, caching, splitting reads from writes, and distributing data."
+  },
+  {
+    "id": "microservices-architecture-communication-030",
+    "question": "Your service needs to handle sudden traffic spikes. How do you scale it (autoscaling, queue-based load leveling, rate limiting)?",
+    "hint": "Think about elasticity and buffering: automatic scaling lag, absorbing bursts with queues, and protecting dependencies via throttling."
+  },
+  {
+    "id": "microservices-architecture-communication-031",
+    "question": "Your microservices need to share data but stay independent. How do you design data consistency?",
+    "hint": "Think about service-owned data, events, eventual consistency, and saga-style compensation instead of shared transactions."
+  }
+]

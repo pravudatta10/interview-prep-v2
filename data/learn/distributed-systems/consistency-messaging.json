@@ -1,0 +1,12 @@
+[
+  {
+    "id": "distributed-systems-consistency-messaging-001",
+    "question": "How do you implement the transactional outbox with polling or CDC (Debezium), and what are the trade-offs?",
+    "hint": "Think about atomically writing business data and an event, then publishing reliably: polling versus log tailing, ordering, duplicates, and operational overhead."
+  },
+  {
+    "id": "distributed-systems-consistency-messaging-002",
+    "question": "How do you evolve event schemas safely (Avro or Protobuf, schema registry, backward and forward compatibility)?",
+    "hint": "Consider compatibility directions, schema registry checks, default values, field evolution rules, and upgrade order of producers and consumers."
+  }
+]

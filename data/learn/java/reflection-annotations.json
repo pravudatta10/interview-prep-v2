@@ -1,0 +1,17 @@
+[
+  {
+    "id": "java-reflection-annotations-001",
+    "question": "What is reflection in Java, and where is it used in frameworks like Spring/Hibernate?",
+    "hint": "Consider inspecting and invoking classes at runtime, and what proxies, injection and entity mapping rely on."
+  },
+  {
+    "id": "java-reflection-annotations-002",
+    "question": "Can JDK dynamic proxies proxy a concrete class, or only interfaces? What's the alternative when you need to proxy a class?",
+    "hint": "Think about interface-based proxy generation, subclass-based bytecode generation, and limits with final classes or methods."
+  },
+  {
+    "id": "java-reflection-annotations-003",
+    "question": "How does Spring AOP use this mechanism to implement @Transactional?",
+    "hint": "Consider proxies wrapping beans, begin/commit/rollback around method calls, and the thread-bound transaction context."
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "id": "git-workflow",
+    "file": "git-workflow",
+    "title": "Git Workflow"
+  },
+  {
+    "id": "pipelines-and-deployment-strategies",
+    "file": "pipelines-and-deployment-strategies",
+    "title": "Pipelines & Deployment Strategies"
+  },
+  {
+    "id": "static-analysis-coverage",
+    "file": "static-analysis-coverage",
+    "title": "Static Analysis & Coverage"
+  }
+]

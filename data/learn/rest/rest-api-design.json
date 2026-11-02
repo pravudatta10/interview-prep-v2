@@ -1,0 +1,72 @@
+[
+  {
+    "id": "rest-rest-api-design-001",
+    "question": "What is a RESTful API, and what are the REST constraints?",
+    "hint": "Think about client-server, statelessness, cacheability, uniform interface, layered system, and code on demand."
+  },
+  {
+    "id": "rest-rest-api-design-002",
+    "question": "Explain REST principles — statelessness, resource-based URIs, correct use of HTTP verbs.",
+    "hint": "Think about client-server separation, resource nouns, uniform interface, safe and idempotent method semantics, and why no server session matters."
+  },
+  {
+    "id": "rest-rest-api-design-003",
+    "question": "How do you implement API versioning — URI, header, or content negotiation — and what are the trade-offs?",
+    "hint": "Compare where the version lives (path, header, media type), cacheability, discoverability, client ergonomics and how you deprecate old versions."
+  },
+  {
+    "id": "rest-rest-api-design-004",
+    "question": "How do you design pagination, filtering, and sorting for a search API?",
+    "hint": "Think about page vs. cursor styles, consistent sort keys, allow-listed filters, response metadata and index support at large offsets."
+  },
+  {
+    "id": "rest-rest-api-design-005",
+    "question": "How do you document REST APIs using Swagger/OpenAPI?",
+    "hint": "Consider generating a contract from code or code from a contract, annotations, examples, security schemes and keeping docs in sync."
+  },
+  {
+    "id": "rest-rest-api-design-006",
+    "question": "Difference between POST, PUT, and PATCH — write a REST endpoint for each that follows proper conventions.",
+    "hint": "Compare full replacement vs. partial update vs. creation, idempotency, status codes (201, 200, 204), and Location headers."
+  },
+  {
+    "id": "rest-rest-api-design-007",
+    "question": "What is the difference between HTTP and HTTPS, and how does the TLS handshake work?",
+    "hint": "Think about confidentiality and integrity, certificates and trust chains, key exchange, and symmetric encryption after the handshake."
+  },
+  {
+    "id": "rest-rest-api-design-008",
+    "question": "How do you choose between REST, GraphQL, and gRPC for a new API?",
+    "hint": "Compare by clients and needs: over-fetching, schema flexibility, streaming, browser support, performance, tooling and team familiarity."
+  },
+  {
+    "id": "rest-rest-api-design-009",
+    "question": "How do you make POST endpoints idempotent, and what do PUT and DELETE guarantee?",
+    "hint": "Think about retries and duplicates, idempotency keys stored server-side, and which verbs are inherently safe to repeat."
+  },
+  {
+    "id": "rest-rest-api-design-010",
+    "question": "What HTTP caching headers do you use (ETag, Cache-Control, conditional requests)?",
+    "hint": "Consider validators vs. freshness lifetimes, how a client revalidates without redownloading, and when responses should not be cached."
+  },
+  {
+    "id": "rest-rest-api-design-011",
+    "question": "What is idempotency, and which HTTP methods are idempotent? Why does POST not exhibit idempotent behavior by default?",
+    "hint": "Think about repeated calls producing the same effect, the HTTP method semantics, and why creating resources typically differs."
+  },
+  {
+    "id": "rest-rest-api-design-012",
+    "question": "How do you design an idempotency-key mechanism for a POST endpoint, such as payment creation, so retries are safe?",
+    "hint": "Think about a client-generated key, storing the first result, handling concurrent duplicates, key expiry, and request fingerprint mismatch."
+  },
+  {
+    "id": "rest-rest-api-design-013",
+    "question": "How do you design consistent error responses across a set of microservices?",
+    "hint": "Consider a shared envelope, standard fields, status codes, correlation IDs, machine-readable codes, and a common standard format."
+  },
+  {
+    "id": "rest-rest-api-design-014",
+    "question": "How do you design search and filtering APIs over large datasets (query design, indexing, pagination, caching)?",
+    "hint": "Think about filter design, supporting indexes, stable pagination, result caching, and limits that protect the database."
+  }
+]

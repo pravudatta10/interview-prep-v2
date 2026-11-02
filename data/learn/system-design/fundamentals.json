@@ -1,0 +1,97 @@
+[
+  {
+    "id": "system-design-fundamentals-001",
+    "question": "How do you design a system for eventual consistency versus strong consistency, and how do you communicate that trade-off to stakeholders?",
+    "hint": "Start from what the business actually needs per operation, then think about stale reads, conflict handling, and plain-language user impact."
+  },
+  {
+    "id": "system-design-fundamentals-002",
+    "question": "How do you design a scalable, rate-limited public API?",
+    "hint": "Think about authentication, quotas, throttling, versioning, caching, pagination, and horizontal scaling of the gateway layer."
+  },
+  {
+    "id": "system-design-fundamentals-003",
+    "question": "How would you design a URL shortener, a notification system, or a rate limiter at a high level?",
+    "hint": "Walk requirements, APIs, data model, core components, bottlenecks, and scaling, noting different concerns for each of the three systems."
+  },
+  {
+    "id": "system-design-fundamentals-004",
+    "question": "How do you do back-of-the-envelope capacity estimation for storage, QPS, and bandwidth?",
+    "hint": "Think about daily users, request ratios, record sizes, retention, peak factors, and rounding to powers of ten."
+  },
+  {
+    "id": "system-design-fundamentals-005",
+    "question": "What is the difference between L4 and L7 load balancing, and which algorithms are used?",
+    "hint": "Compare which network layer each balancer inspects, what routing decisions that allows, and common distribution algorithms."
+  },
+  {
+    "id": "system-design-fundamentals-006",
+    "question": "How do read replicas, caching, and sharding each address scale, and what does each cost in consistency?",
+    "hint": "Think about what each technique offloads or spreads, and which one introduces staleness, invalidation, or cross-shard complexity."
+  },
+  {
+    "id": "system-design-fundamentals-007",
+    "question": "When do you choose polling, long polling, Server-Sent Events, or WebSockets?",
+    "hint": "Compare who initiates data transfer, connection overhead, directionality, and latency needs across the four techniques."
+  },
+  {
+    "id": "system-design-fundamentals-008",
+    "question": "What is the difference between a message queue and a pub/sub topic, and when do you choose each?",
+    "hint": "Compare point-to-point work distribution with fan-out broadcast, and think about consumer groups, replay, and coupling."
+  },
+  {
+    "id": "system-design-fundamentals-009",
+    "question": "How do you design for multi-tenancy (shared schema, schema per tenant, database per tenant)?",
+    "hint": "Think about isolation versus cost and operational overhead, noisy neighbors, per-tenant customization, and migration complexity."
+  },
+  {
+    "id": "system-design-fundamentals-010",
+    "question": "How do you design pagination for feeds and large result sets (offset, keyset, cursor)?",
+    "hint": "Compare cost on deep pages, stability under inserts, ability to jump around, and how an opaque position marker helps."
+  },
+  {
+    "id": "system-design-fundamentals-011",
+    "question": "Design a notification system (email, SMS, push) with retries, deduplication, and user preferences.",
+    "hint": "Start with requirements: channels, templates, preferences, queues per channel, retry with backoff, dedupe keys, and delivery tracking."
+  },
+  {
+    "id": "system-design-fundamentals-012",
+    "question": "Design a fraud detection system for financial transactions.",
+    "hint": "Consider real-time scoring versus batch analysis, features, rules and models, latency budget, false positives, and human review."
+  },
+  {
+    "id": "system-design-fundamentals-013",
+    "question": "Design a chat or real-time messaging system.",
+    "hint": "Think about connection handling, message ordering and delivery, presence, fan-out, persistence, and offline users."
+  },
+  {
+    "id": "system-design-fundamentals-014",
+    "question": "Design a purchase-request approval workflow with role-based access control.",
+    "hint": "Think about roles and permissions, approval states, thresholds, delegation, audit trail, and notifications as an explicit state machine."
+  },
+  {
+    "id": "system-design-fundamentals-015",
+    "question": "Design a search and filtering API over a large contract dataset.",
+    "hint": "Think about indexing strategy, filter combinations, full-text search engine versus database, pagination, and consistency of the index."
+  },
+  {
+    "id": "system-design-fundamentals-016",
+    "question": "Design a distributed cache.",
+    "hint": "Consider partitioning of keys, eviction policy, replication, invalidation, hot keys, and consistency under node failure."
+  },
+  {
+    "id": "system-design-fundamentals-017",
+    "question": "Design a distributed job scheduler or task queue.",
+    "hint": "Think about task persistence, scheduling triggers, worker leasing, retries, exactly-once illusions, and failure of the scheduler itself."
+  },
+  {
+    "id": "system-design-fundamentals-018",
+    "question": "Design an audit logging system for a regulated application.",
+    "hint": "Think about immutability, who did what and when, tamper evidence, retention, searchability, and not blocking the main transaction."
+  },
+  {
+    "id": "system-design-fundamentals-019",
+    "question": "Explain the design of one of your recent projects end to end, including trade-offs and what you would change today.",
+    "hint": "Pick a project and narrate: requirements, components, data flow, trade-offs made, bottlenecks found, and honest retrospective changes."
+  }
+]

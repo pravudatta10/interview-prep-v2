@@ -1,0 +1,14 @@
+[
+  {
+    "id": "implement-classic-binary-search-sorted-array",
+    "title": "Implement classic binary search on a sorted array, iteratively and recursively",
+    "difficulty": "Easy",
+    "hint": "Maintain low and high bounds, compute mid as low + (high - low)/2, and halve the range depending on comparison with the target."
+  },
+  {
+    "id": "search-rotated-sorted-array",
+    "title": "Search in a rotated sorted array",
+    "difficulty": "Medium",
+    "hint": "At each step one half is sorted; check whether the target lies in the sorted half to decide which side to continue the binary search on."
+  }
+]

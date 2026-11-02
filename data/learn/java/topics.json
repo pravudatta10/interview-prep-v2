@@ -5,9 +5,19 @@
     "title": "Java Fundamentals"
   },
   {
+    "id": "jvm-garbage-collection",
+    "file": "jvm-garbage-collection",
+    "title": "JVM & Garbage Collection"
+  },
+  {
     "id": "oops",
     "file": "oops",
     "title": "OOP Principles in Java"
+  },
+  {
+    "id": "strings",
+    "file": "strings",
+    "title": "Strings"
   },
   {
     "id": "collections",
@@ -15,8 +25,48 @@
     "title": "Collections Framework"
   },
   {
+    "id": "hashmap",
+    "file": "hashmap",
+    "title": "HashMap & ConcurrentHashMap"
+  },
+  {
+    "id": "multithreading",
+    "file": "multithreading",
+    "title": "Multithreading & Concurrency"
+  },
+  {
+    "id": "java8-features",
+    "file": "java8-features",
+    "title": "Java 8+ Features & Streams"
+  },
+  {
     "id": "exceptions",
     "file": "exceptions",
     "title": "Exception Handling"
+  },
+  {
+    "id": "generics",
+    "file": "generics",
+    "title": "Generics"
+  },
+  {
+    "id": "immutable-classes",
+    "file": "immutable-classes",
+    "title": "Immutable Classes"
+  },
+  {
+    "id": "reflection-annotations",
+    "file": "reflection-annotations",
+    "title": "Reflection & Annotations"
+  },
+  {
+    "id": "object-class",
+    "file": "object-class",
+    "title": "Object Class"
+  },
+  {
+    "id": "solid-principles",
+    "file": "solid-principles",
+    "title": "SOLID Principles"
   }
 ]

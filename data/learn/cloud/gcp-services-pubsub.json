@@ -1,0 +1,12 @@
+[
+  {
+    "id": "cloud-gcp-services-pubsub-001",
+    "question": "When would you choose Cloud Run, GKE, or Cloud Functions?",
+    "hint": "Compare by workload shape: request-driven containers, full orchestration control, and event-triggered snippets, plus operational overhead of each."
+  },
+  {
+    "id": "cloud-gcp-services-pubsub-002",
+    "question": "How does Cloud Pub/Sub deliver messages (at-least-once, ordering keys, acknowledgement deadline, dead-letter topics), and how do you make consumers idempotent?",
+    "hint": "Think about delivery guarantees, redelivery after missed acks, ordering scope, poison messages, and deduplication on the consumer side."
+  }
+]

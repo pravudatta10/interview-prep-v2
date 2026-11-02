@@ -1,0 +1,17 @@
+[
+  {
+    "id": "distributed-systems-fundamentals",
+    "file": "distributed-systems-fundamentals",
+    "title": "Distributed Systems Fundamentals"
+  },
+  {
+    "id": "resilience-patterns-in-depth",
+    "file": "resilience-patterns-in-depth",
+    "title": "Resilience Patterns in Depth"
+  },
+  {
+    "id": "consistency-messaging",
+    "file": "consistency-messaging",
+    "title": "Consistency, Messaging & Reconciliation"
+  }
+]

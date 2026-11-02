@@ -1,0 +1,62 @@
+[
+  {
+    "id": "angular-typescript-and-javascript-001",
+    "question": "What is the difference between any, unknown, and never?",
+    "hint": "Think about opting out of type checking, safe top types requiring narrowing, and values that never occur."
+  },
+  {
+    "id": "angular-typescript-and-javascript-002",
+    "question": "What are union and intersection types, discriminated unions, and type guards (narrowing)?",
+    "hint": "Consider combining types with OR vs. AND, a shared tag field, and runtime checks that refine types."
+  },
+  {
+    "id": "angular-typescript-and-javascript-003",
+    "question": "What is the difference between Promises, async/await, and Observables?",
+    "hint": "Compare single vs. multiple values, eager vs. lazy, cancellation, and syntax sugar over chained callbacks."
+  },
+  {
+    "id": "angular-typescript-and-javascript-004",
+    "question": "What is the difference between interface and type in TypeScript, and when do you choose each?",
+    "hint": "Think about declaration merging, extending vs. intersecting, object shapes vs. unions and primitives, and implementing in classes."
+  },
+  {
+    "id": "angular-typescript-and-javascript-005",
+    "question": "How do generics work in TypeScript, and how do you constrain them?",
+    "hint": "Consider type parameters on functions and interfaces, the extends keyword for constraints, defaults, and keyof relationships."
+  },
+  {
+    "id": "angular-typescript-and-javascript-006",
+    "question": "Which utility types do you use (Partial, Required, Pick, Omit, Record, ReturnType), and why?",
+    "hint": "Think about transforming existing types instead of rewriting them: optional, required, subset, exclusion, key-value maps, and function return extraction."
+  },
+  {
+    "id": "angular-typescript-and-javascript-007",
+    "question": "What does strict mode enable, and why should every project use it?",
+    "hint": "Think about compiler flags that catch null, implicit any and uninitialized properties at build time rather than at runtime."
+  },
+  {
+    "id": "angular-typescript-and-javascript-008",
+    "question": "How does the JavaScript event loop work, and what is the difference between microtasks and macrotasks?",
+    "hint": "Picture the call stack, the task queues and the order in which promise callbacks drain versus timers and I/O callbacks."
+  },
+  {
+    "id": "angular-typescript-and-javascript-009",
+    "question": "What are closures, and where do they cause bugs (stale closures, loops)?",
+    "hint": "Think about functions capturing variables by reference, and what a loop variable or an outdated state value looks like later."
+  },
+  {
+    "id": "angular-typescript-and-javascript-010",
+    "question": "What is the difference between debounce and throttle, and where do you use each?",
+    "hint": "Compare when the function fires: after activity pauses versus at a fixed maximum rate, then match each to search boxes and scroll events."
+  },
+  {
+    "id": "angular-typescript-and-javascript-011",
+    "question": "What is the difference between == and ===, and between var, let, and const (hoisting, temporal dead zone)?",
+    "hint": "Consider type coercion rules, function vs. block scope, hoisting behavior and what happens when you touch a variable before its declaration."
+  },
+  {
+    "id": "angular-typescript-and-javascript-012",
+    "question": "How do you deep clone an object, and what are the pitfalls of the spread operator and JSON methods?",
+    "hint": "Think about shallow vs. deep copies, what gets lost in JSON round trips (dates, undefined, functions), and the modern built-in alternative."
+  }
+]

@@ -1,0 +1,7 @@
+[
+  {
+    "id": "nosql-mongodb-and-document-modeling-001",
+    "question": "When would you choose MongoDB over a relational database, and when not?",
+    "hint": "Consider schema flexibility, document-shaped aggregates, scaling model, and where joins, multi-document transactions and strict integrity still matter."
+  }
+]

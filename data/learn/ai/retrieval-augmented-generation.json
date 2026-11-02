@@ -1,0 +1,22 @@
+[
+  {
+    "id": "ai-retrieval-augmented-generation-001",
+    "question": "What is Retrieval-Augmented Generation (RAG), and why is it needed instead of relying purely on an LLM's parametric knowledge?",
+    "hint": "Think about knowledge frozen at training time, private or fresh data, retrieval then generation, and the cost vs. fine-tuning."
+  },
+  {
+    "id": "ai-retrieval-augmented-generation-002",
+    "question": "What are embeddings, and how do you choose a chunk size/overlap strategy for documents like PDFs or slide decks?",
+    "hint": "Think about vector representations of meaning, similarity search, and balancing chunk granularity against context loss, with structure-aware splitting for slides and PDFs."
+  },
+  {
+    "id": "ai-retrieval-augmented-generation-003",
+    "question": "How do you evaluate RAG output quality — retrieval precision/recall, hallucination rate, faithfulness?",
+    "hint": "Separate retrieval metrics from generation metrics, think about labeled question sets, groundedness against sources, and automated judges vs. human review."
+  },
+  {
+    "id": "ai-retrieval-augmented-generation-004",
+    "question": "What is hallucination in LLMs, and what techniques reduce it in a production pipeline — grounding, citations, guardrails?",
+    "hint": "Think about confident but unsupported output, why it happens, then layers of defense: retrieval grounding, source citations, output validation and refusal behavior."
+  }
+]

@@ -8,5 +8,59 @@
     "solution": "int findDuplicate(int[] nums) {\n    Set<Integer> seen = new HashSet<>();\n    for (int n : nums) {\n        if (!seen.add(n)) return n;\n    }\n    return -1;\n}",
     "complexity": "Time: O(n), Space: O(n)",
     "interviewFollowUp": "Can you solve this in O(1) extra space using Floyd's cycle detection?"
+  },
+  {
+    "id": "sum",
+    "title": "Two Sum — find a pair of elements in an array whose sum equals a target value",
+    "difficulty": "Easy",
+    "hint": "Store each number's index in a HashMap as you scan, and check whether target minus the current value has already been seen."
+  },
+  {
+    "id": "find-all-pairs",
+    "title": "Find all pairs, not just one, whose sum equals a target value",
+    "difficulty": "Medium",
+    "hint": "Count occurrences in a HashMap or sort and use two pointers, skipping duplicates, so every distinct pair is collected without repeating."
+  },
+  {
+    "id": "find-common-elements-between-arrays",
+    "title": "Find the common elements between two arrays",
+    "difficulty": "Easy",
+    "hint": "Put one array into a HashSet, then scan the other and keep elements found in the set; a set result avoids duplicates."
+  },
+  {
+    "id": "rotate-array-right-k-steps",
+    "title": "Rotate an array to the right by k steps, in place",
+    "difficulty": "Medium",
+    "hint": "Reverse the whole array, then reverse the first k elements and the remaining n-k separately; take k modulo n first."
+  },
+  {
+    "id": "kadane-s-algorithm",
+    "title": "Kadane's Algorithm — find the maximum sum contiguous subarray",
+    "difficulty": "Medium",
+    "hint": "Keep a running sum that resets to the current element whenever it drops below it, and track the best sum seen so far."
+  },
+  {
+    "id": "product-array-except-self",
+    "title": "Product of Array Except Self — without using division",
+    "difficulty": "Medium",
+    "hint": "Make two passes: store prefix products going left to right, then multiply by a running suffix product going right to left."
+  },
+  {
+    "id": "merge-overlapping-intervals-list-start",
+    "title": "Merge overlapping intervals from a list of [start, end] pairs",
+    "difficulty": "Medium",
+    "hint": "Sort intervals by start, then walk through them, extending the last merged interval's end when the next start overlaps it."
+  },
+  {
+    "id": "move-all-zeroes-end-array",
+    "title": "Move all zeroes to the end of an array, keeping the order of other elements",
+    "difficulty": "Easy",
+    "hint": "Use a write pointer for the next non-zero slot; copy non-zeros forward as you scan, then fill the remainder with zeroes."
+  },
+  {
+    "id": "find-best-time-buy-sell-stock",
+    "title": "Find the best time to buy and sell a stock to maximize profit",
+    "difficulty": "Easy",
+    "hint": "Scan once tracking the minimum price so far, and at each day compare the current price minus that minimum against the best profit."
   }
 ]

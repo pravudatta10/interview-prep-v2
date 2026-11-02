@@ -1,0 +1,7 @@
+[
+  {
+    "id": "devops-static-analysis-coverage-001",
+    "question": "How do you measure and improve code coverage meaningfully, rather than chasing a number?",
+    "hint": "Think about what coverage cannot tell you, meaningful assertions, risk-based focus, mutation testing, and enforcing thresholds on new code only."
+  }
+]
